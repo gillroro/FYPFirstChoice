@@ -1,0 +1,97 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="default" extends="struts-default">
+        <action name="Login" class="hrmOne.UserLoginAction">
+            <result name="success">/success.jsp</result>
+			<result name="failure">/failure.jsp</result>
+			<result name="manager">/manager.jsp</result>
+        </action>
+		
+		<action name="ManagerLogin" class="hrmOne.ManagerLoginAction">
+            <result name="success">/manager.jsp</result>
+			<result name="failure">/failure.jsp</result>
+			<result name="manager">/manager.jsp</result>
+        </action>
+		
+		<action name="Register" class="hrmOne.RegisterAction">
+            <result name="success">/registerSuccess.jsp</result>
+			<result name="failure">/failure.jsp</result>
+        </action>
+	
+		<action name="AddEmployee" class="hrmOne.RegisterAction">
+            <result>/register.jsp</result>
+			
+        </action>
+
+		<action name = "loginAgain" class = "hrmOne.UserLoginAction">
+			<result name = "success">/index.jsp</result>
+			<result name = "failure">/failure.jsp</result>
+		</action>
+
+		<action name = "Logout" class ="hrmOne.UserLoginAction" method = 
+"logout">
+			<result name = "success">/index.jsp</result>
+			<result name = "failure">/failure.jsp</result>
+		</action>
+
+		<action name="fileUploadAction" class="hrmOne.FileUploadAction" 
+method="display">
+			<result name="none">/fileUpload.jsp</result>
+		</action>
+		
+		<action name="resultAction" class="hrmOne.FileUploadAction">
+			<interceptor-ref name="exception"/>
+				<interceptor-ref name="i18n"/>
+				<interceptor-ref name="fileUpload">
+			
+				
+			</interceptor-ref> 
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param 
+name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param 
+name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+ 
+			<result name="success">/uploadResult.jsp</result>
+			<result name="input">/fileUpload.jsp</result>
+		</action>
+		
+		<action name="Appraisal" class="hrmOne.AppraisalAction">
+			<result name="none">/appraisal.jsp</result>
+			<result name="success">/appraisalResult.jsp</result>
+		</action>
+		
+		<action name="SelfAppraise" class="hrmOne.AppraisalAction">
+			<result>/appraisal.jsp</result>
+		</action>	
+		
+		<action name="JobBoards" class="hrmOne.JobBoardAction">
+			<result>/jobBoards.jsp</result>
+		</action>	
+		
+		<!--<action name="datePickerAction" 
+class="hrmOne.DatePickerAction" method="display">
+			<result name="none">/holidayRequest.jsp</result>
+
+		</action>-->
+		
+		<action name="DateTimePicker" class="hrmOne.DatePickerAction">
+			<result>/holidayRequest.jsp</result>
+		</action>
+ 
+		<action name="holidayResultAction" class="hrmOne.DatePickerAction" >
+				<result name="success">/holidayResult.jsp</result>
+			 <result name="none">/holidayRequest.jsp</result>
+			 <result name="input">/holidayRequest.jsp</result>
+		</action>
+    </package>
+</struts>
