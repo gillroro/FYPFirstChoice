@@ -40,7 +40,7 @@ strike{}
 em,i{}
 .hide{display:none;}
 .show{display:block;}
-
+.col_400 { width: 200px; } 
 /*---------------------------------
 	UTILITY
 -----------------------------------*/

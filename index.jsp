@@ -29,21 +29,24 @@
 			Welcome to First Choice</h1>
 		<h4 style="color:#999;margin-bottom:40px;" class="center"> The Human Resource Management Solution!</h4>
 	</div>
-	<div class="center" >
+	<div class ="center" >
+	<div class="col_400 float_l" >
 	<h5>Employee Login:</h5>
 		<s:form action="Login">
 		<s:textfield name="Username" value ="Username" theme= "css_xhtml" />
-		<s:password name="Password" value="Password" theme= "css_xhtml"  />
+		<s:password name="Password" value="Password" showPassword="true" theme= "css_xhtml"  />
 		<s:submit value="Login" theme="simple"/>
 		</s:form>
-		
+	</div>
+	<div class="col_400 float_r" >
 		<h5>Manager Login:</h5>
 		<s:form action="ManagerLogin">
 		<s:textfield name="Username" value ="Username" theme= "css_xhtml" />
-		<s:password name="Password" value="Password" theme= "css_xhtml"  />
+		<s:password name="Password" value="Password" showPassword="true" theme= "css_xhtml"  />
 		<s:submit value="Login" theme="simple"/>
 		</s:form>
 	
+	</div>
 	</div>
 	<!-- Slideshow -->
 	<div align="center" style="height:500px;width:500px;margin:0 auto;">
