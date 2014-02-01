@@ -2,6 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib prefix="sx" uri="/struts-dojo-tags"%>
 <html>
 <head>
 	<!-- META -->
@@ -17,25 +18,75 @@
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/kickstart.js"></script>
+	<sx:head />
+	<script>
+	function addInputBox() { 
+
+var ni = document.getElementById('myDiv'); 
+
+var numi = document.myForm.inputboxlength; 
+
+var num = parseInt(numi.value) +1; 
+//alert(num); 
+numi.value = num; 
+
+var newdiv = document.createElement('div'); 
+
+var divIdName = 'my'+num+'Div'; 
+
+newdiv.setAttribute('id',divIdName); 
+
+newdiv.innerHTML = "<input type=\"text\" name=\"txtArea"+num +"\" /> <input type=\"button\" onclick=\"removeInputBox(\'"+divIdName+"\')\" value='Remove'/>" 
+
+ni.appendChild(newdiv); 
+
+} 
+function removeInputBox(divNum) { 
+
+//alert(); 
+var d = document.getElementById('myDiv'); 
+var numi = document.myForm.inputboxlength; 
+//alert("current value inputboxlength="+numi.value); 
+var num = parseInt(numi.value) -1; 
+
+numi.value = num; 
+var olddiv = document.getElementById(divNum); 
+d.removeChild(olddiv); 
+//alert("after removing value inputboxlength="+num); 
+
+} 
+</script>
 </head>
 <body>
 
-		<div style="height:500px;width:550px;margin:0 auto;">
+		<div style="height:350px;width:550px;margin:0 auto;">
 			<img class="full-width" src="images/fc.png" />
 			<h4 style="color:#999;margin-bottom:40px;" class="center"> Employee Appraisal </h4>
         </div>
 		
-		<div class="center" >
+		<div align="center" style="height:500px;width:500px;margin:0 auto;">
 			<s:form action="Appraisal" namespace="/" method="POST" theme= "css_xhtml" >
+			<div class="col_400 float_l" >
 				 <h6>Attendance</h6><s:radio name="attendanceRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />
 				 <h6>Respect for Others</h6><s:radio name="respectRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}"  />
 				 <h6>Employee Efficiency</h6><s:radio  name ="efficiencyRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />
+			</div>
+			<div class="col_400" style="margin: 0 auto;" >
 				 <h6>Accuracy of Work</h6><s:radio  name ="accuracyRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />
 				 <h6>Quality of Work</h6><s:radio  name ="qualityRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />
-				 <h6>Manager Name</h6><s:textfield name="manager" />
-				 <h6>Comments</h6><s:textarea name="address" cols="40" rows="10" />
+				 <h6>Manager</h6> <sx:autocompleter size="1" list="managers" name="manager"></sx:autocompleter>
+					</action>
+			</div>
+			
 				 <s:submit name ="Appraisal" value="Appraise" theme= "simple" />
-			</s:form>	 
+			
+			</s:form>	
+			<body onload="reset()"> 
+			<form name="myForm" action="result.jsp" > 
+				<p><input type='button' onclick='addInputBox()' value='Add'/></p> 
+				<input type="hidden" name="inputboxlength" value="0" /> 
+				<div id="myDiv"> </div> 
+			</form> 			
 		</div>
 
 </body>

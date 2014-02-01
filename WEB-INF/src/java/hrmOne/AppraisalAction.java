@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.StringTokenizer;
 
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -24,7 +25,8 @@ public class AppraisalAction extends ActionSupport {
 	private String attendanceRecord;
 	private String respectRecord;
 
-
+	private String names = "Gillian, Sarah, Jake";
+	private List<String> managers;
 	private String from;
 	private String password;
 	private String to;
@@ -58,6 +60,11 @@ public class AppraisalAction extends ActionSupport {
 
 	public String execute() 
 	{
+		managers = new ArrayList<String>();
+		StringTokenizer st = new StringTokenizer(names, ",");
+		while(st.hasMoreTokens()){
+			managers.add(st.nextToken().trim());
+		}
 		String ret = SUCCESS;
 		try
 		{

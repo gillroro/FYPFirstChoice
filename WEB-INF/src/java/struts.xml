@@ -76,6 +76,7 @@ name="excludeMethods">input,back,cancel,browse</param>
 		</action>
 		
 		<action name="Appraisal" class="hrmOne.AppraisalAction">
+		 <!--<interceptor-ref name="loggingStack"></interceptor-ref>-->
 			<result name="none">/appraisal.jsp</result>
 			<result name="success">/appraisalResult.jsp</result>
 		</action>
