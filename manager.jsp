@@ -36,7 +36,7 @@
 		<div class="center" >
 			<a href="<s:url action="AddEmployee"/>">Register Employee</a>
 			<a href="<s:url action="fileUploadAction"/>">Manage Employee Appraisal</a>
-			<a href="<s:url action="fileUploadAction"/>">Manage Employee Details</a>
+			<a href="<s:url action="ManageDetails"/>">Manage Employee Details</a>
 			<a href="<s:url action="fileUploadAction"/>">Manage Details</a>
 			<a href="<s:url action="fileUploadAction"/>">Manage Allowances</a>
 			<a href="<s:url action="fileUploadAction"/>">Manage Job Boards</a>

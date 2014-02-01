@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import util.WebSession;
 
@@ -24,6 +26,8 @@ public class RegisterAction extends ActionSupport{
 	private Connection connection;
 	private PreparedStatement addEmployee;	
 	private WebSession ws;
+	private Employee employee = new Employee();
+	private List<Employee> employees = new ArrayList<Employee>();
 	private User user = new User();
 
 	public String getPassword() {
@@ -41,21 +45,34 @@ public class RegisterAction extends ActionSupport{
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	public String forward(){
+		return NONE;
+	}
 
 	//business logic
 	public String execute() throws ClassNotFoundException, SQLException {
 
 		Class.forName("com.mysql.jdbc.Driver");
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
-		addEmployee= connection.prepareStatement("INSERT INTO employee(first_name, surname, username, password, address, salary, manager_id) VALUES(?, ?, ?, ?, ?, ?, ?)");	
+		addEmployee= connection.prepareStatement("INSERT INTO employee(first_name, surname, username, password, address, salary) VALUES(?, ?, ?, ?, ?, ?)");	
 		addEmployee.setString(1, getFirstName());
 		addEmployee.setString(2, getSurname());
 		addEmployee.setString(3, getUsername());
 		addEmployee.setString(4, getPassword());
 		addEmployee.setString(5, getAddress());
 		addEmployee.setInt(6, getSalary());
-		addEmployee.setInt(7, getManagerID());
+	//	addEmployee.setInt(7, getManagerID());
 		addEmployee.executeUpdate();
+		employee.setFirstName(getFirstName());
+		employee.setSurname(getSurname());
+		employee.setUsername(getUsername());
+		employee.setPassword(getPassword());
+		employee.setAddress(getAddress());
+		employee.setSalary(getSalary());
+		employee.setManagerID(getManagerID());
+		employees.add(employee);
+		employee.setEmployees(employees);
 		ws.put("CurrentUser", user);
 		addEmployee.close();
 		connection.close();

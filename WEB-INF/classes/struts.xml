@@ -8,12 +8,14 @@
             <result name="success">/success.jsp</result>
 			<result name="failure">/failure.jsp</result>
 			<result name="manager">/manager.jsp</result>
+			<result name="input">/index.jsp</result>
         </action>
 		
 		 <action name="ManagerLogin" class="hrmOne.ManagerLoginAction">
             <result name="success">/manager.jsp</result>
 			<result name="failure">/failure.jsp</result>
 			<result name="manager">/manager.jsp</result>
+			<result name="input">/index.jsp</result>
         </action>
 		
 		<action name="Register" class="hrmOne.RegisterAction">
@@ -21,19 +23,26 @@
 			<result name="failure">/failure.jsp</result>
         </action>
 	
-		<action name="AddEmployee" class="hrmOne.RegisterAction">
-            <result>/register.jsp</result>
-			
+		<action name="AddEmployee" class="hrmOne.RegisterAction" method="forward">
+            <result name="none">/register.jsp</result>			
+        </action>
+		
+		<action name="ManageDetails" class="hrmOne.ManageEmployeeDetailsAction">
+            <result name="success">/manageEmployeeDetails.jsp</result>
+			<result name="failure">/failure.jsp</result>
         </action>
 
 		<action name = "loginAgain" class = "hrmOne.UserLoginAction">
 			<result name = "success">/index.jsp</result>
 			<result name = "failure">/failure.jsp</result>
+			
+			<result name="input">/index.jsp</result>
 		</action>
 
 		<action name = "Logout" class ="hrmOne.UserLoginAction" method = "logout">
 			<result name = "success">/index.jsp</result>
 			<result name = "failure">/failure.jsp</result>
+			<result name="input">/index.jsp</result>
 		</action>	
 
 		<action name="fileUploadAction" class="hrmOne.FileUploadAction" method="display">

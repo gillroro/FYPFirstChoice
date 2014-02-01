@@ -104,6 +104,15 @@ public class UserLoginAction extends ActionSupport {
 		ws.remove("CurrentUser");
 		return "success";
 	}
+//	
+//	public void validate(){
+//		if(username == null || username.equals("")){
+//			addFieldError(username, "Username is required");
+//		}
+//		if(password == null || password.equals("")){
+//			addFieldError(password, "Password is required");
+//		}
+//	}
 
 
 
