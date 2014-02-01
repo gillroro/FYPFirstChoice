@@ -53,11 +53,20 @@
 	</div>
 	<!-- Slideshow -->
 	<div align="center" style="height:500px;width:500px;margin:0 auto;">
-		<ul class="slideshow" align="center">
+	<div class="col_400 float_l" >
+		<ul class="slideshow" >
 			<li><img src="images/hrm2.jpg" width="550" height="350" /></li>
 			<li><img src="images/white.jpg" width="550" height="350" /></li>
 			<li><img src="images/HumanResources.jpg" width="550" height="350" /></li>
 		</ul>
+		</div>
+		<div class="col_400 float_r" >
+		<a class="twitter-timeline" href="https://twitter.com/FirstChoiceHRM" data-widget-id="429745695843573760">Tweets by @FirstChoiceHRM</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+	</div>
+
 	</div>
 </div> <!-- End Grid -->
 	 <div id="footer">
