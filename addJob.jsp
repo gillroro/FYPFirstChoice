@@ -20,14 +20,14 @@
 <body>
  <div style="height:500px;width:550px;margin:0 auto;">
 <div class="center" >
-<h4 style="color:#999;margin-bottom:40px;" class="center"> Job Boards</h4>
+<h4 style="color:#999;margin-bottom:40px;" class="center"> Post a Job</h4>
 
-
-<a href="<s:url action="PostJob"/>">Post Job</a>
-<a href="<s:url action="fileUploadAction"/>">View All Jobs</a>
-
-<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
-
+<s:form action="AddJob" >
+	<s:textfield name="job_name" label="Job Name" theme= "css_xhtml"/>
+	<s:textarea name="description" label="Description" theme="css_xhtml" />
+	<s:textfield name="department" label="Department" theme="css_xhtml" />
+	<s:submit value="Add Job" theme="simple" />
+</s:form>	
 </div> 
 </div>
 </body>

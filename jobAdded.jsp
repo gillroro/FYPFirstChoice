@@ -23,7 +23,7 @@
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Job Boards</h4>
 
 
-<a href="<s:url action="PostJob"/>">Post Job</a>
+<a href="<s:url action="fileUploadAction"/>">Post Job</a>
 <a href="<s:url action="fileUploadAction"/>">View All Jobs</a>
 
 <input type="button" value="Dashboard" onclick="window.history.go(-1);"/>

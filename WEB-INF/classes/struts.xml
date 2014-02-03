@@ -78,10 +78,19 @@
 		<action name="SelfAppraise" class="hrmOne.AppraisalAction">
 			<result>/appraisal.jsp</result>
 		</action>	
-		
-		<action name="JobBoards" class="hrmOne.JobBoardAction">
-			<result>/jobBoards.jsp</result>
+			
+		<action name="JobBoards" class="hrmOne.JobBoardAction" method="forward">
+			<result name="none">/jobBoards.jsp</result>
 		</action>
+
+		<action name="PostJob" class="hrmOne.JobBoardAction" method="forward">
+			<result name="none">/addJob.jsp</result>
+		</action>	
+		
+		<action name="AddJob" class="hrmOne.JobBoardAction" method="execute">
+			<result name="success">/jobAdded.jsp</result>
+			<result name="failure">/failure.jsp</result>
+		</action>	
 		
 		<!--<action name="datePickerAction" class="hrmOne.DatePickerAction" method="display">
 			<result name="none">/holidayRequest.jsp</result>
