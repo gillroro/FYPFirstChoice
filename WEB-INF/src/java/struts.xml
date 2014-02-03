@@ -101,7 +101,16 @@ name="excludeMethods">input,back,cancel,browse</param>
 		<action name="ViewAll" class="hrmOne.JobBoardAction" method="displayList">
 			<result name="success">/allJobs.jsp</result>
 			<result name="failure">/failure.jsp</result>
+		</action
+		
+		<action name="ViewSpecific" class="hrmOne.JobBoardAction" method="forward">
+			<result name="none">/jobsByDepartment.jsp</result>
 		</action>
+		
+		<action name="JobDepartment" class="hrmOne.JobBoardAction" method="displayDepartmentList">
+			<result name="success">/allJobs.jsp</result>
+			<result name="failure">/failure.jsp</result>
+		</action>	
 		
 		<!--<action name="datePickerAction" 
 class="hrmOne.DatePickerAction" method="display">

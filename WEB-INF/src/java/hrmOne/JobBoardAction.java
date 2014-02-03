@@ -23,6 +23,7 @@ public class JobBoardAction extends ActionSupport {
 	private Connection connection;
 	private PreparedStatement addJob;
 	private PreparedStatement getJobs;
+	private PreparedStatement getJobByDepartment;
 	private ResultSet results;
 
 	public String forward(){
@@ -37,7 +38,7 @@ public class JobBoardAction extends ActionSupport {
 		addJob.setString(2, getDescription());
 		addJob.setString(3, getDepartment());
 		addJob.executeUpdate();
-	
+
 		//		job.setDepartment(department);
 		//		job.setJobDesc(description);
 		//		job.setJobName(jobName);
@@ -97,7 +98,7 @@ public class JobBoardAction extends ActionSupport {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
 			getJobs = connection.prepareStatement("SELECT * FROM JOB");
 			results = getJobs.executeQuery();
-		
+
 			while(results.next()){
 				Job job = new Job();
 				job.setJobName(results.getString("job_name"));
@@ -108,14 +109,14 @@ public class JobBoardAction extends ActionSupport {
 			connection.close();
 			getJobs.close();
 			results.close();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 		}
 		return  jobs;
 	}
-	
+
 	public String displayList(){
 		getAllJobs();
 		if(jobs != null){
@@ -127,6 +128,47 @@ public class JobBoardAction extends ActionSupport {
 		else{
 			return "failure";
 		}
+	}
+
+	public List<Job> getJobByDepartment(){
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
+			getJobByDepartment = connection.prepareStatement("SELECT * FROM JOB WHERE department=?");
+			getJobByDepartment.setString(1, getDepartment());
+			results = getJobByDepartment.executeQuery();
+
+			while(results.next()){
+				Job job = new Job();
+				job.setJobName(results.getString("job_name"));
+				job.setJobDesc(results.getString("description"));
+				job.setDepartment(results.getString("department"));
+				jobs.add(job);
+			}
+			connection.close();
+			getJobs.close();
+			results.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return  jobs;
+	}
+	
+	public String displayDepartmentList(){
+		getJobByDepartment();
+		if(jobs != null){
+			for(int i=0; i< jobs.size(); i++){
+				System.out.println(jobs.get(i));
+			}
+			return SUCCESS;
+		}
+		else{
+			return "failure";
+		}
+		
 	}
 
 
