@@ -55,9 +55,9 @@
 	<div align="center" style="height:500px;width:500px;margin:0 auto;">
 	<div class="col_400 float_l" >
 		<ul class="slideshow" >
-			<li><img src="images/hrm2.jpg" width="550" height="350" /></li>
-			<li><img src="images/white.jpg" width="550" height="350" /></li>
-			<li><img src="images/HumanResources.jpg" width="550" height="350" /></li>
+			<li><img src="images/hrm2.jpg" width="550" height="450" /></li>
+			<li><img src="images/white.jpg" width="550" height="450" /></li>
+			<li><img src="images/HumanResources.jpg" width="550" height="450" /></li>
 		</ul>
 		</div>
 		<div class="col_400 float_r" >
