@@ -26,13 +26,13 @@
 <s:iterator value="jobs" status ="jobsStatus" >
  <tr>
   	<s:if test="#jobsStatus.even == true">
-      <td style="background: #CCCCCC"><s:property/></td>
+      <td style="background: #CCCCCC"><s:property value ="jobName" /></td>
     </s:if>
     <s:elseif test="#jobsStatus.first == true">
-      <td><s:property  /></td>
+      <td><s:property value ="jobName"  /></td>
     </s:elseif>
     <s:else>
-      <td><s:property  /></td>
+      <td><s:property value ="jobName" /></td>
     </s:else>
   </tr>
 </s:iterator>
