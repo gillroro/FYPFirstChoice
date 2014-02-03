@@ -22,9 +22,24 @@
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Job Boards</h4>
 
-
-<a href="<s:url action="PostJob"/>">Post Job</a>
-<a href="<s:url action="ViewAll"/>">View All Jobs</a>
+<s:iterator value="jobs">
+  <p>day is: <s:property/></p>
+</s:iterator>
+<table>
+<s:iterator value="jobs" status ="jobsStatus" >
+ <tr>
+  	<s:if test="#jobsStatus.even == true">
+      <td style="background: #CCCCCC"><s:property/></td>
+    </s:if>
+    <s:elseif test="#jobsStatus.first == true">
+      <td><s:property/> (This is first value) </td>
+    </s:elseif>
+    <s:else>
+      <td><s:property/></td>
+    </s:else>
+  </tr>
+</s:iterator>
+</table>
 
 <input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
 

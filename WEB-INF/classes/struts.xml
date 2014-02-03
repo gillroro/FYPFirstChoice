@@ -92,6 +92,11 @@
 			<result name="failure">/failure.jsp</result>
 		</action>	
 		
+		<action name="ViewAll" class="hrmOne.JobBoardAction" method="displayList">
+			<result name="success">/allJobs.jsp</result>
+			<result name="failure">/failure.jsp</result>
+		</action>
+		
 		<!--<action name="datePickerAction" class="hrmOne.DatePickerAction" method="display">
 			<result name="none">/holidayRequest.jsp</result>
 

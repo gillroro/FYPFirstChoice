@@ -5,56 +5,54 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 public class JobBoardAction extends ActionSupport {
-	
-	
+
+
 	private static final long serialVersionUID = 1L;
-	private List<Job> jobs;
-	private String jobName;
+	private List<Job> jobs = new ArrayList<Job>();;
+	private String job_name;
 	private String description;
 	private String department;
 	private Employee employee;
 	private Job job;
 	private Connection connection;
 	private PreparedStatement addJob;
-	
+	private PreparedStatement getJobs;
+	private ResultSet results;
+
 	public String forward(){
 		return NONE;
 	}
-	
+
 	public String execute() throws ClassNotFoundException, SQLException{
 		Class.forName("com.mysql.jdbc.Driver");
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
 		addJob = connection.prepareStatement("INSERT INTO Job(job_name, description, department) VALUES(?,?,?)");
-		addJob.setString(1, getJobName());
+		addJob.setString(1, getJob_name());
 		addJob.setString(2, getDescription());
 		addJob.setString(3, getDepartment());
 		addJob.executeUpdate();
-		jobs = new ArrayList<Job>();
-//		job.setDepartment(department);
-//		job.setJobDesc(description);
-//		job.setJobName(jobName);
-//		jobs.add(job);
+	
+		//		job.setDepartment(department);
+		//		job.setJobDesc(description);
+		//		job.setJobName(jobName);
+		//		jobs.add(job);
 		return SUCCESS;
 	}
-	
-	
+
+
 	public List<Job> getJobs() {
 		return jobs;
 	}
 	public void setJobs(List<Job> jobs) {
 		this.jobs = jobs;
 	}
-	public String getJobName() {
-		return jobName;
-	}
-	public void setJobName(String jobName) {
-		this.jobName = jobName;
-	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -83,8 +81,54 @@ public class JobBoardAction extends ActionSupport {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+
+	public String getJob_name() {
+		return job_name;
+	}
+
+	public void setJob_name(String job_name) {
+		this.job_name = job_name;
+	}
+
+	public List<Job> getAllJobs(){
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
+			getJobs = connection.prepareStatement("SELECT * FROM JOBS;");
+			results = getJobs.executeQuery();
+			results.getString("job_name");
+			results.getString("description");
+			results.getString("department");
+			while(results.next()){
+				Job job = new Job();
+				job.setJobName(results.getString("job_name"));
+				job.setJobDesc(results.getString("description"));
+				job.setDepartment(results.getString("department"));
+				jobs.add(job);
+			}
+			connection.close();
+			getJobs.close();
+			results.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		return  jobs;
+	}
 	
-	
-	
+	public String displayList(){
+		getAllJobs();
+		if(jobs != null){
+			return SUCCESS;
+		}
+		else{
+			return "failure";
+		}
+	}
+
+
+
 
 }

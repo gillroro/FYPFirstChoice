@@ -39,7 +39,7 @@
 			<a href="<s:url action="ManageDetails"/>">Manage Employee Details</a>
 			<a href="<s:url action="fileUploadAction"/>">Manage Details</a>
 			<a href="<s:url action="fileUploadAction"/>">Manage Allowances</a>
-			<a href="<s:url action="fileUploadAction"/>">Manage Job Boards</a>
+			<a href="<s:url action="JobBoards"/>">Manage Job Boards</a>
 		</div>
 		<div class ="center" >
 		<s:form action = "Logout" >

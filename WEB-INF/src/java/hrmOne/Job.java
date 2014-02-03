@@ -8,7 +8,7 @@ public class Job {
 	private Employee employee;
 	
 	
-	private Job(){}
+	public Job(){}
 	
 	public String getJobName() {
 		return jobName;

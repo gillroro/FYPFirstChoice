@@ -96,7 +96,12 @@ name="excludeMethods">input,back,cancel,browse</param>
 		<action name="AddJob" class="hrmOne.JobBoardAction" method="execute">
 			<result name="success">/jobAdded.jsp</result>
 			<result name="failure">/failure.jsp</result>
-		</action>			
+		</action>	
+
+		<action name="ViewAll" class="hrmOne.JobBoardAction" method="displayList">
+			<result name="success">/allJobs.jsp</result>
+			<result name="failure">/failure.jsp</result>
+		</action>
 		
 		<!--<action name="datePickerAction" 
 class="hrmOne.DatePickerAction" method="display">
