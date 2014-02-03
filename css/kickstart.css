@@ -236,6 +236,25 @@ table.sortable{border:1px solid #ddd;}
 	border-color:#ccc transparent transparent transparent;
 	line-height:0;height:0;width:0;margin-top:-2px;}
 	table.sortable span.arrow.up{border-color:transparent transparent #ccc transparent;margin-top:-7px;}
+	
+.editableTable {
+    border:solid 1px;
+    width:100%
+}
+  
+.editableTable td {
+    border:solid 1px;
+}
+  
+.editableTable .cellEditing {
+    padding: 0;
+}
+  
+.editableTable .cellEditing input[type=text]{
+    width:100%;
+    border:0;
+    background-color:rgb(255,253,210); 
+}
 
 /*---------------------------------
 	TABS

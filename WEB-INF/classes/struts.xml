@@ -121,5 +121,10 @@
 			 <result name="input">/holidayRequest.jsp</result>
 		</action>
 		
+		<action name="ManageEmployeeDetails" class="hrmOne.ManageEmployeeDetailsAction" >
+			<result name="success">/manageEmployeeDetails.jsp</result>
+			<result name="failure">/failure.jsp</result>
+		</action>
+		
     </package>
 </struts>

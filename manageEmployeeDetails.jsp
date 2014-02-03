@@ -1,8 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<%@taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
+
 <head>
 	<!-- META -->
 	<title>First Choice</title>
@@ -12,18 +10,60 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="style.css" media="all" /> 
+	<!--<link rel="stylesheet" type="text/css" href="style.css" media="all" /> -->
 	
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/kickstart.js"></script>
+	<script type="text/javascript" src="js/editTable.js"></script>
 </head>
+ 
 <body>
+ <div style="height:500px;width:900px;margin:0 auto;">
+<div class="center" >
+<h4 style="color:#999;margin-bottom:40px;" class="center"> Manage Employee Details</h4>
 
-<s:iterator value="employees">
-	<s:property /></s:property>
+<table class="editableTable">
+<th>First Name</th><th>Surname</th><th>Username</th><th>Password</th><th>Address</th><th>Salary</th><th>User Type</th><th>Manager</th>
+<s:iterator value="employees" status ="employeesStatus" >
+ <tr>
+  	<s:if test="#employeesStatus.even == true">
+      <td style="background: #CCCCCC"><s:property value ="firstName" /> </td>
+	  <td style="background: #CCCCCC"><s:property value ="surname" /> </td>
+	  <td style="background: #CCCCCC"><s:property value ="username" /> </td>
+	  <td style="background: #CCCCCC"><s:property value ="password" /> </td>
+	  <td style="background: #CCCCCC"><s:property value ="address" /> </td>
+	  <td style="background: #CCCCCC"><s:property value ="salary" /> </td>
+	  <td style="background: #CCCCCC"><s:property value ="userType" /> </td>
+	  <td style="background: #CCCCCC"><s:property value ="managerID" /> </td>
+    </s:if>
+    <s:elseif test="#employeesStatus.first == true">
+      <td><s:property value ="firstName" /></td>
+	  <td><s:property value ="surname" /> </td>
+	  <td><s:property value ="username" /> </td>
+	  <td><s:property value ="password" /> </td>
+	  <td><s:property value ="address" /> </td>
+	  <td><s:property value ="salary" /> </td>
+	  <td><s:property value ="userType" /> </td>
+	  <td><s:property value ="managerID" /> </td>
+    </s:elseif>
+    <s:else>
+      <td><s:property value ="firstName" /></td>
+	  <td><s:property value ="surname" /> </td>
+	  <td><s:property value ="username" /> </td>
+	  <td><s:property value ="password" /> </td>
+	  <td><s:property value ="address" /> </td>
+	  <td><s:property value ="salary" /> </td>
+	  <td><s:property value ="userType" /> </td>
+	  <td><s:property value ="managerID" /> </td>
+    </s:else>
+  </tr>
 </s:iterator>
+</table>
 
+<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
 
+</div> 
+</div>
 </body>
-</head>
+</html>
