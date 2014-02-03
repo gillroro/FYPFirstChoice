@@ -22,9 +22,6 @@
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Job Boards</h4>
 
-<s:iterator value="jobs">
-  <p>day is: <s:property/></p>
-</s:iterator>
 <table>
 <s:iterator value="jobs" status ="jobsStatus" >
  <tr>
@@ -32,10 +29,10 @@
       <td style="background: #CCCCCC"><s:property/></td>
     </s:if>
     <s:elseif test="#jobsStatus.first == true">
-      <td><s:property/> (This is first value) </td>
+      <td><s:property  /></td>
     </s:elseif>
     <s:else>
-      <td><s:property/></td>
+      <td><s:property  /></td>
     </s:else>
   </tr>
 </s:iterator>

@@ -95,11 +95,9 @@ public class JobBoardAction extends ActionSupport {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
-			getJobs = connection.prepareStatement("SELECT * FROM JOBS;");
+			getJobs = connection.prepareStatement("SELECT * FROM JOB");
 			results = getJobs.executeQuery();
-			results.getString("job_name");
-			results.getString("description");
-			results.getString("department");
+		
 			while(results.next()){
 				Job job = new Job();
 				job.setJobName(results.getString("job_name"));
@@ -121,6 +119,9 @@ public class JobBoardAction extends ActionSupport {
 	public String displayList(){
 		getAllJobs();
 		if(jobs != null){
+			for(int i=0; i< jobs.size(); i++){
+				System.out.println(jobs.get(i));
+			}
 			return SUCCESS;
 		}
 		else{
