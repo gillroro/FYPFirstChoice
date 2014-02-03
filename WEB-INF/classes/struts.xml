@@ -78,9 +78,22 @@
 		<action name="SelfAppraise" class="hrmOne.AppraisalAction">
 			<result>/appraisal.jsp</result>
 		</action>	
+		
+		<action name="AddSkillPage" class="hrmOne.SkillsAction" method="forward">
+			<result name="none">/addSkill.jsp</result>
+		</action>	
+		
+		<action name="AddSkill" class="hrmOne.SkillsAction">
+			<result name="success">/skillAdded.jsp</result>
+			<result name="failure">/failure.jsp</result>
+		</action>	
 			
 		<action name="JobBoards" class="hrmOne.JobBoardAction" method="forward">
 			<result name="none">/jobBoards.jsp</result>
+		</action>
+		
+		<action name="EmployeeJobBoards" class="hrmOne.JobBoardAction" method="forward">
+			<result name="none">/employeeJobBoards.jsp</result>
 		</action>
 
 		<action name="PostJob" class="hrmOne.JobBoardAction" method="forward">

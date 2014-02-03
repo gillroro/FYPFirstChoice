@@ -21,7 +21,7 @@ public class ManageEmployeeDetailsAction extends ActionSupport {
 
 	public String execute() throws ClassNotFoundException, SQLException {
 		getEmployees();
-		if(employees.size() > 0){
+		if(employees != null){
 			return SUCCESS;
 		}
 		else {

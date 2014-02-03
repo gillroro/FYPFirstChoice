@@ -35,7 +35,7 @@
 			<a href="<s:url action="fileUploadAction"/>">Upload CV</a>  
 			<a href="<s:url action="DateTimePicker"/>">Manage Details</a>
 			<a href="<s:url action="DateTimePicker"/>">Manage Holiday Requests</a>
-			<a href="<s:url action="JobBoards"/>">Job Boards</a>
+			<a href="<s:url action="EmployeeJobBoards"/>">Job Boards</a>
 			<a href="<s:url action="SelfAppraise"/>">Self Appraise</a>
 			<a href="<s:url action="fileUploadAction"/>">Update Skill Profile</a>
 
