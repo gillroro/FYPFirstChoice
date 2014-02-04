@@ -78,18 +78,18 @@ public class UserLoginAction extends ActionSupport {
 		checkDuplicate.setString(2, getPassword());
 		results = checkDuplicate.executeQuery();
 		if (results.next()) {
-			//if(getUserType().equalsIgnoreCase("manager")){
-			//	connection.close();
-			//	checkDuplicate.close();
-			//	ws.put("CurrentUser", user);
-			//	return "manager";
-			//}
-			//else{
+			if(results.getString("user_type").equalsIgnoreCase("manager")){
+				connection.close();
+				checkDuplicate.close();
+				ws.put("CurrentUser", user);
+				return "manager";
+			}
+			else{
 			connection.close();
 			checkDuplicate.close();
 			ws.put("CurrentUser", user);
 			return "success";
-			//}
+			}
 		}
 		else {
 			connection.close();
@@ -102,6 +102,7 @@ public class UserLoginAction extends ActionSupport {
 
 	public String logout() {
 		ws.remove("CurrentUser");
+		ws.clear();
 		return "success";
 	}
 //	
