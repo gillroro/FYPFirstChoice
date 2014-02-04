@@ -32,7 +32,6 @@
         </div>
 		
 		<div class="center" >
-			<a href="<s:url action="fileUploadAction"/>">Upload CV</a>  
 			<a href="<s:url action="DateTimePicker"/>">Manage Details</a>
 			<a href="<s:url action="DateTimePicker"/>">Manage Holiday Requests</a>
 			<a href="<s:url action="EmployeeJobBoards"/>">Job Boards</a>

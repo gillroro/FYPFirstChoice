@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -13,9 +14,10 @@ public class SkillsAction extends ActionSupport {
 
 	private String skillName;
 	private String description;
-	private List<Skill> skills;
+	private List<Skill> skills = new ArrayList<Skill>();
 	private Connection connection;
 	private PreparedStatement addSkills;
+	private PreparedStatement getSkills;
 	private ResultSet results;
 
 
@@ -34,6 +36,36 @@ public class SkillsAction extends ActionSupport {
 	public List<Skill> getSkills() {
 		return skills;
 	}
+	
+	public List<Skill> getAllSkills() {
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
+			getSkills = connection.prepareStatement("SELECT * FROM Skill");
+			results = getSkills.executeQuery();
+			while(results.next()){	
+				Skill skill = new Skill();	
+				skill.setName(results.getString("Name"));
+				skill.setDescription(results.getString("Description"));
+				skills.add(skill);
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return skills;
+	}
+	
+	public String display(){
+		getAllSkills();
+		if(skills!=null){
+			return SUCCESS;
+		}
+		else {
+			return "failure";
+		}
+	}
+	
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
 	}
@@ -53,6 +85,8 @@ public class SkillsAction extends ActionSupport {
 		}
 		
 	}
+	
+	
 	
 	public String forward(){
 		return NONE;

@@ -16,11 +16,11 @@ public class ManageEmployeeDetailsAction extends ActionSupport {
 	private List<Employee> employees = new ArrayList<Employee>();
 	private Connection connection;
 	private PreparedStatement getEmployee;	
-	private Employee employee;
+
 	private ResultSet results;
 
 	public String execute() throws ClassNotFoundException, SQLException {
-		getEmployees();
+		getAllEmployees();
 		if(employees != null){
 			return SUCCESS;
 		}
@@ -30,6 +30,15 @@ public class ManageEmployeeDetailsAction extends ActionSupport {
 	}
 
 	public List<Employee> getEmployees() {
+		
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+	
+	public List<Employee> getAllEmployees() {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
@@ -44,11 +53,13 @@ public class ManageEmployeeDetailsAction extends ActionSupport {
 				employee.setAddress(results.getString("address"));
 				employee.setSalary(results.getInt("salary"));
 				employee.setUserType(results.getString("user_type"));
-				employee.setManagerID(results.getInt("manager_id"));
+			//	employee.setManagerID(results.getInt("manager_id"));
 				employees.add(employee);
 
 			}
-
+			for(int i=0; i<employees.size(); i++){
+				System.out.print(employees.get(i));
+			}
 			results.close();
 			connection.close();
 			getEmployee.close();
@@ -57,10 +68,6 @@ public class ManageEmployeeDetailsAction extends ActionSupport {
 			e.printStackTrace();
 		}
 		return employees;
-	}
-
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
 	}
 
 

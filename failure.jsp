@@ -33,9 +33,9 @@
 
 	</div>
 		<div class ="center">
-				<s:form action = "loginAgain">
-					<s:submit value="Go Back" theme="simple"/>
-				</s:form>
+			<div class="center" >
+				<input type="button" value="Dashboard" onclick="window.history.go(-2);"/>
 			</div>
+		</div>
 </body>
 </html>

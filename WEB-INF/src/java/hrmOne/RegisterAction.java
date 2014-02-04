@@ -27,7 +27,6 @@ public class RegisterAction extends ActionSupport{
 	private PreparedStatement addEmployee;	
 	private WebSession ws;
 	private Employee employee = new Employee();
-	private List<Employee> employees = new ArrayList<Employee>();
 	private User user = new User();
 
 	public String getPassword() {
@@ -64,15 +63,6 @@ public class RegisterAction extends ActionSupport{
 		addEmployee.setInt(6, getSalary());
 	//	addEmployee.setInt(7, getManagerID());
 		addEmployee.executeUpdate();
-		employee.setFirstName(getFirstName());
-		employee.setSurname(getSurname());
-		employee.setUsername(getUsername());
-		employee.setPassword(getPassword());
-		employee.setAddress(getAddress());
-		employee.setSalary(getSalary());
-		employee.setManagerID(getManagerID());
-		employees.add(employee);
-		employee.setEmployees(employees);
 		ws.put("CurrentUser", user);
 		addEmployee.close();
 		connection.close();

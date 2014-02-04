@@ -18,27 +18,37 @@
 </head>
  
 <body>
- <div style="height:500px;width:550px;margin:0 auto;">
+ <div style="height:500px;width:800px;margin:0 auto;">
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Job Boards</h4>
 
 <table>
+<th>Position Name</th><th>Description</th><th>Department</th><th>Apply</th>
 <s:iterator value="jobs" status ="jobsStatus" >
  <tr>
   	<s:if test="#jobsStatus.even == true">
       <td style="background: #CCCCCC"><s:property value ="jobName" /></td>
+	  <td style="background: #CCCCCC"><s:property value ="jobDesc" /></td>
+	  <td style="background: #CCCCCC"><s:property value ="department" /></td>
+	  <td style="background: #CCCCCC"><a href="<s:url action="fileUploadAction"/>">Apply</a>
     </s:if>
     <s:elseif test="#jobsStatus.first == true">
       <td><s:property value ="jobName"  /></td>
+	  <td><s:property value ="jobDesc" /></td>
+	  <td><s:property value ="department" /></td>
+	  <td><a href="<s:url action="fileUploadAction"/>">Apply</a>
     </s:elseif>
     <s:else>
       <td><s:property value ="jobName" /></td>
+	  <td><s:property value ="jobDesc" /></td>
+	  <td><s:property value ="department" /></td>
+	  <td><a href="<s:url action="fileUploadAction"/>">Apply</a>
     </s:else>
   </tr>
 </s:iterator>
 </table>
 
-<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
+<input type="button" value="Dashboard" onclick="window.history.go(-2);"/>
 
 </div> 
 </div>

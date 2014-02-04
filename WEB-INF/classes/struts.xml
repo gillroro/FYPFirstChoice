@@ -79,6 +79,10 @@
 			<result>/appraisal.jsp</result>
 		</action>	
 		
+		<action name="SkillsBoard" class="hrmOne.SkillsAction" method="forward">
+			<result name="none">/skillsPage.jsp</result>
+		</action>
+
 		<action name="AddSkillPage" class="hrmOne.SkillsAction" method="forward">
 			<result name="none">/addSkill.jsp</result>
 		</action>	
@@ -86,11 +90,20 @@
 		<action name="AddSkill" class="hrmOne.SkillsAction">
 			<result name="success">/skillAdded.jsp</result>
 			<result name="failure">/failure.jsp</result>
-		</action>	
+		</action>
+		
+		<action name="ViewAllSkill" class="hrmOne.SkillsAction" method="display">
+			<result name="success">/allSkills.jsp</result>
+			<result name="failure">/failure.jsp</result>
+		</action>
 			
 		<action name="JobBoards" class="hrmOne.JobBoardAction" method="forward">
 			<result name="none">/jobBoards.jsp</result>
 		</action>
+		
+		<action name="JobApplication" class="hrmOne.JobBoardAction" method="forward">
+			<result name="none">/jobApplication.jsp</result>
+		</action>	
 		
 		<action name="EmployeeJobBoards" class="hrmOne.JobBoardAction" method="forward">
 			<result name="none">/employeeJobBoards.jsp</result>

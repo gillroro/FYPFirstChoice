@@ -84,6 +84,10 @@ name="excludeMethods">input,back,cancel,browse</param>
 		<action name="SelfAppraise" class="hrmOne.AppraisalAction">
 			<result>/appraisal.jsp</result>
 		</action>
+		
+		<action name="SkillsBoard" class="hrmOne.SkillsAction" method="forward">
+			<result name="none">/skillsPage.jsp</result>
+		</action>
 
 		<action name="AddSkillPage" class="hrmOne.SkillsAction" method="forward">
 			<result name="none">/addSkill.jsp</result>
@@ -94,9 +98,18 @@ name="excludeMethods">input,back,cancel,browse</param>
 			<result name="failure">/failure.jsp</result>
 		</action>
 		
+		<action name="ViewAllSkill" class="hrmOne.SkillsAction" method="display">
+			<result name="success">/allSkills.jsp</result>
+			<result name="failure">/failure.jsp</result>
+		</action>
+		
 		<action name="JobBoards" class="hrmOne.JobBoardAction" method="forward">
 			<result name="none">/jobBoards.jsp</result>
 		</action>
+		
+		<action name="JobApplication" class="hrmOne.JobBoardAction" method="forward">
+			<result name="none">/jobApplication.jsp</result>
+		</action>	
 		
 		<action name="EmployeeJobBoards" class="hrmOne.JobBoardAction" method="forward">
 			<result name="none">/employeeJobBoards.jsp</result>
