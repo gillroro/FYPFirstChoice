@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import util.WebSession;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class JobBoardAction extends ActionSupport {
@@ -25,6 +27,7 @@ public class JobBoardAction extends ActionSupport {
 	private PreparedStatement getJobs;
 	private PreparedStatement getJobByDepartment;
 	private ResultSet results;
+	private WebSession ws;
 
 	public String forward(){
 		return NONE;
@@ -105,6 +108,7 @@ public class JobBoardAction extends ActionSupport {
 				job.setJobDesc(results.getString("description"));
 				job.setDepartment(results.getString("department"));
 				jobs.add(job);
+				ws.put("Job", jobs);
 			}
 			connection.close();
 			getJobs.close();

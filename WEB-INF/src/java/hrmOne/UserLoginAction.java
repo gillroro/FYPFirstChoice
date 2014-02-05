@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import util.WebSession;
 
@@ -13,17 +12,30 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class UserLoginAction extends ActionSupport {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Connection connection;
 	private PreparedStatement checkDuplicate;
-	private PreparedStatement addComment;
 	private ResultSet results;
 	private String username;
 	private String password;
 	private String comment;
 	private String userType;
-	private ArrayList<String> comments = new ArrayList<String>();
-	private WebSession ws;
-	private User user = new User();
+	//private WebSession ws;
+	private Employee employee = new Employee();
+
+	
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 
 
 	public String getUserType() {
@@ -81,13 +93,13 @@ public class UserLoginAction extends ActionSupport {
 			if(results.getString("user_type").equalsIgnoreCase("manager")){
 				connection.close();
 				checkDuplicate.close();
-				ws.put("CurrentUser", user);
+				WebSession.put("CurrentUser", employee);
 				return "manager";
 			}
 			else{
 			connection.close();
 			checkDuplicate.close();
-			ws.put("CurrentUser", user);
+			WebSession.put("CurrentUser", employee);
 			return "success";
 			}
 		}
@@ -101,8 +113,8 @@ public class UserLoginAction extends ActionSupport {
 
 
 	public String logout() {
-		ws.remove("CurrentUser");
-		ws.clear();
+		WebSession.remove("CurrentUser");
+		WebSession.clear();
 		return "success";
 	}
 //	

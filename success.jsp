@@ -24,7 +24,7 @@
 		
 			
 			</div>
-        <div style="height:500px;width:550px;margin:0 auto;">
+        <div style="height:450px;width:550px;margin:0 auto;">
 			<img class="full-width" src="images/fc.png" />
 			<h4 style="color:#999;margin-bottom:40px;" class="center"> Welcome to Your Dashboard! </h4>
 			<h4 style="color:#999;margin-bottom:40px;" class="center"> User: <s:property value="Username"/> </h4>
@@ -32,14 +32,14 @@
         </div>
 		
 		<div class="center" >
-			<a href="<s:url action="DateTimePicker"/>">Manage Details</a>
-			<a href="<s:url action="DateTimePicker"/>">Manage Holiday Requests</a>
-			<a href="<s:url action="EmployeeJobBoards"/>">Job Boards</a>
-			<a href="<s:url action="SelfAppraise"/>">Self Appraise</a>
-			<a href="<s:url action="fileUploadAction"/>">Update Skill Profile</a>
+			<a href="<s:url action="DateTimePicker"/>">Manage Details</a><br />
+			<a href="<s:url action="DateTimePicker"/>">Manage Holiday Requests</a><br />
+			<a href="<s:url action="EmployeeJobBoards"/>">Job Boards</a><br />
+			<a href="<s:url action="SelfAppraise"/>">Self Appraise</a><br />
+			<a href="<s:url action="fileUploadAction"/>">Update Skill Profile</a><br />
 
 		</div>
-		<div class ="center" >
+		<div class ="center" style="height:200px;width:550px;margin:0 auto;">
 		<s:form action = "Logout" >
 					<s:submit value = "Logout" theme= "simple"  />
 			</s:form>

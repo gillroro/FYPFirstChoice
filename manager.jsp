@@ -12,7 +12,6 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="style.css" media="all" /> 
 	
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -24,7 +23,7 @@
 		
 			
 			</div>
-        <div style="height:500px;width:550px;margin:0 auto;">
+        <div style="height:350px;width:550px;margin:0 auto;">
 			<img class="full-width" src="images/fc.png" />
 			<h4 style="color:#999;margin-bottom:40px;" class="center"> Welcome to Your Dashboard! </h4>
 			
@@ -34,14 +33,14 @@
 	
 		
 		<div class="center" >
-			<a href="<s:url action="AddEmployee"/>">Register Employee</a>
-			<a href="<s:url action="fileUploadAction"/>">Manage Employee Appraisal</a>
-			<a href="<s:url action="ManageEmployeeDetails"/>">Manage Employee Details</a>
-			<a href="<s:url action="fileUploadAction"/>">Manage Allowances</a>
-			<a href="<s:url action="JobBoards"/>">Manage Job Boards</a>
-			<a href="<s:url action="SkillsBoard"/>">Manage Skills</a>
+			<a href="<s:url action="AddEmployee"/>">Register Employee</a><br />
+			<a href="<s:url action="fileUploadAction"/>">Manage Employee Appraisal</a><br />
+			<a href="<s:url action="ManageEmployeeDetails"/>">Manage Employee Details</a><br />
+			<a href="<s:url action="fileUploadAction"/>">Manage Allowances</a><br />
+			<a href="<s:url action="JobBoards"/>">Manage Job Boards</a><br />
+			<a href="<s:url action="SkillsBoard"/>">Manage Skills</a><br />
 		</div>
-		<div class ="center" >
+		<div class ="center" style="height:200px;width:550px;margin:0 auto;">
 		<s:form action = "Logout" >
 					<s:submit value = "Logout" theme= "simple"  />
 			</s:form>
