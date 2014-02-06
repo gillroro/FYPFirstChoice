@@ -28,12 +28,12 @@
 		<h1 class="center">
 		<p><i class="icon-fire"></i></p>
 			Welcome to First Choice</h1>
-		<h4 style="color:#999;margin-bottom:40px;" class="center"> The Human Resource Management Solution!</h4>
+		<h4 style="color:#999;margin-bottom:30px;" class="center"> The Human Resource Management Solution!</h4>
 	</div>
 	<div align="center" style="height:500px;width:500px;margin:0 auto;">
 	
 
-	<h5>Login:</h5>
+	<h5 style="color:#999;margin-bottom:0px;">Login</h5>
 		<s:form action="Login" validate="true">
 		<s:textfield name="Username" value ="Username" theme= "css_xhtml" />
 		<s:password name="Password" value="Password" showPassword="true" theme= "css_xhtml"  />

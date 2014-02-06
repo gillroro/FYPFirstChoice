@@ -1,10 +1,7 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<%@taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
-<head>
 
+<head>
 	<!-- META -->
 	<title>First Choice</title>
 	<meta charset="UTF-8">
@@ -18,19 +15,19 @@
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/kickstart.js"></script>
-	<s:head theme="ajax" />
 </head>
-<body>
-<div style="height:500px;width:550px;margin:0 auto;">
-			<img class="full-width" src="images/fc.png" />
-			<h4 style="color:#999;margin-bottom:40px;" class="center"> Holiday Requests Submitted Successfully</h4>
-        </div>
-	<div class="center" >
-
  
+<body>
+ <div style="height:500px;width:550px;margin:0 auto;">
+<div class="center" >
+<h4 style="color:#999;margin-bottom:40px;" class="center"> Skill Profile</h4>
+<h5 style="color:#999;margin-bottom:40px;" class="center"> Skill Added to profile </h5>
+
+<div class="center" >
+<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
 
 
-<input type="button" value="Dashboard" onclick="window.history.go(-2);"/>
- </div>
+</div> 
+</div>
 </body>
 </html>

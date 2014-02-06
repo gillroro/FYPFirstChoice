@@ -103,6 +103,11 @@ name="excludeMethods">input,back,cancel,browse</param>
 			<result name="failure">/failure.jsp</result>
 		</action>
 		
+		<action name="UpdateSkillProfile" class="hrmOne.SkillsAction" method="display">
+			<result name="success">/updateSkillsProfile.jsp</result>
+			<result name="failure">/failure.jsp</result>
+		</action>
+		
 		<action name="JobBoards" class="hrmOne.JobBoardAction" method="forward">
 			<result name="none">/jobBoards.jsp</result>
 		</action>
@@ -144,13 +149,12 @@ class="hrmOne.DatePickerAction" method="display">
 
 		</action>-->
 		
-		<action name="DateTimePicker" class="hrmOne.DatePickerAction">
-			<result>/holidayRequest.jsp</result>
+		<action name="DateTimePicker" class="hrmOne.DatePickerAction" method="display">
+			<result name="none">/holidayRequest.jsp</result>
 		</action>
  
 		<action name="holidayResultAction" class="hrmOne.DatePickerAction" >
-				<result name="success">/holidayResult.jsp</result>
-			 <result name="none">/holidayRequest.jsp</result>
+			<result name="success">/holidayResult.jsp</result>
 			 <result name="input">/holidayRequest.jsp</result>
 		</action>
 		
@@ -158,5 +162,15 @@ class="hrmOne.DatePickerAction" method="display">
 			<result name="success">/manageEmployeeDetails.jsp</result>
 			<result name="failure">/failure.jsp</result>
 		</action>	
+		
+		<action name="ManageEmployeeHolidays" class="hrmOne.DatePickerAction" method="displayHolidays" >
+			<result name="success">/manageEmployeeHolidays.jsp</result>
+			<result name="failure">/failure.jsp</result>
+		</action>
+		
+		<action name="AddSkillToProfile" class="hrmOne.SkillsAction" method="forward" >
+			<result name="none">/addSkillToProfile.jsp</result>
+			
+		</action>
     </package>
 </struts>

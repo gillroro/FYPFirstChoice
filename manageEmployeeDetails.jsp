@@ -24,7 +24,7 @@
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Manage Employee Details</h4>
 
 <table class="editableTable">
-<th>First Name</th><th>Surname</th><th>Username</th><th>Password</th><th>Address</th><th>Salary</th><th>User Type</th>
+<th>First Name</th><th>Surname</th><th>Username</th><th>Password</th><th>Address</th><th>Salary</th><th>User Type</th><th>Manager ID</th>
 <s:iterator value="employees" status ="employeesStatus" >
  <tr>
   	<s:if test="#employeesStatus.even == true">
@@ -35,7 +35,7 @@
 	  <td style="background: #CCCCCC"><s:property value ="address" /> </td>
 	  <td style="background: #CCCCCC"><s:property value ="salary" /> </td>
 	  <td style="background: #CCCCCC"><s:property value ="userType" /> </td>
-	 <!-- <td style="background: #CCCCCC"><s:property value ="managerID" /> </td>-->
+	 <td style="background: #CCCCCC"><s:property value ="manager" /> </td>
     </s:if>
     <s:elseif test="#employeesStatus.first == true">
       <td><s:property value ="firstName" /></td>
@@ -45,7 +45,7 @@
 	  <td><s:property value ="address" /> </td>
 	  <td><s:property value ="salary" /> </td>
 	  <td><s:property value ="userType" /> </td>
-	<!-- <td style="background: #CCCCCC"><s:property value ="managerID" /> </td>-->
+	  <td><s:property value ="manager" /> </td>
     </s:elseif>
     <s:else>
       <td><s:property value ="firstName" /></td>
@@ -55,7 +55,7 @@
 	  <td><s:property value ="address" /> </td>
 	  <td><s:property value ="salary" /> </td>
 	  <td><s:property value ="userType" /> </td>
-	 <!-- <td style="background: #CCCCCC"><s:property value ="managerID" /> </td>-->
+	  <td><s:property value ="manager" /> </td>
     </s:else>
   </tr>
 </s:iterator>

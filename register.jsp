@@ -36,8 +36,8 @@
 				<s:password name="Password" value= "Password" showPassword= "true" theme= "css_xhtml"/>
 				<s:textfield name="Address" value= "Address" theme= "css_xhtml"/>
 				<s:textfield name="Salary" value= "Salary" theme= "css_xhtml"/>
-				<!--<s:textfield name="user_type" value= "User Type" theme= "css_xhtml"/>-->
-				<s:textfield name="manager" value= "Manager" theme="css_xhtml"/>
+				<s:textfield name="UserType" value= "User Type" theme= "css_xhtml"/>
+				<s:textfield name="Manager" value= "Manager ID" theme="css_xhtml"/>
 				<s:submit value="Register" theme= "simple"/>
 			</s:form>
 	</div>

@@ -22,12 +22,11 @@ public class RegisterAction extends ActionSupport{
 	private String address;
 	private int salary;
 	private String userType;
-	private int managerID;
+	private int managerId;
 	private Connection connection;
 	private PreparedStatement addEmployee;	
-	private WebSession ws;
 	private Employee employee = new Employee();
-	private User user = new User();
+	
 
 	public String getPassword() {
 		return password;
@@ -54,16 +53,17 @@ public class RegisterAction extends ActionSupport{
 
 		Class.forName("com.mysql.jdbc.Driver");
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
-		addEmployee= connection.prepareStatement("INSERT INTO employee(first_name, surname, username, password, address, salary) VALUES(?, ?, ?, ?, ?, ?)");	
+		addEmployee= connection.prepareStatement("INSERT INTO employee(first_name, surname, username, password, address, salary, user_type, manager_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");	
 		addEmployee.setString(1, getFirstName());
 		addEmployee.setString(2, getSurname());
 		addEmployee.setString(3, getUsername());
 		addEmployee.setString(4, getPassword());
 		addEmployee.setString(5, getAddress());
 		addEmployee.setInt(6, getSalary());
-	//	addEmployee.setInt(7, getManagerID());
+		addEmployee.setString(7, getUserType());
+		addEmployee.setInt(8, getManager_id());
 		addEmployee.executeUpdate();
-		ws.put("CurrentUser", user);
+		WebSession.put("CurrentUser", employee);
 		addEmployee.close();
 		connection.close();
 		return "success";
@@ -110,14 +110,15 @@ public class RegisterAction extends ActionSupport{
 		this.userType = userType;
 	}
 
-	public int getManagerID() {
-		return managerID;
+	public int getManagerId() {
+		return managerId;
 	}
 
-	public void setManagerID(int managerID) {
-		this.managerID = managerID;
+	public void setManagerId(int managerId) {
+		this.managerId = managerId;
 	}
 
+	
 	
 
 

@@ -32,11 +32,11 @@
         </div>
 		
 		<div class="center" >
-			<a href="<s:url action="DateTimePicker"/>">Manage Details</a><br />
+			<!--<a href="<s:url action="ManageDetails"/>">Manage Details</a><br />-->
 			<a href="<s:url action="DateTimePicker"/>">Manage Holiday Requests</a><br />
 			<a href="<s:url action="EmployeeJobBoards"/>">Job Boards</a><br />
 			<a href="<s:url action="SelfAppraise"/>">Self Appraise</a><br />
-			<a href="<s:url action="fileUploadAction"/>">Update Skill Profile</a><br />
+			<a href="<s:url action="UpdateSkillProfile"/>">Update Skill Profile</a><br />
 
 		</div>
 		<div class ="center" style="height:200px;width:550px;margin:0 auto;">
