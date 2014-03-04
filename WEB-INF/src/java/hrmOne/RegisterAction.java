@@ -22,7 +22,7 @@ public class RegisterAction extends ActionSupport{
 	private String address;
 	private int salary;
 	private String userType;
-	private int managerId;
+	private int manager;
 	private Connection connection;
 	private PreparedStatement addEmployee;	
 	private Employee employee = new Employee();
@@ -47,28 +47,8 @@ public class RegisterAction extends ActionSupport{
 	public String forward(){
 		return NONE;
 	}
-
-	//business logic
-	public String execute() throws ClassNotFoundException, SQLException {
-
-		Class.forName("com.mysql.jdbc.Driver");
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
-		addEmployee= connection.prepareStatement("INSERT INTO employee(first_name, surname, username, password, address, salary, user_type, manager_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");	
-		addEmployee.setString(1, getFirstName());
-		addEmployee.setString(2, getSurname());
-		addEmployee.setString(3, getUsername());
-		addEmployee.setString(4, getPassword());
-		addEmployee.setString(5, getAddress());
-		addEmployee.setInt(6, getSalary());
-		addEmployee.setString(7, getUserType());
-		addEmployee.setInt(8, getManager_id());
-		addEmployee.executeUpdate();
-		WebSession.put("CurrentUser", employee);
-		addEmployee.close();
-		connection.close();
-		return "success";
-
-	}
+	
+	
 
 	public String getFirstName() {
 		return firstName;
@@ -110,13 +90,36 @@ public class RegisterAction extends ActionSupport{
 		this.userType = userType;
 	}
 
-	public int getManagerId() {
-		return managerId;
+	public int getManager() {
+		return manager;
 	}
 
-	public void setManagerId(int managerId) {
-		this.managerId = managerId;
+	public void setManager(int manager) {
+		this.manager = manager;
 	}
+
+	//business logic
+	public String execute() throws ClassNotFoundException, SQLException {
+
+		Class.forName("com.mysql.jdbc.Driver");
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
+		addEmployee= connection.prepareStatement("INSERT INTO employee(first_name, surname, username, password, address, salary, user_type, manager) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");	
+		addEmployee.setString(1, getFirstName());
+		addEmployee.setString(2, getSurname());
+		addEmployee.setString(3, getUsername());
+		addEmployee.setString(4, getPassword());
+		addEmployee.setString(5, getAddress());
+		addEmployee.setInt(6, getSalary());
+		addEmployee.setString(7, userType);
+		addEmployee.setInt(8, manager);
+		addEmployee.executeUpdate();
+		WebSession.put("CurrentUser", employee);
+		addEmployee.close();
+		connection.close();
+		return "success";
+
+	}
+
 
 	
 	

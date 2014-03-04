@@ -15,6 +15,7 @@
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/kickstart.js"></script>
+	<s:head theme="ajax" />
 </head>
  
 <body>
@@ -24,8 +25,10 @@
 
 <s:form action="AddJob" >
 	<s:textfield name="job_name" label="Job Name" theme= "css_xhtml"/>
+	<s:datetimepicker name="closing_date" label="Closing Date" displayFormat="dd/MM/yyyy"  required="true" theme="css_xhtml"/>
 	<s:textarea name="description" label="Description" theme="css_xhtml" />
 	<s:textfield name="department" label="Department" theme="css_xhtml" />
+	
 	<s:submit value="Add Job" theme="simple" />
 </s:form>	
 </div> 

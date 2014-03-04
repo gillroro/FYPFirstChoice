@@ -25,7 +25,7 @@ public class UserLoginAction extends ActionSupport {
 	private String userType;
 	//private WebSession ws;
 	private Employee employee = new Employee();
-
+	
 	
 
 	public Employee getEmployee() {

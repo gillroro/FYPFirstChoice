@@ -22,7 +22,8 @@ public class FileUploadAction extends ActionSupport {
 	private String username;
 	private File document;
 	private WebSession ws;
-	private User user;
+	private Employee employee = new Employee();
+	
 
 	public String getFileUploadContentType() {
 		return fileUploadContentType;
@@ -59,11 +60,12 @@ public class FileUploadAction extends ActionSupport {
 		is.close();
 		Blob blob = connection.createBlob();
 		blob.setBytes(1, data);
-		
+		employee = (Employee) ws.get("CurrentUser");
+		System.out.print(employee.getUsername());
 		uploadCv.setString(1, "sarah");
 		uploadCv.setBlob(2, blob);
 		uploadCv.executeUpdate();
-		ws.put("CurrentUser", user);
+		ws.put("CurrentUser", employee);
 		uploadCv.close();
 		connection.close();
 		return SUCCESS;

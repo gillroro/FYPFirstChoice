@@ -10,7 +10,7 @@ public class Employee {
 	private String address;
 	private int salary;
 	private String userType;
-	private int managerID;
+	private int manager;
 	
 	public Employee(){}
 	
@@ -56,12 +56,16 @@ public class Employee {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
-	public int getManagerID() {
-		return managerID;
+
+	public int getManager() {
+		return manager;
 	}
-	public void setManagerID(int managerID) {
-		this.managerID = managerID;
+
+	public void setManager(int manager) {
+		this.manager = manager;
 	}
+	
+	
 
 	
 	

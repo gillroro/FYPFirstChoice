@@ -4,9 +4,12 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import util.WebSession;
 
@@ -22,12 +25,14 @@ public class JobBoardAction extends ActionSupport {
 	private String department;
 	private Employee employee;
 	private Job job;
+	private Date closing_date;
 	private Connection connection;
 	private PreparedStatement addJob;
 	private PreparedStatement getJobs;
 	private PreparedStatement getJobByDepartment;
 	private ResultSet results;
 	private WebSession ws;
+	SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
 
 	public String forward(){
 		return NONE;
@@ -36,12 +41,13 @@ public class JobBoardAction extends ActionSupport {
 	public String execute() throws ClassNotFoundException, SQLException{
 		Class.forName("com.mysql.jdbc.Driver");
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
-		addJob = connection.prepareStatement("INSERT INTO Job(job_name, description, department) VALUES(?,?,?)");
+		addJob = connection.prepareStatement("INSERT INTO Job(job_name, description, department, closing_date) VALUES(?,?,?,?)");
 		addJob.setString(1, getJob_name());
 		addJob.setString(2, getDescription());
 		addJob.setString(3, getDepartment());
+		addJob.setDate(4, (java.sql.Date)closing_date);
 		addJob.executeUpdate();
-
+		ws.put("Job", job);
 		//		job.setDepartment(department);
 		//		job.setJobDesc(description);
 		//		job.setJobName(jobName);
@@ -49,6 +55,16 @@ public class JobBoardAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	
+
+	public Date getClosing_date() throws ParseException {
+		return (Date) format2.parse(format2.format(closing_date));
+		
+	}
+
+	public void setClosing_date(Date closing_date) {
+		this.closing_date = closing_date;
+	}
 
 	public List<Job> getJobs() {
 		return jobs;
@@ -107,6 +123,7 @@ public class JobBoardAction extends ActionSupport {
 				job.setJobName(results.getString("job_name"));
 				job.setJobDesc(results.getString("description"));
 				job.setDepartment(results.getString("department"));
+				job.setClosing_date(results.getDate("closing_date"));
 				jobs.add(job);
 				ws.put("Job", jobs);
 			}
@@ -139,8 +156,8 @@ public class JobBoardAction extends ActionSupport {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
-			getJobByDepartment = connection.prepareStatement("SELECT * FROM JOB WHERE department=?");
-			getJobByDepartment.setString(1, getDepartment());
+			getJobByDepartment = connection.prepareStatement("SELECT * FROM JOB WHERE department LIKE ?");
+			getJobByDepartment.setString(1, department);
 			results = getJobByDepartment.executeQuery();
 
 			while(results.next()){
@@ -148,6 +165,7 @@ public class JobBoardAction extends ActionSupport {
 				job.setJobName(results.getString("job_name"));
 				job.setJobDesc(results.getString("description"));
 				job.setDepartment(results.getString("department"));
+				job.setClosing_date(results.getDate("closing_date"));
 				jobs.add(job);
 			}
 			connection.close();

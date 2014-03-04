@@ -23,25 +23,28 @@
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Job Boards</h4>
 
 <table>
-<th>Position Name</th><th>Description</th><th>Department</th><th>Apply</th>
+<th>Position Name</th><th>Description</th><th>Department</th><th>Closing Date</th><th>Apply</th>
 <s:iterator value="jobs" status ="jobsStatus" >
  <tr>
   	<s:if test="#jobsStatus.even == true">
       <td style="background: #CCCCCC"><s:property value ="jobName" /></td>
 	  <td style="background: #CCCCCC"><s:property value ="jobDesc" /></td>
 	  <td style="background: #CCCCCC"><s:property value ="department" /></td>
+	  <td style="background: #CCCCCC"><s:property value ="closing_date" /></td>
 	  <td style="background: #CCCCCC"><a href="<s:url action="fileUploadAction"/>">Apply</a>
     </s:if>
     <s:elseif test="#jobsStatus.first == true">
       <td><s:property value ="jobName"  /></td>
 	  <td><s:property value ="jobDesc" /></td>
 	  <td><s:property value ="department" /></td>
+	  <td><s:property value ="closing_date" /></td>
 	  <td><a href="<s:url action="fileUploadAction"/>">Apply</a>
     </s:elseif>
     <s:else>
       <td><s:property value ="jobName" /></td>
 	  <td><s:property value ="jobDesc" /></td>
 	  <td><s:property value ="department" /></td>
+	  <td><s:property value ="closing_date" /></td>
 	  <td><a href="<s:url action="fileUploadAction"/>">Apply</a>
     </s:else>
   </tr>

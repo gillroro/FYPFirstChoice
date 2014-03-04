@@ -1,11 +1,14 @@
 package hrmOne;
 
+import java.sql.Date;
+
 public class Job {
 	
 	private String jobName;
 	private String jobDesc;
 	private String department;
 	private Employee employee;
+	private Date closing_date;
 	
 	
 	public Job(){}
@@ -40,6 +43,14 @@ public class Job {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+
+	public Date getClosing_date() {
+		return closing_date;
+	}
+
+	public void setClosing_date(Date closing_date) {
+		this.closing_date = closing_date;
 	}
 	
 	

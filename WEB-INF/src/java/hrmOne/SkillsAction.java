@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class SkillsAction extends ActionSupport {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String skillName;
 	private String description;
 	private List<Skill> skills = new ArrayList<Skill>();

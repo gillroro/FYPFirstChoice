@@ -53,7 +53,7 @@ public class ManageEmployeeDetailsAction extends ActionSupport {
 				employee.setAddress(results.getString("address"));
 				employee.setSalary(results.getInt("salary"));
 				employee.setUserType(results.getString("user_type"));
-			//	employee.setManagerID(results.getInt("manager_id"));
+				employee.setManager(results.getInt("manager"));
 				employees.add(employee);
 
 			}
