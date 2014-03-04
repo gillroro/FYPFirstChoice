@@ -25,29 +25,28 @@
 </head>
 <body>
 
-		<div style="height:400px;width:550px;margin:0 auto;">
-			<img class="full-width" src="images/fc.png" />
-			<h4 style="color:#999;margin-bottom:40px;" class="center"> Employee Appraisal </h4>
+		<div style="height:150px;width:750px;margin:0 auto;">
+			<h4 style="color:#999;margin-bottom:30px;" class="center"> Employee Appraisal </h4>
 			<p><i>Employees should complete this form prior to the annual performance appraisal meeting with their supervisor</p></i>
         </div>
 		
-		<div align="center" style="height:800px;width:600px;margin:0 auto;">
+		<div align="center" style="height:1000px;width:800px;margin:0 auto;">
 		
 			<table>
 
 			<s:form action="Appraisal" namespace="/" method="POST" theme= "css_xhtml" >
 			
-				 <h6>Attendance</h6><s:radio name="attendanceRecord" list="attendance" />
-				 <h6>Respect for Others</h6><s:radio name="respectRecord" list="respect"  />
-				 <h6>Employee Efficiency</h6><s:radio  name ="efficiencyRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />
-	
-				 <h6>Accuracy of Work</h6><s:radio  name ="accuracyRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />
-				 <h6>Quality of Work</h6><s:radio  name ="qualityRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />		
-				 <h6>Manager</h6><s:select name="manager" list="managers"></s:select>
-						
+							 
+				<s:textarea label="Describe your most significant accomplishments this past year." name="accomplishments" cols="60" rows="4"></s:textarea>
+				<s:textarea label="Describe any barriers or challenges that impacted you in effectively completing your 
+job responsibilities or accomplishing your goals." name="barriers" cols="60" rows="4"></s:textarea>
+			<s:textarea label="Please list your area(s) of strength and area(s) of improvement." name="improvements" cols="60" rows="4"></s:textarea>
+			<s:textarea label="What skills or new knowledge would you like to develop to improve your performance? " name="performance" cols="60" rows="4"></s:textarea>
 			
-			
-				 <s:submit name ="Appraisal" value="Appraise" theme= "simple" />
+				<i>Attendance</i><s:radio name="attendanceRecord" list="attendance" />
+				<i>Respect for Others</i><s:radio name="respectRecord" list="respect"  />	
+				<i>Manager</i><s:select name="manager" list="managers"></s:select>
+				<s:submit name ="Appraisal" value="Appraise" theme= "simple" />
 			
 			</s:form>	
 			</table>
