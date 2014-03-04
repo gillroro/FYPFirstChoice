@@ -113,18 +113,21 @@ public class JobBoardAction extends ActionSupport {
 	public List<Job> getAllJobs(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
 			getJobs = connection.prepareStatement("SELECT * FROM JOB");
 			results = getJobs.executeQuery();
-
+			java.util.Date today = new java.util.Date();
+			Date sqlToday = new Date(today.getTime());
 			while(results.next()){
 				Job job = new Job();
 				job.setJobName(results.getString("job_name"));
 				job.setJobDesc(results.getString("description"));
 				job.setDepartment(results.getString("department"));
 				job.setClosing_date(results.getDate("closing_date"));
-				jobs.add(job);
+				if(sqlToday.before(job.getClosing_date())){
+					jobs.add(job);
+				}
+				//jobs.add(job);
 				ws.put("Job", jobs);
 			}
 			connection.close();
@@ -157,7 +160,7 @@ public class JobBoardAction extends ActionSupport {
 
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
 			getJobByDepartment = connection.prepareStatement("SELECT * FROM JOB WHERE department LIKE ?");
-			getJobByDepartment.setString(1, department);
+			getJobByDepartment.setString(1, "%"+department+"%");
 			results = getJobByDepartment.executeQuery();
 
 			while(results.next()){

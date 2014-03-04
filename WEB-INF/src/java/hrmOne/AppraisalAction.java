@@ -19,14 +19,15 @@ public class AppraisalAction extends ActionSupport {
 
 
 	private static final long serialVersionUID = 1L;
-	private List<String> attendance;
-	private List<String> respect;
+	private List<String> attendance= new ArrayList<String>();
+	private List<String> respect= new ArrayList<String>();
 
 	private String attendanceRecord;
 	private String respectRecord;
 
 	private String names = "Gillian, Sarah, Jake";
-	private List<String> managers;
+	private List<String> managers= new ArrayList<String>();
+	private String manager;
 	private String from;
 	private String password;
 	private String to;
@@ -45,13 +46,11 @@ public class AppraisalAction extends ActionSupport {
 
 
 	public AppraisalAction(){
-		attendance = new ArrayList<String>();
 		attendance.add("Excellent");
 		attendance.add("Very Good");
 		attendance.add("Average");
 		attendance.add("Poor");
 
-		respect = new ArrayList<String>();
 		respect.add("Very Respectful");
 		respect.add("Average Respect for others");
 		respect.add("Poor Respect for Others");
@@ -60,7 +59,6 @@ public class AppraisalAction extends ActionSupport {
 
 	public String execute() 
 	{
-		managers = new ArrayList<String>();
 		StringTokenizer st = new StringTokenizer(names, ",");
 		while(st.hasMoreTokens()){
 			managers.add(st.nextToken().trim());
@@ -175,6 +173,38 @@ public class AppraisalAction extends ActionSupport {
 		this.body = body;
 	}
 
+
+	public String getNames() {
+		return names;
+	}
+
+
+	public void setNames(String names) {
+		this.names = names;
+	}
+
+
+	public List<String> getManagers() {
+		return managers;
+	}
+
+
+	public void setManagers(List<String> managers) {
+		this.managers = managers;
+	}
+
+
+	public String getManager() {
+		return manager;
+	}
+
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+
+	
+	
 
 
 }

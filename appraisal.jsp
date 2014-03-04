@@ -19,61 +19,16 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/kickstart.js"></script>
 	
-	<script>
-		$(document).ready(function(){
- 
-    var counter = 2;
- 
-    $("#addButton").click(function () {
- 
-	if(counter>10){
-            alert("Only 10 tasks allowed");
-            return false;
-	}   
- 
-	var newTextBoxDiv = $(document.createElement('div'))
-	     .attr("id", 'TextBoxDiv' + counter);
- 
-	newTextBoxDiv.after().html('<label>Task #'+ counter + ' : </label>' +
-	      '<input type="text" name="textbox' + counter + 
-	      '" id="textbox' + counter + '" value="" >');
- 
-	newTextBoxDiv.appendTo("#TextBoxesGroup");
- 
- 
-	counter++;
-     });
- 
-     $("#removeButton").click(function () {
-	if(counter==1){
-          alert("No more tasks to remove");
-          return false;
-       }   
- 
-	counter--;
- 
-        $("#TextBoxDiv" + counter).remove();
- 
-     });
- 
-     $("#getButtonValue").click(function () {
- 
-	var msg = '';
-	for(i=1; i<counter; i++){
-   	  msg += "\n Task #" + i + " : " + $('#textbox' + i).val();
-	}
-    	  alert(msg);
-     });
-  });
-	</script>
+	
 	<sx:head />
 
 </head>
 <body>
 
-		<div style="height:350px;width:550px;margin:0 auto;">
+		<div style="height:400px;width:550px;margin:0 auto;">
 			<img class="full-width" src="images/fc.png" />
 			<h4 style="color:#999;margin-bottom:40px;" class="center"> Employee Appraisal </h4>
+			<p><i>Employees should complete this form prior to the annual performance appraisal meeting with their supervisor</p></i>
         </div>
 		
 		<div align="center" style="height:800px;width:600px;margin:0 auto;">
@@ -82,28 +37,14 @@
 
 			<s:form action="Appraisal" namespace="/" method="POST" theme= "css_xhtml" >
 			
-				 <h6>Attendance</h6><s:radio name="attendanceRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />
-				 <h6>Respect for Others</h6><s:radio name="respectRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}"  />
+				 <h6>Attendance</h6><s:radio name="attendanceRecord" list="attendance" />
+				 <h6>Respect for Others</h6><s:radio name="respectRecord" list="respect"  />
 				 <h6>Employee Efficiency</h6><s:radio  name ="efficiencyRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />
-			
-			
+	
 				 <h6>Accuracy of Work</h6><s:radio  name ="accuracyRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />
-				 <h6>Quality of Work</h6><s:radio  name ="qualityRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />
-				 <h6>Manager</h6> <sx:autocompleter size="1" list="managers" name="manager"></sx:autocompleter>
-					</action>
-					<h6 style="color:#999;margin-bottom:20px;" class="center"> Please add task completed</h6>
-				<div id='TextBoxesGroup'>
-					<div id="TextBoxDiv1">
-						<label>Task #1 : </label><input type='textbox' id='textbox1' >
-					</div>
-				</div>
-				<input type='button' value='Add Task' id='addButton'>
-				<input type='button' value='Remove Task' id='removeButton'>
-				<input type='button' value='Save Tasks' id='getButtonValue'>	
-				
-
-
-			
+				 <h6>Quality of Work</h6><s:radio  name ="qualityRecord" list="#{'1':'Excellent','2':'Very Good', '3':'Average', '4': 'Poor'}" />		
+				 <h6>Manager</h6><s:select name="manager" list="managers"></s:select>
+						
 			
 			
 				 <s:submit name ="Appraisal" value="Appraise" theme= "simple" />
