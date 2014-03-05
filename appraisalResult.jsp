@@ -28,7 +28,7 @@
 		
 <div align="center" style="height:500px;width:500px;margin:0 auto;">
 <h6 style="color:#999;margin-bottom:40px;" class="center"> Self Appraisal Complete</h6>
-
+<input type="button" value="Dashboard" onclick="window.history.go(-2);"/>
 </div>
 
   <div id="footer">

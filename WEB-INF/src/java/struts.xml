@@ -79,10 +79,11 @@ name="excludeMethods">input,back,cancel,browse</param>
 		 <!--<interceptor-ref name="loggingStack"></interceptor-ref>-->
 			<result name="none">/appraisal.jsp</result>
 			<result name="success">/appraisalResult.jsp</result>
+			<result name="failure">/failure.jsp</result>
 		</action>
 		
-		<action name="SelfAppraise" class="hrmOne.AppraisalAction">
-			<result>/appraisal.jsp</result>
+		<action name="SelfAppraise" class="hrmOne.AppraisalAction" method="display">
+			<result name="none">/appraisal.jsp</result>
 		</action>
 		
 		<action name="SkillsBoard" class="hrmOne.SkillsAction" method="forward">

@@ -13,7 +13,6 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="style.css" media="all" /> 
 	
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -45,7 +44,7 @@ job responsibilities or accomplishing your goals." name="barriers" cols="60
 			
 				<i>Attendance</i><s:radio name="attendanceRecord" list="attendance" />
 				<i>Respect for Others</i><s:radio name="respectRecord" list="respect"  />	
-				<i>Manager</i><s:select name="manager" list="managers"></s:select>
+				<i>Manager</i><s:select name="manager" list="managerName" ></s:select>
 				<s:submit name ="Appraisal" value="Appraise" theme= "simple" />
 			
 			</s:form>	

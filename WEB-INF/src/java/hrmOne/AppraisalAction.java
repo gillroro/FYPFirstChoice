@@ -54,15 +54,16 @@ public class AppraisalAction extends ActionSupport {
 		respect.add("Very Respectful");
 		respect.add("Average Respect for others");
 		respect.add("Poor Respect for Others");
+		StringTokenizer st = new StringTokenizer(names, ",");
+		while(st.hasMoreTokens()){
+			managers.add(st.nextToken().trim());
+		}
 	}
 
 
 	public String execute() 
 	{
-		StringTokenizer st = new StringTokenizer(names, ",");
-		while(st.hasMoreTokens()){
-			managers.add(st.nextToken().trim());
-		}
+		
 		String ret = SUCCESS;
 		try
 		{
