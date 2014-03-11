@@ -42,10 +42,10 @@ job responsibilities or accomplishing your goals." name="barriers" cols="60
 			<s:textarea label="Please list your area(s) of strength and area(s) of improvement." name="improvements" cols="60" rows="4"></s:textarea>
 			<s:textarea label="What skills or new knowledge would you like to develop to improve your performance? " name="performance" cols="60" rows="4"></s:textarea>
 			
-				<i>Attendance</i><s:radio name="attendanceRecord" list="attendance" />
-				<i>Respect for Others</i><s:radio name="respectRecord" list="respect"  />	
+				<i>Attendance</i><s:radio name="attendanceRecord"  list="attendance" value="attendanceRecord" />
+				<i>Respect for Others</i><s:radio name="respectRecord" list="respect" value="respectRecord" />	
 				<i>Manager</i><s:select name="manager" list="managerName" ></s:select>
-				<s:submit name ="Appraisal" value="Appraise" theme= "simple" />
+				<s:submit name ="Appraisal" value="Submit" theme= "simple" />
 			
 			</s:form>	
 			</table>

@@ -21,7 +21,20 @@
  <div style="height:500px;width:550px;margin:0 auto;">
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Skill Profile</h4>
-<h5 style="color:#999;margin-bottom:40px;" class="center"> Skill Added to profile </h5>
+<h5 style="color:#999;margin-bottom:40px;" class="center"> Please provide proof of skill knowledge below: </h5>
+
+<s:form action="resultAction" namespace="/" method="POST" enctype="multipart/form-data">
+ 
+	<s:file name="fileUpload" label="Select a File to upload" size="40" />
+ 
+	<s:submit value="Upload" name="submit" />
+ 
+</s:form>
+
+or:<br />
+<br />
+<s:textarea label="Skills Proof" name="proof" cols="60" rows="4"></s:textarea>
+<s:submit value="Submit" name="submit" />
 
 <div class="center" >
 <input type="button" value="Dashboard" onclick="window.history.go(-1);"/>

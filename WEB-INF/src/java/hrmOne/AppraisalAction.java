@@ -1,10 +1,13 @@
 package hrmOne;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-import java.util.StringTokenizer;
 
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -21,18 +24,24 @@ public class AppraisalAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	private List<String> attendance= new ArrayList<String>();
 	private List<String> respect= new ArrayList<String>();
-
 	private String attendanceRecord;
 	private String respectRecord;
-
-	private String names = "Gillian, Sarah, Jake";
-	private List<String> managers= new ArrayList<String>();
+	private List<Employee> managers= new ArrayList<Employee>();
+	private List<String> managerName= new ArrayList<String>();
 	private String manager;
 	private String from;
 	private String password;
 	private String to;
 	private String subject;
 	private String body;
+	private String accomplishments;
+	private String barriers;
+	private String improvements;
+	private String performance;
+	private Connection connection;
+	private PreparedStatement addAppraisal;
+	private PreparedStatement getManagers;
+	private ResultSet results;
 
 	static Properties properties = new Properties();
 	static
@@ -54,10 +63,9 @@ public class AppraisalAction extends ActionSupport {
 		respect.add("Very Respectful");
 		respect.add("Average Respect for others");
 		respect.add("Poor Respect for Others");
-		StringTokenizer st = new StringTokenizer(names, ",");
-		while(st.hasMoreTokens()){
-			managers.add(st.nextToken().trim());
-		}
+	
+		getAllManagerNames();
+		
 	}
 
 
@@ -79,11 +87,21 @@ public class AppraisalAction extends ActionSupport {
 			message.setSubject("Appraisal Details");
 			message.setText("The employee Sarah has completed her appraisal.\nPlease review this.\n" + new Date());
 			
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
+			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(accomplishments, barriers, improvements, performance) VALUES(?,?,?,?)");
+			addAppraisal.setString(1, getAccomplishments());
+			addAppraisal.setString(2, getBarriers());
+			addAppraisal.setString(3, getImprovements());
+			addAppraisal.setString(4, getPerformance());
+			addAppraisal.setString(5, getAttendanceRecord());
+			addAppraisal.setString(6, getRespectRecord());
+			addAppraisal.executeUpdate();
 			Transport.send(message);
 		}
 		catch(Exception e)
 		{
-			ret = ERROR;
+			ret = "failure";
 			e.printStackTrace();
 		}
 		return ret;
@@ -174,23 +192,12 @@ public class AppraisalAction extends ActionSupport {
 		this.body = body;
 	}
 
-
-	public String getNames() {
-		return names;
-	}
-
-
-	public void setNames(String names) {
-		this.names = names;
-	}
-
-
-	public List<String> getManagers() {
+	public List<Employee> getManagers() {
 		return managers;
 	}
 
 
-	public void setManagers(List<String> managers) {
+	public void setManagers(List<Employee> managers) {
 		this.managers = managers;
 	}
 
@@ -203,6 +210,99 @@ public class AppraisalAction extends ActionSupport {
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
+
+
+	public String getAccomplishments() {
+		return accomplishments;
+	}
+
+
+	public void setAccomplishments(String accomplishments) {
+		this.accomplishments = accomplishments;
+	}
+
+
+	public String getBarriers() {
+		return barriers;
+	}
+
+
+	public void setBarriers(String barriers) {
+		this.barriers = barriers;
+	}
+
+
+	public String getImprovements() {
+		return improvements;
+	}
+
+
+	public void setImprovements(String improvements) {
+		this.improvements = improvements;
+	}
+
+
+	public String getPerformance() {
+		return performance;
+	}
+
+
+	public void setPerformance(String performance) {
+		this.performance = performance;
+	}
+	
+	public List<Employee> getAllManagers(){
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
+			getManagers = connection.prepareStatement("SELECT * FROM EMPLOYEE");
+			results = getManagers.executeQuery();
+			while(results.next()){
+				Employee employee = new Employee();
+				employee.setFirstName(results.getString("first_name"));
+				employee.setSurname(results.getString("surname"));
+				employee.setAddress(results.getString("address"));
+				employee.setUsername(results.getString("username"));
+				employee.setPassword(results.getString("password"));
+				employee.setUserType(results.getString("user_type"));
+
+				if(employee.getUserType().equalsIgnoreCase("manager")){
+					managers.add(employee);
+					
+					
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return managers;
+		
+	}
+
+
+	public List<String> getManagerName() {
+		return managerName;
+	}
+
+
+	public void setManagerName(List<String> managerName) {
+		this.managerName = managerName;
+	}
+	
+	public List<String> getAllManagerNames(){
+		getAllManagers();
+		for (int i=0; i<managers.size(); i++){
+			String name = managers.get(i).getFirstName();
+			managerName.add(name);
+		}
+		return managerName;
+	}
+	
+	
+	
+	
 
 	
 	
