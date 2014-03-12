@@ -44,7 +44,7 @@ job responsibilities or accomplishing your goals." name="barriers" cols="60
 			
 				<i>Attendance</i><s:radio name="attendanceRecord"  list="attendance" value="attendanceRecord" />
 				<i>Respect for Others</i><s:radio name="respectRecord" list="respect" value="respectRecord" />	
-				<i>Manager</i><s:select name="manager" list="managerName" ></s:select>
+				<i>Manager</i><s:select name="manager" list="managerName" value="manager" ></s:select>
 				<s:submit name ="Appraisal" value="Submit" theme= "simple" />
 			
 			</s:form>	

@@ -42,6 +42,7 @@ public class AppraisalAction extends ActionSupport {
 	private PreparedStatement addAppraisal;
 	private PreparedStatement getManagers;
 	private ResultSet results;
+	private String managerEmail;
 
 	static Properties properties = new Properties();
 	static
@@ -80,16 +81,12 @@ public class AppraisalAction extends ActionSupport {
 					return new 
 							PasswordAuthentication("firstchoicefinalyearproject@gmail.com", "55UK6gt1");
 				}});
-
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("firstchoicefinalyearproject@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("gillroro@gmail.com"));
-			message.setSubject("Appraisal Details");
-			message.setText("The employee Sarah has completed her appraisal.\nPlease review this.\n" + new Date());
+			
+	
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp","root", "root");
-			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(accomplishments, barriers, improvements, performance) VALUES(?,?,?,?)");
+			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(accomplishments, barriers, improvements, performance, attendance, respect) VALUES(?,?,?,?,?,?)");
 			addAppraisal.setString(1, getAccomplishments());
 			addAppraisal.setString(2, getBarriers());
 			addAppraisal.setString(3, getImprovements());
@@ -97,6 +94,16 @@ public class AppraisalAction extends ActionSupport {
 			addAppraisal.setString(5, getAttendanceRecord());
 			addAppraisal.setString(6, getRespectRecord());
 			addAppraisal.executeUpdate();
+			
+			if(manager.equalsIgnoreCase("Gillian")){
+				 managerEmail = "gillroro@gmail.com";
+			}
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("firstchoicefinalyearproject@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(managerEmail));
+			message.setSubject("Appraisal Details");
+			message.setText("The employee Sarah has completed her appraisal.\nPlease review this.\n" + new Date());
 			Transport.send(message);
 		}
 		catch(Exception e)
@@ -239,6 +246,16 @@ public class AppraisalAction extends ActionSupport {
 
 	public void setImprovements(String improvements) {
 		this.improvements = improvements;
+	}
+
+
+	public String getManagerEmail() {
+		return managerEmail;
+	}
+
+
+	public void setManagerEmail(String managerEmail) {
+		this.managerEmail = managerEmail;
 	}
 
 
