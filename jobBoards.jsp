@@ -26,6 +26,7 @@
 <a href="<s:url action="PostJob"/>">Post Job</a>
 <a href="<s:url action="ViewAll"/>">View All Jobs</a>
 <a href="<s:url action="ViewSpecific"/>">View Jobs By Department</a>
+<a href="<s:url action="ViewApplications"/>">View Applications</a>
 <div class="center" >
 <input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
 </div>
