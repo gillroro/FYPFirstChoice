@@ -14,23 +14,19 @@
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/kickstart.js"></script>
+	
 </head>
  
 <body>
  <div style="height:500px;width:550px;margin:0 auto;">
 <div class="center" >
-<h4 style="color:#999;margin-bottom:40px;" class="center"> Project Home</h4>
+<h4 style="color:#999;margin-bottom:40px;" class="center"> Delete Project</h4>
 
-<div class="center" >
-<a href="<s:url action="CreateProject"/>">Create Project</a>
-<a href="<s:url action="GetProjects"/>">View All Projects</a>
-<a href="<s:url action="ProjectDeleteForm"/>">Delete A Project</a>
-<a href="<s:url action="ViewApplications"/>">View Applications</a>
-<div class="center" >
-<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
-</div>
-</div>
-
+<p><i>Please enter the project name that you wish to delete?</p></i>
+<s:form action="DeleteProject" >
+	<s:textfield name="projectName" label="Project Name" theme= "css_xhtml"/>	
+	<s:submit value="Delete Project" theme="simple" />
+</s:form>	
 </div> 
 </div>
 </body>

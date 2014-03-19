@@ -10,6 +10,7 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="style.css" media="all" /> 
 	
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -19,19 +20,14 @@
 <body>
  <div style="height:500px;width:550px;margin:0 auto;">
 <div class="center" >
-<h4 style="color:#999;margin-bottom:40px;" class="center"> Project Home</h4>
+<h4 style="color:#999;margin-bottom:40px;" class="center"> Projects</h4>
+<h5 style="color:#999;margin-bottom:40px;" class="center"> Project <s:property value="projectName" /> Deleted </h5>
 
 <div class="center" >
-<a href="<s:url action="CreateProject"/>">Create Project</a>
-<a href="<s:url action="GetProjects"/>">View All Projects</a>
-<a href="<s:url action="ProjectDeleteForm"/>">Delete A Project</a>
-<a href="<s:url action="ViewApplications"/>">View Applications</a>
-<div class="center" >
-<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
-</div>
+<input type="button" value="Project Home" onclick="window.history.go(-2);"/>
 </div>
 
 </div> 
-</div>
+
 </body>
 </html>

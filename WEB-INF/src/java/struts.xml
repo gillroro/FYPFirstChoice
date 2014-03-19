@@ -192,6 +192,17 @@ class="actionClass.DatePickerAction" method="display">
 		<action name="GetProjects" class="actionClass.ProjectAction" method="displayAllProjects" >
 			<result name="success">/jsp/allProjects.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
+		</action>
+
+	
+		<action name="ProjectDeleteForm" class="actionClass.ProjectAction" method="forward" >
+			<result name="none">/jsp/deleteProject.jsp</result>
+			
+		</action>
+		
+		<action name="DeleteProject" class="actionClass.ProjectAction" method="deleteProject" >
+			<result name="success">/jsp/projectDeleted.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>		
     </package>
 </struts>

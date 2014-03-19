@@ -29,6 +29,7 @@ public class ProjectAction extends ActionSupport {
 	private Connection connection;
 	private PreparedStatement addProject;
 	private PreparedStatement getProjects;
+	private PreparedStatement deleteProject;
 	private ResultSet results;
 	private WebSession ws;
 	private Employee employee;
@@ -55,7 +56,18 @@ public class ProjectAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	public String deleteProject(){
+	public String deleteProject() throws SQLException{
+		getAllProjects();
+		for(int i=0; i< projects.size(); i++){
+			if(projects.get(i).getProjectName().equalsIgnoreCase(projectName)){
+				connection = ConnectionCreation.getConnection();
+				deleteProject = connection.prepareStatement("DELETE FROM PROJECT WHERE projectName= ?");
+				deleteProject.setString(1, projectName);
+				deleteProject.executeUpdate();
+			}
+		}
+		connection.close();
+		deleteProject.close();
 		
 		return SUCCESS;
 		
