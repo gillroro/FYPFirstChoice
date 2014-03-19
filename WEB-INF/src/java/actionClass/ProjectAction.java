@@ -30,12 +30,15 @@ public class ProjectAction extends ActionSupport {
 	private PreparedStatement addProject;
 	private PreparedStatement getProjects;
 	private PreparedStatement deleteProject;
+	private PreparedStatement getEmployees;
 	private ResultSet results;
 	private WebSession ws;
 	private Employee employee;
 	private Project project;
 	private List<Project> projects = new ArrayList<Project>();
 	private List<Employee> members = new ArrayList<Employee>();
+	private List<String> membersName = new ArrayList<String>();
+	private List<String> projectNames = new ArrayList<String>();
 	SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
 	
 	public String createProject(){
@@ -75,6 +78,8 @@ public class ProjectAction extends ActionSupport {
 	}
 	
 	public String assignEmployeeToProject(){
+		getAllEmployeeNames();
+		getAllProjectNames();
 		return SUCCESS;
 	}
 	
@@ -100,6 +105,36 @@ public class ProjectAction extends ActionSupport {
 			e.printStackTrace();
 		}
 		return projects;
+	}
+	
+	public List<Employee> getAllEmployees(){
+		try {
+			
+			connection =ConnectionCreation.getConnection();
+			getEmployees = connection.prepareStatement("SELECT * FROM EMPLOYEE");
+			results = getEmployees.executeQuery();
+			while(results.next()){
+				Employee employee = new Employee();
+				employee.setFirstName(results.getString("first_name"));
+				employee.setSurname(results.getString("surname"));
+				employee.setAddress(results.getString("address"));
+				employee.setUsername(results.getString("username"));
+				employee.setPassword(results.getString("password"));
+				employee.setUserType(results.getString("user_type"));
+
+				if(employee.getUserType().equalsIgnoreCase("employee")){
+					members.add(employee);
+					
+					
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return members;
+		
 	}
 	
 	public String displayAllProjects(){
@@ -178,6 +213,40 @@ public class ProjectAction extends ActionSupport {
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
+	}
+	
+	public List<String> getAllEmployeeNames(){
+		getAllEmployees();
+		for (int i=0; i<members.size(); i++){
+			String name = members.get(i).getFirstName() +" "+ members.get(i).getSurname();
+			membersName.add(name);
+		}
+		return membersName;
+	}
+	
+	public List<String> getAllProjectNames(){
+		getAllProjects();
+		for (int i=0; i<projects.size(); i++){
+			String name = projects.get(i).getProjectName();
+			projectNames.add(name);
+		}
+		return projectNames;
+	}
+
+	public List<String> getMembersName() {
+		return membersName;
+	}
+
+	public void setMembersName(List<String> membersName) {
+		this.membersName = membersName;
+	}
+
+	public List<String> getProjectNames() {
+		return projectNames;
+	}
+
+	public void setProjectNames(List<String> projectNames) {
+		this.projectNames = projectNames;
 	}
 	
 	

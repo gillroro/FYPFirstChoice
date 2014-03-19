@@ -200,5 +200,13 @@
 			<result name="success">/jsp/projectDeleted.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>
+		
+		<action name="AssignMemberToProject" class="actionClass.ProjectAction" method="assignEmployeeToProject" >
+			<result name="success">/jsp/assignment.jsp</result>
+		</action>
+		
+		<action name="CompleteAssignment" class="actionClass.ProjectAction" method="forward" >
+			<result name="none">/jsp/assignmentComplete.jsp</result>
+		</action>	
     </package>
 </struts>

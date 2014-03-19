@@ -25,7 +25,7 @@
 <a href="<s:url action="CreateProject"/>">Create Project</a>
 <a href="<s:url action="GetProjects"/>">View All Projects</a>
 <a href="<s:url action="ProjectDeleteForm"/>">Delete A Project</a>
-<a href="<s:url action="ViewApplications"/>">View Applications</a>
+<a href="<s:url action="AssignMemberToProject"/>">Assign Employee</a>
 <div class="center" >
 <input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
 </div>
