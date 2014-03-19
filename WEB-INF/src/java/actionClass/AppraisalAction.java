@@ -29,7 +29,6 @@ public class AppraisalAction extends ActionSupport {
 	private String attendanceRecord;
 	private String respectRecord;
 	private List<Employee> managers= new ArrayList<Employee>();
-	private List<String> managerName= new ArrayList<String>();
 	private String manager;
 	private String from;
 	private String password;
@@ -67,14 +66,13 @@ public class AppraisalAction extends ActionSupport {
 		respect.add("Average Respect for others");
 		respect.add("Poor Respect for Others");
 	
-		getAllManagerNames();
+		getAllManagers();
 		
 	}
 
 
 	public String execute() 
 	{
-		
 		String ret = SUCCESS;
 		try
 		{
@@ -83,10 +81,7 @@ public class AppraisalAction extends ActionSupport {
 					return new 
 							PasswordAuthentication("firstchoicefinalyearproject@gmail.com", "55UK6gt1");
 				}});
-			
-	
-			
-			
+
 			connection = ConnectionCreation.getConnection();
 			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(accomplishments, barriers, improvements, performance, attendance, respect) VALUES(?,?,?,?,?,?)");
 			addAppraisal.setString(1, getAccomplishments());
@@ -301,23 +296,8 @@ public class AppraisalAction extends ActionSupport {
 	}
 
 
-	public List<String> getManagerName() {
-		return managerName;
-	}
-
-
-	public void setManagerName(List<String> managerName) {
-		this.managerName = managerName;
-	}
 	
-	public List<String> getAllManagerNames(){
-		getAllManagers();
-		for (int i=0; i<managers.size(); i++){
-			String name = managers.get(i).getFirstName();
-			managerName.add(name);
-		}
-		return managerName;
-	}
+	
 	
 	
 	

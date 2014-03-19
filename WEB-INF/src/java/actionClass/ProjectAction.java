@@ -5,14 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import util.WebSession;
-
 import com.opensymphony.xwork2.ActionSupport;
-
 import database.ConnectionCreation;
 import entity.Employee;
 import entity.Project;
@@ -32,14 +27,9 @@ public class ProjectAction extends ActionSupport {
 	private PreparedStatement deleteProject;
 	private PreparedStatement getEmployees;
 	private ResultSet results;
-	private WebSession ws;
-	private Employee employee;
-	private Project project;
 	private List<Project> projects = new ArrayList<Project>();
 	private List<Employee> members = new ArrayList<Employee>();
-	private List<String> membersName = new ArrayList<String>();
-	private List<String> projectNames = new ArrayList<String>();
-	SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
+	
 	
 	public String createProject(){
 		try {
@@ -78,8 +68,8 @@ public class ProjectAction extends ActionSupport {
 	}
 	
 	public String assignEmployeeToProject(){
-		getAllEmployeeNames();
-		getAllProjectNames();
+		getAllEmployees();
+		getAllProjects();
 		return SUCCESS;
 	}
 	
@@ -175,22 +165,6 @@ public class ProjectAction extends ActionSupport {
 		this.endDate = endDate;
 	}
 
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
-
 	public List<Employee> getMembers() {
 		return members;
 	}
@@ -215,39 +189,7 @@ public class ProjectAction extends ActionSupport {
 		this.projects = projects;
 	}
 	
-	public List<String> getAllEmployeeNames(){
-		getAllEmployees();
-		for (int i=0; i<members.size(); i++){
-			String name = members.get(i).getFirstName() +" "+ members.get(i).getSurname();
-			membersName.add(name);
-		}
-		return membersName;
-	}
-	
-	public List<String> getAllProjectNames(){
-		getAllProjects();
-		for (int i=0; i<projects.size(); i++){
-			String name = projects.get(i).getProjectName();
-			projectNames.add(name);
-		}
-		return projectNames;
-	}
 
-	public List<String> getMembersName() {
-		return membersName;
-	}
-
-	public void setMembersName(List<String> membersName) {
-		this.membersName = membersName;
-	}
-
-	public List<String> getProjectNames() {
-		return projectNames;
-	}
-
-	public void setProjectNames(List<String> projectNames) {
-		this.projectNames = projectNames;
-	}
 	
 	
 	

@@ -33,8 +33,10 @@
 			<table>
 
 			<s:form action="CompleteAssignment" namespace="/" method="POST" theme= "css_xhtml" >
-				<i>Project Name</i><s:select name="projectName" list="projectNames" value="projectName" ></s:select>
-				<i>Employee Name</i><s:select name="first_name" list="membersName" value="first_name" ></s:select>
+				<i>Project Name</i><s:select headerKey="-1" headerValue="Select Project Name" name="projectName" list="projects" listKey="project_id" listValue="projectName"  theme = "css_xhtml" ></s:select>
+				<br />
+				<i>Employee Name</i><s:select headerKey="-1" headerValue="Select Employee Name" name="firstName" list="members" listKey="employee_id" listValue="firstName +' '+surname+ ' ('+username+') '"  theme = "css_xhtml" ></s:select>
+				<br />
 				<s:submit name ="Assign" value="Submit" theme= "simple" />
 			
 			</s:form>	
