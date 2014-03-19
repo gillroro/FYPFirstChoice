@@ -5,48 +5,48 @@
 <struts>
     <package name="default" extends="struts-default">
         <action name="Login" class="actionClass.UserLoginAction">
-            <result name="success">/success.jsp</result>
-			<result name="failure">/failure.jsp</result>
-			<result name="manager">/manager.jsp</result>
-			<result name="input">/index.jsp</result>
+            <result name="success">/jsp/success.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
+			<result name="manager">/jsp/manager.jsp</result>
+			<result name="input">/jsp/index.jsp</result>
         </action>
 		
 		 <action name="ManagerLogin" class="actionClass.ManagerLoginAction">
-            <result name="success">/manager.jsp</result>
-			<result name="failure">/failure.jsp</result>
-			<result name="manager">/manager.jsp</result>
-			<result name="input">/index.jsp</result>
+            <result name="success">/jsp/manager.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
+			<result name="manager">/jsp/manager.jsp</result>
+			<result name="input">/jsp/index.jsp</result>
         </action>
 		
 		<action name="Register" class="actionClass.RegisterAction">
-            <result name="success">/registerSuccess.jsp</result>
-			<result name="failure">/failure.jsp</result>
+            <result name="success">/jsp/registerSuccess.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
         </action>
 	
 		<action name="AddEmployee" class="actionClass.RegisterAction" method="forward">
-            <result name="none">/register.jsp</result>			
+            <result name="none">/jsp/register.jsp</result>			
         </action>
 		
 		<action name="ManageDetails" class="actionClass.ManageEmployeeDetailsAction">
-            <result name="success">/manageEmployeeDetails.jsp</result>
-			<result name="failure">/failure.jsp</result>
+            <result name="success">/jsp/manageEmployeeDetails.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
         </action>
 
 		<action name = "loginAgain" class = "actionClass.UserLoginAction">
-			<result name = "success">/index.jsp</result>
-			<result name = "failure">/failure.jsp</result>
+			<result name = "success">/jsp/index.jsp</result>
+			<result name = "failure">/jsp/failure.jsp</result>
 			
-			<result name="input">/index.jsp</result>
+			<result name="input">/jsp/index.jsp</result>
 		</action>
 
 		<action name = "Logout" class ="actionClass.UserLoginAction" method = "logout">
-			<result name = "success">/index.jsp</result>
-			<result name = "failure">/failure.jsp</result>
-			<result name="input">/index.jsp</result>
+			<result name = "success">/jsp/index.jsp</result>
+			<result name = "failure">/jsp/failure.jsp</result>
+			<result name="input">/jsp/index.jsp</result>
 		</action>	
 
 		<action name="fileUploadAction" class="actionClass.FileUploadAction" method="display">
-			<result name="none">/fileUpload.jsp</result>
+			<result name="none">/jsp/fileUpload.jsp</result>
 		</action>
 		
 		<action name="resultAction" class="actionClass.FileUploadAction">
@@ -65,112 +65,112 @@
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
  
-			<result name="success">/uploadResult.jsp</result>
-			<result name="input">/fileUpload.jsp</result>
+			<result name="success">/jsp/uploadResult.jsp</result>
+			<result name="input">/jsp/fileUpload.jsp</result>
 		</action>
 		
 		<action name="Appraisal" class="actionClass.AppraisalAction">
 			 <!--<interceptor-ref name="loggingStack"></interceptor-ref>-->
-			<result name="none">/appraisal.jsp</result>
-			<result name="success">/appraisalResult.jsp</result>
-			<result name="failure">/failure.jsp</result>
+			<result name="none">/jsp/appraisal.jsp</result>
+			<result name="success">/jsp/appraisalResult.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
 		<action name="SelfAppraise" class="actionClass.AppraisalAction" method="display">
-			<result name="none">/appraisal.jsp</result>
+			<result name="none">/jsp/appraisal.jsp</result>
 		</action>	
 		
 		<action name="SkillsBoard" class="actionClass.SkillsAction" method="forward">
-			<result name="none">/skillsPage.jsp</result>
+			<result name="none">/jsp/skillsPage.jsp</result>
 		</action>
 
 		<action name="AddSkillPage" class="actionClass.SkillsAction" method="forward">
-			<result name="none">/addSkill.jsp</result>
+			<result name="none">/jsp/addSkill.jsp</result>
 		</action>	
 		
 		<action name="AddSkill" class="actionClass.SkillsAction">
-			<result name="success">/skillAdded.jsp</result>
-			<result name="failure">/failure.jsp</result>
+			<result name="success">/jsp/skillAdded.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
 		<action name="ViewAllSkill" class="actionClass.SkillsAction" method="display">
-			<result name="success">/allSkills.jsp</result>
-			<result name="failure">/failure.jsp</result>
+			<result name="success">/jsp/allSkills.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
 		<action name="UpdateSkillProfile" class="actionClass.SkillsAction" method="display">
-			<result name="success">/updateSkillsProfile.jsp</result>
-			<result name="failure">/failure.jsp</result>
+			<result name="success">/jsp/updateSkillsProfile.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 			
 		<action name="JobBoards" class="actionClass.JobBoardAction" method="forward">
-			<result name="none">/jobBoards.jsp</result>
+			<result name="none">/jsp/jobBoards.jsp</result>
 		</action>
 		
 		<action name="JobApplication" class="actionClass.JobBoardAction" method="forward">
-			<result name="none">/jobApplication.jsp</result>
+			<result name="none">/jsp/jobApplication.jsp</result>
 		</action>	
 		
 		<action name="EmployeeJobBoards" class="actionClass.JobBoardAction" method="forward">
-			<result name="none">/employeeJobBoards.jsp</result>
+			<result name="none">/jsp/employeeJobBoards.jsp</result>
 		</action>
 
 		<action name="PostJob" class="actionClass.JobBoardAction" method="forward">
-			<result name="none">/addJob.jsp</result>
+			<result name="none">/jsp/addJob.jsp</result>
 		</action>	
 		
 		<action name="AddJob" class="actionClass.JobBoardAction" method="execute">
-			<result name="success">/jobAdded.jsp</result>
-			<result name="failure">/failure.jsp</result>
+			<result name="success">/jsp/jobAdded.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>	
 		
 		<action name="ViewAll" class="actionClass.JobBoardAction" method="displayList">
-			<result name="success">/allJobs.jsp</result>
-			<result name="failure">/failure.jsp</result>
+			<result name="success">/jsp/allJobs.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
 		<action name="ViewSpecific" class="actionClass.JobBoardAction" method="forward">
-			<result name="none">/jobsByDepartment.jsp</result>
+			<result name="none">/jsp/jobsByDepartment.jsp</result>
 		</action>
 		
 		<action name="JobDepartment" class="actionClass.JobBoardAction" method="displayDepartmentList">
-			<result name="success">/allJobs.jsp</result>
-			<result name="failure">/failure.jsp</result>
+			<result name="success">/jsp/allJobs.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
 		
 		
 		<!--<action name="datePickerAction" class="actionClass.DatePickerAction" method="display">
-			<result name="none">/holidayRequest.jsp</result>
+			<result name="none">/jsp/holidayRequest.jsp</result>
 
 		</action>-->
 		
 		<action name="DateTimePicker" class="actionClass.DatePickerAction" method="display">
-			<result name="none">/holidayRequest.jsp</result>
+			<result name="none">/jsp/holidayRequest.jsp</result>
 		</action>
  
 		<action name="holidayResultAction" class="actionClass.DatePickerAction" >
-			<result name="success">/holidayResult.jsp</result>
-			 <result name="failure">/holidayRequest.jsp</result>
+			<result name="success">/jsp/holidayResult.jsp</result>
+			 <result name="failure">/jsp/holidayRequest.jsp</result>
 		</action>
 		
 		<action name="ManageEmployeeDetails" class="actionClass.ManageEmployeeDetailsAction" >
-			<result name="success">/manageEmployeeDetails.jsp</result>
-			<result name="failure">/failure.jsp</result>
+			<result name="success">/jsp/manageEmployeeDetails.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
 		<action name="ManageEmployeeHolidays" class="actionClass.DatePickerAction" method="displayHolidays" >
-			<result name="success">/manageEmployeeHolidays.jsp</result>
-			<result name="failure">/failure.jsp</result>
+			<result name="success">/jsp/manageEmployeeHolidays.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
 		<action name="AddSkillToProfile" class="actionClass.SkillsAction" method="forward" >
-			<result name="none">/addSkillToProfile.jsp</result>
+			<result name="none">/jsp/addSkillToProfile.jsp</result>
 			
 		</action>
 		
 		<action name="ViewApplications" class="actionClass.JobBoardAction" method="displayApplications" >
-			<result name="none">/applications.jsp</result>
+			<result name="none">/jsp/applications.jsp</result>
 		</action>	
 		
     </package>
