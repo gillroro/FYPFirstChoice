@@ -14,22 +14,23 @@
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/kickstart.js"></script>
-	<s:head theme="ajax" />
 </head>
  
 <body>
  <div style="height:500px;width:550px;margin:0 auto;">
 <div class="center" >
-<h4 style="color:#999;margin-bottom:40px;" class="center"> Post a Job</h4>
+<h4 style="color:#999;margin-bottom:40px;" class="center"> Project Home</h4>
 
-<s:form action="AddJob" >
-	<s:textfield name="job_name" label="Job Name" theme= "css_xhtml"/>
-	<s:datetimepicker name="closing_date" label="Closing Date" displayFormat="dd/MM/yyyy"  required="true" theme="css_xhtml"/>
-	<s:textarea name="description" label="Description" theme="css_xhtml" />
-	<s:textfield name="department" label="Department" theme="css_xhtml" />
-	
-	<s:submit value="Add Job" theme="simple" />
-</s:form>	
+<div class="center" >
+<a href="<s:url action="CreateProject"/>">Create Project</a>
+<a href="<s:url action="GetProjects"/>">View All Projects</a>
+<a href="<s:url action="ViewSpecific"/>">View Jobs By Department</a>
+<a href="<s:url action="ViewApplications"/>">View Applications</a>
+<div class="center" >
+<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
+</div>
+</div>
+
 </div> 
 </div>
 </body>

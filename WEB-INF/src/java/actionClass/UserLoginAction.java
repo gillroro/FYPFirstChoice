@@ -1,7 +1,6 @@
 package actionClass;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -120,15 +119,15 @@ public class UserLoginAction extends ActionSupport {
 		WebSession.clear();
 		return "success";
 	}
-//	
-//	public void validate(){
-//		if(username == null || username.equals("")){
-//			addFieldError(username, "Username is required");
-//		}
-//		if(password == null || password.equals("")){
-//			addFieldError(password, "Password is required");
-//		}
-//	}
+	
+	public void validate(){
+		if(username == null || username.equals("")){
+			addFieldError("Username", "Username is required");
+		}
+		if(password == null || password.equals("")){
+			addFieldError("Password", "Password is required");
+		}
+	}
 
 
 

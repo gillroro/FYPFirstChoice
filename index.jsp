@@ -12,7 +12,6 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="style.css" media="all" /> 
 	
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -30,7 +29,7 @@
 			Welcome to First Choice</h1>
 		<h4 style="color:#999;margin-bottom:30px;" class="center"> The Human Resource Management Solution!</h4>
 	</div>
-	<div align="center" style="height:500px;width:500px;margin:0 auto;">
+	<div align="center" style="height:600px;width:500px;margin:0 auto;">
 	
 
 	<h5 style="color:#999;margin-bottom:0px;">Login</h5>
@@ -41,8 +40,7 @@
 		</s:form>
 	
 	</div>
-</div>	
-<div class="grid">	
+
 	<!-- Slideshow -->
 	<div align="center" style="height:500px;width:500px;margin:0 auto;">
 	<div class="col_400 float_l" >

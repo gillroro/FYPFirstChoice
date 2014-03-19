@@ -12,7 +12,6 @@
 	
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="style.css" media="all" /> 
 	
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -41,8 +40,7 @@
 		</s:form>
 	
 	</div>
-</div>	
-<div class="grid">	
+
 	<!-- Slideshow -->
 	<div align="center" style="height:500px;width:500px;margin:0 auto;">
 	<div class="col_400 float_l" >
@@ -61,11 +59,11 @@
 
 	</div>
 </div> <!-- End Grid -->
-	 <div id="footer">
+<div id="footer">
 			
-			<h6 style="color:#999;margin-bottom:40px;" class="center"> ©Gillian Rowan, 2013.      </h6>
+	<h6 style="color:#999;margin-bottom:40px;" class="center"> ©Gillian Rowan, 2013.      </h6>
 	            
-        </div>
+ </div>
 
 </body>
 </html>

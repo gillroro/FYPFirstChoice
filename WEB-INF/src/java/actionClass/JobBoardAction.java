@@ -1,8 +1,5 @@
 package actionClass;
 
-import java.sql.DriverManager;
-import java.util.ArrayList;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -10,11 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+import java.util.ArrayList;
+import java.util.List;
 import util.WebSession;
-
 import com.opensymphony.xwork2.ActionSupport;
-
 import database.ConnectionCreation;
 import entity.Employee;
 import entity.Job;

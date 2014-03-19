@@ -22,13 +22,13 @@
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Post a Job</h4>
 
-<s:form action="AddJob" >
-	<s:textfield name="job_name" label="Job Name" theme= "css_xhtml"/>
-	<s:datetimepicker name="closing_date" label="Closing Date" displayFormat="dd/MM/yyyy"  required="true" theme="css_xhtml"/>
-	<s:textarea name="description" label="Description" theme="css_xhtml" />
+<s:form action="AddProject" >
+	<s:textfield name="projectName" label="Project Name" theme= "css_xhtml"/>
+	<s:datetimepicker name="startDate" label="Start Date" displayFormat="dd/MM/yyyy"  required="true" theme="css_xhtml"/>
+	<s:datetimepicker name="endDate" label="End Date" displayFormat="dd/MM/yyyy"  required="true" theme="css_xhtml"/>
 	<s:textfield name="department" label="Department" theme="css_xhtml" />
 	
-	<s:submit value="Add Job" theme="simple" />
+	<s:submit value="Add Project" theme="simple" />
 </s:form>	
 </div> 
 </div>

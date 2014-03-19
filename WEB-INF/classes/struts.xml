@@ -8,14 +8,14 @@
             <result name="success">/jsp/success.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 			<result name="manager">/jsp/manager.jsp</result>
-			<result name="input">/jsp/index.jsp</result>
+			<result name="input">/index.jsp</result>
         </action>
 		
 		 <action name="ManagerLogin" class="actionClass.ManagerLoginAction">
             <result name="success">/jsp/manager.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 			<result name="manager">/jsp/manager.jsp</result>
-			<result name="input">/jsp/index.jsp</result>
+			<result name="input">/index.jsp</result>
         </action>
 		
 		<action name="Register" class="actionClass.RegisterAction">
@@ -33,16 +33,16 @@
         </action>
 
 		<action name = "loginAgain" class = "actionClass.UserLoginAction">
-			<result name = "success">/jsp/index.jsp</result>
+			<result name = "success">/index.jsp</result>
 			<result name = "failure">/jsp/failure.jsp</result>
 			
-			<result name="input">/jsp/index.jsp</result>
+			<result name="input">/index.jsp</result>
 		</action>
 
 		<action name = "Logout" class ="actionClass.UserLoginAction" method = "logout">
-			<result name = "success">/jsp/index.jsp</result>
+			<result name = "success">/index.jsp</result>
 			<result name = "failure">/jsp/failure.jsp</result>
-			<result name="input">/jsp/index.jsp</result>
+			<result name="input">/index.jsp</result>
 		</action>	
 
 		<action name="fileUploadAction" class="actionClass.FileUploadAction" method="display">
@@ -173,5 +173,22 @@
 			<result name="none">/jsp/applications.jsp</result>
 		</action>	
 		
+				<action name="Projects" class="actionClass.ProjectAction" method = "forward" >
+			<result name="none">/jsp/projectHome.jsp</result>
+		</action>
+
+		<action name="CreateProject" class="actionClass.ProjectAction" method = "forward" >
+			<result name="none">/jsp/addProject.jsp</result>
+		</action>	
+
+		<action name="AddProject" class="actionClass.ProjectAction" method="createProject" >
+			<result name="success">/jsp/projectAdded.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
+		</action>
+		
+		<action name="GetProjects" class="actionClass.ProjectAction" method="displayAllProjects" >
+			<result name="success">/jsp/allProjects.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
+		</action>
     </package>
 </struts>
