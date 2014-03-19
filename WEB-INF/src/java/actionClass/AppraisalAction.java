@@ -18,6 +18,7 @@ import javax.mail.internet.MimeMessage;
 import com.opensymphony.xwork2.ActionSupport;
 
 import database.ConnectionCreation;
+import entity.Appraisal;
 import entity.Employee;
 
 public class AppraisalAction extends ActionSupport {
@@ -26,6 +27,7 @@ public class AppraisalAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	private List<String> attendance= new ArrayList<String>();
 	private List<String> respect= new ArrayList<String>();
+	private List<Appraisal> appraisals = new ArrayList<Appraisal>();
 	private String attendanceRecord;
 	private String respectRecord;
 	private List<Employee> managers= new ArrayList<Employee>();
@@ -42,6 +44,7 @@ public class AppraisalAction extends ActionSupport {
 	private Connection connection;
 	private PreparedStatement addAppraisal;
 	private PreparedStatement getManagers;
+	private PreparedStatement getAppraisals;
 	private ResultSet results;
 	private String managerEmail;
 
@@ -296,6 +299,44 @@ public class AppraisalAction extends ActionSupport {
 	}
 
 
+	public List<Appraisal> getAppraisals() {
+		return appraisals;
+	}
+
+
+	public void setAppraisals(List<Appraisal> appraisals) {
+		this.appraisals = appraisals;
+	}
+
+	
+	public List<Appraisal> getAllAppraisals(){
+		try{
+			connection = ConnectionCreation.getConnection();
+			getAppraisals = connection.prepareStatement("SELECT * FROM APPRAISAL");
+			results = getAppraisals.executeQuery();
+			while(results.next()){
+				Appraisal appraisal = new Appraisal();
+				appraisal.setAccomplishments(results.getString("accomplishments"));
+				appraisal.setBarriers(results.getString("barriers"));
+				appraisal.setImprovements(results.getString("improvements"));
+				appraisal.setPerformance(results.getString("performance"));
+				appraisal.setAttendanceRecord(results.getString("attendanceRecord"));
+				appraisal.setRespectRecord(results.getString("respectRecord"));
+				appraisals.add(appraisal);
+				
+			}
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return appraisals;
+	}
+	
+	public String manageAppraisals(){
+		getAllAppraisals();
+		return NONE;
+	}
 	
 	
 	

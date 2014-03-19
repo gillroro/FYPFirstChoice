@@ -18,6 +18,7 @@ public class ProjectAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	
 	private String projectName;
+	private String employeeName;
 	private Date startDate;
 	private Date endDate;
 	private String department;
@@ -187,6 +188,14 @@ public class ProjectAction extends ActionSupport {
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
+	}
+
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 	
 

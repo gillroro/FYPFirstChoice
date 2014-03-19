@@ -107,7 +107,7 @@
 			<result name="none">/jsp/jobBoards.jsp</result>
 		</action>
 		
-		<action name="JobApplication" class="actionClass.JobBoardAction" method="forward">
+		<action name="JobApplication" class="actionClass.JobBoardAction" method="jobApplication">
 			<result name="none">/jsp/jobApplication.jsp</result>
 		</action>	
 		
@@ -207,6 +207,10 @@
 		
 		<action name="CompleteAssignment" class="actionClass.ProjectAction" method="forward" >
 			<result name="none">/jsp/assignmentComplete.jsp</result>
-		</action>	
+		</action>
+
+		<action name="ManageAppraisals" class="actionClass.AppraisalAction" method="manageAppraisals" >
+			<result name="none">/jsp/manageAppraisals.jsp</result>
+		</action>		
     </package>
 </struts>

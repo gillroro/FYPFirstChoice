@@ -30,21 +30,21 @@
 	  <td style="background: #CCCCCC"><s:property value ="jobDesc" /></td>
 	  <td style="background: #CCCCCC"><s:property value ="department" /></td>
 	  <td style="background: #CCCCCC"><s:property value ="closing_date" /></td>
-	  <td style="background: #CCCCCC"><a href="<s:url action="fileUploadAction"/>">Apply</a>
+	  <td style="background: #CCCCCC"><a href="<s:url action="JobApplication"/>">Apply</a>
     </s:if>
     <s:elseif test="#jobsStatus.first == true">
       <td><s:property value ="jobName"  /></td>
 	  <td><s:property value ="jobDesc" /></td>
 	  <td><s:property value ="department" /></td>
 	  <td><s:property value ="closing_date" /></td>
-	  <td><a href="<s:url action="fileUploadAction"/>">Apply</a>
+	  <td><a href="<s:url action="JobApplication"/>">Apply</a>
     </s:elseif>
     <s:else>
       <td><s:property value ="jobName" /></td>
 	  <td><s:property value ="jobDesc" /></td>
 	  <td><s:property value ="department" /></td>
 	  <td><s:property value ="closing_date" /></td>
-	  <td><a href="<s:url action="fileUploadAction"/>">Apply</a>
+	  <td><a href="<s:url action="JobApplication"/>">Apply</a>
     </s:else>
   </tr>
 </s:iterator>

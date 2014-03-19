@@ -186,7 +186,7 @@ public class JobBoardAction extends ActionSupport {
 		getJobByDepartment();
 		if(jobs != null){
 			for(int i=0; i< jobs.size(); i++){
-				System.out.println(jobs.get(i));
+				System.out.println(jobs.get(i).getJobName());
 			}
 			return SUCCESS;
 		}
@@ -197,6 +197,11 @@ public class JobBoardAction extends ActionSupport {
 	}
 	
 	public String displayApplications(){
+		return NONE;
+	}
+	
+	public String jobApplication(){
+		System.out.println();
 		return NONE;
 	}
 
