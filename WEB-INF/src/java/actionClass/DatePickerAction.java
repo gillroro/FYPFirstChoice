@@ -33,7 +33,7 @@ public class DatePickerAction extends ActionSupport {
 	private PreparedStatement getHolidays;
 	private ResultSet results;
 	private List<Holiday> holidays = new ArrayList<Holiday>();
-	private String managerEmail;
+	//private String managerEmail;
 
 
 	SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
