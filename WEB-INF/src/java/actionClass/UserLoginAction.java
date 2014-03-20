@@ -120,14 +120,14 @@ public class UserLoginAction extends ActionSupport {
 		return "success";
 	}
 	
-	public void validate(){
-		if(username == null || username.equals("")){
-			addFieldError("Username", "Username is required");
-		}
-		if(password == null || password.equals("")){
-			addFieldError("Password", "Password is required");
-		}
-	}
+//	public void validate(){
+//		if(username == null || username.equals("")){
+//			addFieldError("Username", "Username is required");
+//		}
+//		if(password == null || password.equals("")){
+//			addFieldError("Password", "Password is required");
+//		}
+//	}
 
 
 

@@ -216,5 +216,10 @@
 		<action name="SelectedEmployee" class="actionClass.AppraisalAction" method="display" >
 			<result name="none">/jsp/employeeSelected.jsp</result>
 		</action>
+		
+		<action name="AddProof" class="actionClass.SkillsAction" method="addProof" >
+			<result name="success">/jsp/proofAdded.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
+		</action>
     </package>
 </struts>

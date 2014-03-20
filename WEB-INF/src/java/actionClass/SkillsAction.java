@@ -3,6 +3,7 @@ package actionClass;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +24,20 @@ public class SkillsAction extends ActionSupport {
 	private Connection connection;
 	private PreparedStatement addSkills;
 	private PreparedStatement getSkills;
+	private PreparedStatement addProof;
+	private PreparedStatement addSkillToEmployee;
 	private ResultSet results;
+	private String proof;
+	
+	
 
 
+	public String getProof() {
+		return proof;
+	}
+	public void setProof(String proof) {
+		this.proof = proof;
+	}
 	public String getSkillName() {
 		return skillName;
 	}
@@ -83,6 +95,7 @@ public class SkillsAction extends ActionSupport {
 			addSkills.setString(1, getSkillName());
 			addSkills.setString(2, getDescription());
 			addSkills.executeUpdate();
+			connection.close();addSkills.close();
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -91,6 +104,31 @@ public class SkillsAction extends ActionSupport {
 		
 	}
 	
+	public String addProof(){
+		try {
+		connection = ConnectionCreation.getConnection();
+		addProof = connection.prepareStatement("INSERT INTO skill_proof(employee_id, proof) VALUES(?,?)");
+		addProof.setInt(1, 1);
+		addProof.setString(2,getProof());
+		addProof.executeUpdate();
+		addSkillToEmployee = connection.prepareStatement("INSERT INTO employee_skill(SkillId,EmployeeId) VALUES(?,?)");
+		addSkillToEmployee.setInt(1,1);
+		addSkillToEmployee.setInt(2, 1);
+		addSkillToEmployee.executeUpdate();
+		connection.close();
+		addProof.close();
+		addSkillToEmployee.close();
+		return SUCCESS;
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			return "failure";
+		}
+		
+		
+		
+
+	}
 	
 	
 	public String forward(){

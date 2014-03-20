@@ -74,9 +74,6 @@ public class AppraisalAction extends ActionSupport {
 		getAllManagers();
 		
 	}
-	public String display() {
-		return NONE;
-	}
 
 	public String execute() 
 	{
@@ -99,16 +96,16 @@ public class AppraisalAction extends ActionSupport {
 			addAppraisal.setString(6, getRespectRecord());
 			addAppraisal.executeUpdate();
 			
-//			if(manager.equalsIgnoreCase("Gillian")){
-//				 managerEmail = "gillroro@gmail.com";
-//			}
+			if(manager.equalsIgnoreCase("Gillian")){
+				 managerEmail = "gillroro@gmail.com";
+			}
 
-//			Message message = new MimeMessage(session);
-//			message.setFrom(new InternetAddress("firstchoicefinalyearproject@gmail.com"));
-//			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(managerEmail));
-//			message.setSubject("Appraisal Details");
-//			message.setText("The employee Sarah has completed her appraisal.\nPlease review this.\n" + new Date());
-//			Transport.send(message);
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("firstchoicefinalyearproject@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(managerEmail));
+			message.setSubject("Appraisal Details");
+			message.setText("The employee Sarah has completed her appraisal.\nPlease review this.\n" + new Date());
+			Transport.send(message);
 		}
 		catch(Exception e)
 		{
@@ -117,6 +114,8 @@ public class AppraisalAction extends ActionSupport {
 		}
 		return ret;
 	}
+
+
 
 
 	public List<Employee> getAllManagers(){
