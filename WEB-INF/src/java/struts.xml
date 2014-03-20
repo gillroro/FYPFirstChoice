@@ -11,12 +11,12 @@
 			<result name="input">/index.jsp</result>
         </action>
 		
-		<action name="ManagerLogin" class="actionClass.ManagerLoginAction">
+	<!--	<action name="ManagerLogin" class="actionClass.ManagerLoginAction">
             <result name="success">/jsp/manager.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 			<result name="manager">/jsp/manager.jsp</result>
 			<result name="input">/index.jsp</result>
-        </action>
+        </action>-->
 		
 		<action name="Register" class="actionClass.RegisterAction">
             <result name="success">/jsp/registerSuccess.jsp</result>
@@ -226,5 +226,7 @@ class="actionClass.DatePickerAction" method="display">
 			<result name="success">/jsp/proofAdded.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>
+		
+		
     </package>
 </struts>

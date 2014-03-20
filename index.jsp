@@ -42,7 +42,7 @@
 	</div>
 
 	<!-- Slideshow -->
-	<div align="center" style="height:500px;width:500px;margin:0 auto;">
+	<div align="center" style="height:500px;width:700px;margin:0 auto;">
 	<div class="col_400 float_l" >
 		<ul class="slideshow" >
 			<li><img src="images/hrm2.jpg" width="550" height="450" /></li>

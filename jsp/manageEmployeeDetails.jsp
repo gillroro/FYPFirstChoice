@@ -23,8 +23,8 @@
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Manage Employee Details</h4>
 
-<table class="editableTable">
-<th>First Name</th><th>Surname</th><th>Username</th><th>Password</th><th>Address</th><th>Salary</th><th>User Type</th><th>Manager ID</th>
+<table >
+<th>First Name</th><th>Surname</th><th>Username</th><th>Password</th><th>Address</th><th>Salary</th><th>User Type</th><th>Manager</th><th>Edit</th>
 <s:iterator value="employees" status ="employeesStatus" >
  <tr>
   	<s:if test="#employeesStatus.even == true">
@@ -36,6 +36,8 @@
 	  <td style="background: #CCCCCC"><s:property value ="salary" /> </td>
 	  <td style="background: #CCCCCC"><s:property value ="userType" /> </td>
 	 <td style="background: #CCCCCC"><s:property value ="manager" /> </td>
+	 <td style="background: #CCCCCC"><s:url id="editURL" action="editUser">
+					<s:param name="id" value="%{id}"></s:param></s:url> <s:a href="%{editURL}">Edit</s:a></td>
     </s:if>
     <s:elseif test="#employeesStatus.first == true">
       <td><s:property value ="firstName" /></td>
@@ -46,6 +48,8 @@
 	  <td><s:property value ="salary" /> </td>
 	  <td><s:property value ="userType" /> </td>
 	  <td><s:property value ="manager" /> </td>
+	  <td><s:url id="editURL" action="editUser">
+					<s:param name="id" value="%{id}"></s:param></s:url> <s:a href="%{editURL}">Edit</s:a></td>
     </s:elseif>
     <s:else>
       <td><s:property value ="firstName" /></td>
@@ -56,6 +60,8 @@
 	  <td><s:property value ="salary" /> </td>
 	  <td><s:property value ="userType" /> </td>
 	  <td><s:property value ="manager" /> </td>
+	  	  <td><s:url id="editURL" action="editUser">
+					<s:param name="id" value="%{id}"></s:param></s:url> <s:a href="%{editURL}">Edit</s:a></td>
     </s:else>
   </tr>
 </s:iterator>
