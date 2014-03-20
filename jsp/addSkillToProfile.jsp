@@ -22,6 +22,7 @@
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Skill Profile</h4>
 <h5 style="color:#999;margin-bottom:40px;" class="center"> Please provide proof of skill knowledge below: </h5>
+<h5 style="color:#999;margin-bottom:40px;" class="center"> Eg. Certificate, Details of Course </h5>
 
 <s:form action="resultAction" namespace="/" method="POST" enctype="multipart/form-data">
  

@@ -211,6 +211,10 @@
 
 		<action name="ManageAppraisals" class="actionClass.AppraisalAction" method="manageAppraisals" >
 			<result name="none">/jsp/manageAppraisals.jsp</result>
-		</action>		
+		</action>
+
+		<action name="SelectedEmployee" class="actionClass.AppraisalAction" method="display" >
+			<result name="none">/jsp/employeeSelected.jsp</result>
+		</action>
     </package>
 </struts>

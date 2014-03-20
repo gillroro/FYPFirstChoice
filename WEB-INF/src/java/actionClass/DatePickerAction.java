@@ -2,7 +2,6 @@ package actionClass;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.ParseException;
@@ -34,6 +33,7 @@ public class DatePickerAction extends ActionSupport {
 	private PreparedStatement getHolidays;
 	private ResultSet results;
 	private List<Holiday> holidays = new ArrayList<Holiday>();
+	private String managerEmail;
 
 
 	SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");

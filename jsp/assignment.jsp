@@ -38,7 +38,6 @@
 				<i>Employee Name</i><s:select headerKey="-1" headerValue="Select Employee Name" name="firstName" list="members" listKey="employee_id" listValue="firstName +' '+surname+ ' ('+username+') '"  theme = "css_xhtml" ></s:select>
 				<br />
 				<s:submit name ="Assign" value="Submit" theme= "simple" />
-			
 			</s:form>	
 			</table>
 		</div>
