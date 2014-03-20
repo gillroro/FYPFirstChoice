@@ -318,5 +318,10 @@ public class AppraisalAction extends ActionSupport {
 		this.performance = performance;
 	}
 	
+	public String display()
+	{
+		return NONE;
+	}
+	
 	
 }
