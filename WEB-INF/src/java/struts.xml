@@ -113,6 +113,7 @@ method="display">
 		
 		<action name="JobApplication" class="actionClass.JobBoardAction" method="jobApplication">
 			<result name="none">/jsp/jobApplication.jsp</result>
+			<result name="input">/jsp/jobApplication.jsp</result>
 		</action>	
 		
 		<action name="EmployeeJobBoards" class="actionClass.JobBoardAction" method="forward">

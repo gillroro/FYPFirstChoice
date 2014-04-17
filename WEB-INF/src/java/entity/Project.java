@@ -12,7 +12,7 @@ public class Project {
 	private Employee employee;
 	private String department;
 	private List<Employee> members = new ArrayList<Employee>();
-	
+	private int project_id;
 	
 	public Date getStartDate() {
 		return startDate;
@@ -50,8 +50,10 @@ public class Project {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	
-	
-	
-
+	public int getProject_id() {
+		return project_id;
+	}
+	public void setProject_id(int project_id) {
+		this.project_id = project_id;
+	}
 }

@@ -28,7 +28,7 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 
 	private static final long serialVersionUID = 1L;
 	private List<Job> jobs = new ArrayList<Job>();;
-	private String job_name,description,department;
+	private String jobName,description,department;
 	private Employee employee;
 	private Job job;
 	private Date closing_date;
@@ -58,14 +58,14 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 		
 		connection = ConnectionCreation.getConnection();
 		addJob = connection.prepareStatement("INSERT INTO Job(job_name, description, department, closing_date) VALUES(?,?,?,?)");
-		addJob.setString(1, getJob_name());
+		addJob.setString(1, getJobName());
 		addJob.setString(2, getDescription());
 		addJob.setString(3, getDepartment());
 		addJob.setDate(4, (java.sql.Date)closing_date);
 		addJob.executeUpdate();
 		job.setDepartment(department);
 		job.setJobDesc(description);
-		job.setJobName(job_name);
+		job.setJobName(jobName);
 		session.put("Job", job);
 		return SUCCESS;
 	}
@@ -113,12 +113,12 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 		this.employee = employee;
 	}
 
-	public String getJob_name() {
-		return job_name;
+	public String getJobName() {
+		return jobName;
 	}
 
-	public void setJob_name(String job_name) {
-		this.job_name = job_name;
+	public void setJob_name(String jobName) {
+		this.jobName = jobName;
 	}
 
 	public List<Job> getAllJobs(){

@@ -1,5 +1,8 @@
 package entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Employee {
 	
@@ -11,6 +14,7 @@ public class Employee {
 	private int salary;
 	private String userType;
 	private int manager;
+	private List<Project> projects = new ArrayList<Project>();
 	
 	public Employee(){}
 	
@@ -63,6 +67,14 @@ public class Employee {
 
 	public void setManager(int manager) {
 		this.manager = manager;
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
 	}
 	
 	
