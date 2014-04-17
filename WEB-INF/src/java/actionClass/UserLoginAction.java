@@ -26,13 +26,11 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 	private Connection connection;
 	private PreparedStatement checkDuplicate;
 	private ResultSet results;
-	private String username, userType,password;
-	private Employee employee;
-	private Employee manager;
-
-
+	private String username, userType,password,first_name, surname, address;
+	private int salary;
+	private Employee employee,manager;
 	private Map<String, Object> session;
-
+	
 	@Override
 	public void prepare() throws Exception {
 		session = WebSession.getWebSessionInstance();
@@ -64,13 +62,21 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 		this.password = password;
 	}
 	public String execute() throws ClassNotFoundException, SQLException  {
+		employee = new Employee();
 		connection = ConnectionCreation.getConnection();
-		checkDuplicate = connection.prepareStatement("SELECT username, user_type FROM employee WHERE username=? AND password =?");
+		checkDuplicate = connection.prepareStatement("SELECT first_name, surname, address, username, password, salary, user_type FROM employee WHERE username=? AND password =?");
 		checkDuplicate.setString(1, getUsername());
 		checkDuplicate.setString(2, getPassword());
 		results = checkDuplicate.executeQuery();
 		if (results.next()) {
-			if(results.getString("user_type").equalsIgnoreCase("manager")){
+			employee.setFirstName(results.getString("first_name"));
+			employee.setSurname(results.getString("surname"));
+			employee.setAddress(results.getString("address"));
+			employee.setUsername(results.getString("username"));
+			employee.setPassword(results.getString("password"));
+			employee.setSalary(results.getInt("salary"));
+			employee.setUserType(results.getString("user_type"));
+			if(employee.getUserType().equalsIgnoreCase("manager")){
 				session.put("login", "true");
 				session.put("manager", manager );
 				connection.close();
@@ -79,7 +85,8 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 			}
 			else{
 				session.put("login", "true");
-				session.put("employee", employee );
+				session.put("employee", employee);
+				System.out.print("Employee" + employee.getUsername());
 				connection.close();
 				checkDuplicate.close();
 				return "success";
@@ -106,4 +113,29 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 	public void setSession(Map map) {
 		session = (SessionMap) map;
 	}
+	public String getFirst_name() {
+		return first_name;
+	}
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+	public String getSurname() {
+		return surname;
+	}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
 }

@@ -1,37 +1,20 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<html>
-
-<head>
-	<!-- META -->
-	<title>First Choice</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<meta name="description" content="" />
-	
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />
-	
-	<!-- Javascript -->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/kickstart.js"></script>
-</head>
- 
+<%@ include file="header.jsp" %>
 <body>
- <div style="height:500px;width:550px;margin:0 auto;">
-<div class="center" >
-<h4 style="color:#999;margin-bottom:40px;" class="center"> Edit User</h4>
-
-<div class="center" >
-<a href="<s:url action="CreateProject"/>">Create Project</a><br />
-<a href="<s:url action="GetProjects"/>">View All Projects</a><br />
-<a href="<s:url action="ProjectDeleteForm"/>">Delete A Project</a><br />
-<a href="<s:url action="AssignMemberToProject"/>">Assign Employee</a><br />
-<div class="center" >
-<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
-</div>
-</div>
-
-</div> 
+<div class="center" >	
+	
+	
+	<h5>Edit Employee:</h5>
+<s:form action="updateEmployee">
+	<s:textfield value="%{firstName}" label="Name" theme="css_xhtml" />
+	<s:textfield value="%{surname}" label="Surname" theme="css_xhtml" />
+	<s:textfield value="%{username}" label="Username" theme="css_xhtml" />
+	<s:textfield value="%{password}" label="Password" theme="css_xhtml" />
+	<s:textfield value="%{address}" label="Address" theme="css_xhtml" />
+	<s:textfield value="%{salary}" label="Salary" theme="css_xhtml" />
+	<s:textfield value="%{manager}" label="Manager" theme="css_xhtml" />
+	<s:textfield value="%{userType}" label="User Type" theme="css_xhtml" />
+	<s:submit value="Update" theme="simple" />
+</s:form>
 </div>
 </body>
 </html>

@@ -109,6 +109,9 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 		this.manager = manager;
 	}
 
+	public String forward(){
+		return NONE;
+	}
 
 
 }

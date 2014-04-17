@@ -227,6 +227,14 @@ class="actionClass.DatePickerAction" method="display">
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
+		<action name="updateEmployee" class="actionClass.ManageEmployeeDetailsAction" method="forward" >
+			<result name="none">/jsp/employeeUpdateSuccessful.jsp</result>
+			<result name="input">/jsp/employeeUpdateSuccessful.jsp</result>
+		</action>	
 		
+		<action name="editUser" class="actionClass.ManageEmployeeDetailsAction" method="forward" >
+			<result name="none">/jsp/editUser.jsp</result>
+			<result name="input">/jsp/editUser.jsp</result>
+		</action>
     </package>
 </struts>
