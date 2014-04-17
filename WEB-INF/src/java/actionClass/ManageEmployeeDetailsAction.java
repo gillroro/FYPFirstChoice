@@ -28,6 +28,8 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 	private ResultSet results;
 	private Employee manager;
 	private Employee employee;
+	private String username, userType,password,firstName, surname, address;
+	private int salary;
 	
 	private Map<String, Object> session;
 
@@ -111,6 +113,48 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 
 	public String forward(){
 		return NONE;
+	}
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirst_name(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getSurname() {
+		return surname;
+	}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 

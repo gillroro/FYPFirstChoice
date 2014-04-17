@@ -21,7 +21,7 @@
 	 <td style="background: #CCCCCC"><s:url id="editURL" action="editUser" escapeAmp="false">
 
 			<s:bean name="entity.Employee"></s:bean>
-			<s:param name="name" value="#employeesBean.firstName"></s:param>
+			<s:param name="firstName" value="#employeesBean.firstName"></s:param>
 			<s:param name="surname" value="#employeesBean.surname"></s:param>
 			<s:param name="username" value="#employeesBean.username"></s:param>
 			<s:param name="password" value="#employeesBean.password"></s:param>
@@ -47,7 +47,7 @@
 	  <td><s:url id="editURL" action="editUser" escapeAmp="false">
 
 			<s:bean name="entity.Employee"></s:bean>
-			<s:param name="name" value="#employeesBean.firstName"></s:param>
+			<s:param name="firstName" value="#employeesBean.firstName"></s:param>
 			<s:param name="surname" value="#employeesBean.surname"></s:param>
 			<s:param name="username" value="#employeesBean.username"></s:param>
 			<s:param name="password" value="#employeesBean.password"></s:param>
@@ -73,7 +73,7 @@
 	  	  <td><s:url id="editURL" action="editUser" escapeAmp="false">
 
 			<s:bean name="entity.Employee"></s:bean>
-			<s:param name="name" value="#employeesBean.firstName"></s:param>
+			<s:param name="firstName" value="#employeesBean.firstName"></s:param>
 			<s:param name="surname" value="#employeesBean.surname"></s:param>
 			<s:param name="username" value="#employeesBean.username"></s:param>
 			<s:param name="password" value="#employeesBean.password"></s:param>
