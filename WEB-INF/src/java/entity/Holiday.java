@@ -7,6 +7,7 @@ public class Holiday {
 	private Date date1;
 	private Date date2;
 	private Date date3;	
+	private Employee employee;
 	
 	public Holiday(){}
 
@@ -32,6 +33,14 @@ public class Holiday {
 
 	public void setDate3(Date date3) {
 		this.date3 = date3;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	
 	

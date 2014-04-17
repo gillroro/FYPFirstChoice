@@ -1,10 +1,28 @@
 package util;
 
+import java.util.Map;
+
 import com.opensymphony.xwork2.ActionContext;
 
 public class WebSession {
 
 	
+	private static Map<String, Object> session;
+
+	//Private constructor to prevent class being instantiated
+	private WebSession(){
+
+	}
+
+	//Return session
+	@SuppressWarnings("unchecked")
+	public static Map<String, Object> getWebSessionInstance(){
+		session = ActionContext.getContext().getSession();
+		return session;
+	}
+
+	
+	@SuppressWarnings("unchecked")
 	public static void put(String key, Object value){
 		ActionContext.getContext().getSession().put(key, value);
 	}

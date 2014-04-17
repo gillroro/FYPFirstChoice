@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -15,42 +16,39 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.struts2.interceptor.SessionAware;
+
+import util.WebSession;
+
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
 
 import database.ConnectionCreation;
 import entity.Appraisal;
 import entity.Employee;
 
-public class AppraisalAction extends ActionSupport {
+public class AppraisalAction extends ActionSupport implements Preparable, SessionAware{
 	private static final long serialVersionUID = 1L;
 	private List<String> attendance= new ArrayList<String>();
 	private List<String> respect= new ArrayList<String>();
 	private List<Appraisal> appraisals = new ArrayList<Appraisal>();
-	private String attendanceRecord;
-	private String respectRecord;
+	private String attendanceRecord,respectRecord,manager;
 	private List<Employee> managers= new ArrayList<Employee>();
 	private List<Employee> employees= new ArrayList<Employee>();
-	private String manager;
+	private Employee employee;
 	//Email
-	private String from;
-	private String password;
-	private String to;
-	private String subject;
-	private String body;
+	private String from,password,to,subject,body;
 	//appraisal
-	private String accomplishments;
-	private String barriers;
-	private String improvements;
-	private String performance;
+	private String accomplishments,barriers,improvements,performance;
+	private Appraisal appraisal;
 	//database
 	private Connection connection;
-	private PreparedStatement addAppraisal;
-	private PreparedStatement getManagers;
-	private PreparedStatement getEmployees;
-	private PreparedStatement getAppraisals;
+	private PreparedStatement addAppraisal,getManagers,getEmployees,getAppraisals;
 	private ResultSet results;
 	private String managerEmail;
-
+	//session
+	private Map<String, Object> session;
+	
 	static Properties properties = new Properties();
 	static
 	{
@@ -74,37 +72,58 @@ public class AppraisalAction extends ActionSupport {
 		getAllManagers();
 		
 	}
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public void setSession(Map arg0) {
+		
+	}
+
+	@Override
+	public void prepare() throws Exception {
+		session = WebSession.getWebSessionInstance();
+		employee = (Employee) session.get("employee");
+	}
 
 	public String execute() 
 	{
+		appraisal = new Appraisal();
 		String ret = SUCCESS;
 		try
 		{
-			Session session = Session.getDefaultInstance(properties,  new javax.mail.Authenticator() {
+			Session mailSession = Session.getDefaultInstance(properties,  new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new 
 							PasswordAuthentication("firstchoicefinalyearproject@gmail.com", "55UK6gt1");
 				}});
 
 			connection = ConnectionCreation.getConnection();
-			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(accomplishments, barriers, improvements, performance, attendance, respect) VALUES(?,?,?,?,?,?)");
-			addAppraisal.setString(1, getAccomplishments());
-			addAppraisal.setString(2, getBarriers());
-			addAppraisal.setString(3, getImprovements());
-			addAppraisal.setString(4, getPerformance());
-			addAppraisal.setString(5, getAttendanceRecord());
-			addAppraisal.setString(6, getRespectRecord());
+			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(employeeName,accomplishments, barriers, improvements, performance, attendance, respect) VALUES(?,?,?,?,?,?,?)");
+			addAppraisal.setString(1, employee.getFirstName());
+			addAppraisal.setString(2, getAccomplishments());
+			addAppraisal.setString(3, getBarriers());
+			addAppraisal.setString(4, getImprovements());
+			addAppraisal.setString(5, getPerformance());
+			addAppraisal.setString(6, getAttendanceRecord());
+			addAppraisal.setString(7, getRespectRecord());
 			addAppraisal.executeUpdate();
-			
+			appraisal.setAccomplishments(accomplishments);
+			appraisal.setAttendanceRecord(attendanceRecord);
+			appraisal.setBarriers(barriers);
+			appraisal.setEmployee(employee);
+			appraisal.setImprovements(improvements);
+			appraisal.setPerformance(performance);
+			appraisal.setRespectRecord(respectRecord);
+			session.put("appraisal", appraisal);
 			if(manager.equalsIgnoreCase("Gillian")){
 				 managerEmail = "gillroro@gmail.com";
 			}
 
-			Message message = new MimeMessage(session);
+			Message message = new MimeMessage(mailSession);
 			message.setFrom(new InternetAddress("firstchoicefinalyearproject@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(managerEmail));
 			message.setSubject("Appraisal Details");
-			message.setText("The employee Sarah has completed her appraisal.\nPlease review this.\n" + new Date());
+			message.setText("The employee " +  employee.getFirstName()+" has completed her appraisal.\nPlease review this.\n" + new Date());
 			Transport.send(message);
 		}
 		catch(Exception e)
@@ -114,9 +133,6 @@ public class AppraisalAction extends ActionSupport {
 		}
 		return ret;
 	}
-
-
-
 
 	public List<Employee> getAllManagers(){
 		try {
@@ -322,6 +338,4 @@ public class AppraisalAction extends ActionSupport {
 	{
 		return NONE;
 	}
-	
-	
 }

@@ -7,33 +7,57 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import util.WebSession;
+
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
+
 import database.ConnectionCreation;
 import entity.Employee;
 import entity.Project;
 
-public class ProjectAction extends ActionSupport {
+public class ProjectAction extends ActionSupport implements Preparable,SessionAware{
 
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String projectName;
-	private String employeeName;
-	private Date startDate;
-	private Date endDate;
-	private String department;
+	private String projectName,employeeName,department;
+	private Date startDate,endDate;
 	private Connection connection;
-	private PreparedStatement addProject;
-	private PreparedStatement getProjects;
-	private PreparedStatement deleteProject;
-	private PreparedStatement getEmployees;
+	private PreparedStatement addProject,getProjects,deleteProject,getEmployees;
 	private ResultSet results;
 	private List<Project> projects = new ArrayList<Project>();
 	private List<Employee> members = new ArrayList<Employee>();
+	private Map<String, Object> session;
+	private Project project;
+	private Employee employee;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public void setSession(Map arg0) {
+		session = arg0;
+		
+	}
+
+	@Override
+	public void prepare() throws Exception {
+		session = WebSession.getWebSessionInstance();
+		if(session.containsKey("project")){
+			project = (Project)session.get("project");
+		}
+		if(session.containsKey("employee")){
+			setEmployee((Employee) session.get("employee"));
+		}
+		
+	}
 	
 	public String createProject(){
 		try {
+			project = new Project();
 			connection = ConnectionCreation.getConnection();
 			addProject = connection.prepareStatement("INSERT INTO project(projectName, startDate, endDate, department) VALUES (?,?,?,?)");
 			addProject.setString(1, getProjectName());
@@ -41,6 +65,11 @@ public class ProjectAction extends ActionSupport {
 			addProject.setDate(3, getEndDate());
 			addProject.setString(4, getDepartment());
 			addProject.executeUpdate();
+			project.setProjectName(projectName);
+			project.setStartDate(startDate);
+			project.setEndDate(endDate);
+			project.setDepartment(department);
+			session.put("project", project);
 			connection.close();
 			addProject.close();
 		} catch (SQLException e) {
@@ -58,6 +87,9 @@ public class ProjectAction extends ActionSupport {
 				deleteProject = connection.prepareStatement("DELETE FROM PROJECT WHERE projectName= ?");
 				deleteProject.setString(1, projectName);
 				deleteProject.executeUpdate();
+				if(session.containsKey("project")){
+					session.remove("project");
+				}
 			}
 		}
 		connection.close();
@@ -71,6 +103,7 @@ public class ProjectAction extends ActionSupport {
 	public String assignEmployeeToProject(){
 		getAllEmployees();
 		getAllProjects();
+		
 		return SUCCESS;
 	}
 	
@@ -197,11 +230,12 @@ public class ProjectAction extends ActionSupport {
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}
-	
 
-	
-	
-	
-	
+	public Employee getEmployee() {
+		return employee;
+	}
 
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 }

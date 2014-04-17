@@ -3,15 +3,17 @@ package actionClass;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Map;
 
 import util.WebSession;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
 
 import database.ConnectionCreation;
 import entity.Employee;
 
-public class RegisterAction extends ActionSupport{
+public class RegisterAction extends ActionSupport implements Preparable{
 
 	
 	private static final long serialVersionUID = 1L;
@@ -25,8 +27,15 @@ public class RegisterAction extends ActionSupport{
 	private int manager;
 	private Connection connection;
 	private PreparedStatement addEmployee;	
-	private Employee employee = new Employee();
+	private Employee employee;
+	private Map<String, Object> session;
 	
+	@Override
+	public void prepare() throws Exception {
+		session = WebSession.getWebSessionInstance();
+		setEmployee((Employee) session.get("employee"));
+	}
+
 
 	public String getPassword() {
 		return password;
@@ -100,8 +109,7 @@ public class RegisterAction extends ActionSupport{
 
 	//business logic
 	public String execute() throws ClassNotFoundException, SQLException {
-
-		
+		Employee employee = new Employee();
 		connection = ConnectionCreation.getConnection();
 		addEmployee= connection.prepareStatement("INSERT INTO employee(first_name, surname, username, password, address, salary, user_type, manager) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");	
 		addEmployee.setString(1, getFirstName());
@@ -113,11 +121,28 @@ public class RegisterAction extends ActionSupport{
 		addEmployee.setString(7, userType);
 		addEmployee.setInt(8, manager);
 		addEmployee.executeUpdate();
-		WebSession.put("CurrentUser", employee);
+		employee.setAddress(address);
+		employee.setFirstName(firstName);
+		employee.setPassword(password);
+		employee.setSurname(surname);
+		employee.setUsername(username);
+		employee.setUserType(userType);
+		employee.setSalary(salary);
+		session.put("employee", employee);
 		addEmployee.close();
 		connection.close();
 		return "success";
 
+	}
+
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 

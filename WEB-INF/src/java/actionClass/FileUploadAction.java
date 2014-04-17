@@ -5,15 +5,20 @@ import java.io.FileInputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Map;
+
+import org.apache.struts2.dispatcher.SessionMap;
+import org.apache.struts2.interceptor.SessionAware;
 
 import util.WebSession;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
 
 import database.ConnectionCreation;
 import entity.Employee;
 
-public class FileUploadAction extends ActionSupport {
+public class FileUploadAction extends ActionSupport implements Preparable, SessionAware {
 
 	private static final long serialVersionUID = 1L;
 	private File fileUpload;
@@ -23,10 +28,21 @@ public class FileUploadAction extends ActionSupport {
 	private PreparedStatement uploadCv;	
 	private String username;
 	private File document;
-	private WebSession ws;
-	private Employee employee = new Employee();
+	private Employee employee;
 	
+	private Map<String, Object> session;
 
+	@Override
+	public void prepare() throws Exception {
+		session = WebSession.getWebSessionInstance();
+		employee = (Employee) session.get("employee");
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public void setSession(Map map) {
+		session = (SessionMap) map;
+	}
+	
 	public String getFileUploadContentType() {
 		return fileUploadContentType;
 	}
@@ -62,12 +78,11 @@ public class FileUploadAction extends ActionSupport {
 		is.close();
 		Blob blob = connection.createBlob();
 		blob.setBytes(1, data);
-		employee = (Employee) ws.get("CurrentUser");
 		System.out.print(employee.getUsername());
-		uploadCv.setString(1, "sarah");
+		uploadCv.setString(1, employee.getFirstName());
 		uploadCv.setBlob(2, blob);
 		uploadCv.executeUpdate();
-		ws.put("CurrentUser", employee);
+		session.put("cv", employee);
 		uploadCv.close();
 		connection.close();
 		return SUCCESS;

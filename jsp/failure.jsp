@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="/struts-tags" prefix="s" %>
 <html>
-<h<head>
+<head>
 	<!-- META -->
 	<title>First Choice</title>
 	<meta charset="UTF-8">

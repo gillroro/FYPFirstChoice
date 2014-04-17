@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -17,24 +18,27 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.struts2.dispatcher.SessionMap;
+import org.apache.struts2.interceptor.SessionAware;
+
+import util.WebSession;
+
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
 
 import database.ConnectionCreation;
+import entity.Employee;
 import entity.Holiday;
 
-public class DatePickerAction extends ActionSupport {
+public class DatePickerAction extends ActionSupport implements Preparable, SessionAware{
 
 	private static final long serialVersionUID = 1L;
-	private Date date1;
-	private Date date2;
-	private Date date3;	
+	private Date date1,date2,date3;
 	private Connection connection;
-	private PreparedStatement addHolidays;
-	private PreparedStatement getHolidays;
+	private PreparedStatement addHolidays,getHolidays;
 	private ResultSet results;
 	private List<Holiday> holidays = new ArrayList<Holiday>();
-	//private String managerEmail;
-
+	private Employee employee;
 
 	SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
 	static Properties properties = new Properties();
@@ -45,6 +49,18 @@ public class DatePickerAction extends ActionSupport {
 		properties.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.port", "465");
+	}
+	private Map<String, Object> session;
+
+	@Override
+	public void prepare() throws Exception {
+		session = WebSession.getWebSessionInstance();
+		employee = (Employee) session.get("employee");
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public void setSession(Map map) {
+		session = (SessionMap) map;
 	}
 
 	public Date getDate1() throws ParseException {
@@ -79,6 +95,7 @@ public class DatePickerAction extends ActionSupport {
 
 
 	public String execute() throws Exception{
+		Holiday holiday = new Holiday();
 		String ret = SUCCESS;
 		try
 		{
@@ -87,22 +104,28 @@ public class DatePickerAction extends ActionSupport {
 			System.out.println(date3);
 		
 			connection = ConnectionCreation.getConnection();
-			addHolidays = connection.prepareStatement("INSERT INTO holiday(date1, date2, date3) VALUES(?, ?, ?)");
+			addHolidays = connection.prepareStatement("INSERT INTO holiday(date1, date2, date3,employee_name) VALUES(?, ?, ?,?)");
 			addHolidays.setDate(1, (java.sql.Date) date1);
 			addHolidays.setDate(2, (java.sql.Date) date2);
 			addHolidays.setDate(3, (java.sql.Date) date3);
+			addHolidays.setString(4, employee.getFirstName());
 			addHolidays.executeUpdate();
-			Session session = Session.getDefaultInstance(properties,  new javax.mail.Authenticator() {
+			holiday.setDate1(date1);
+			holiday.setDate1(date2);
+			holiday.setDate3(date3);
+			holiday.setEmployee(employee);
+			session.put("holiday", holiday);
+			Session mailSession = Session.getDefaultInstance(properties,  new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new 
 							PasswordAuthentication("firstchoicefinalyearproject@gmail.com", "55UK6gt1");
 				}});
 
-			Message message = new MimeMessage(session);
+			Message message = new MimeMessage(mailSession);
 			message.setFrom(new InternetAddress("firstchoicefinalyearproject@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("gillroro@gmail.com"));
 			message.setSubject("Holiday Request Details");
-			message.setText("The employee Sarah has completed her holiday requests.\nPlease review these.\n" 
+			message.setText("The employee "+ employee.getFirstName() +" has completed her holiday requests.\nPlease review these.\n" 
 					+ date1+ "\n" + date2 + "\n"  + date3);
 
 			Transport.send(message);
@@ -147,6 +170,7 @@ public class DatePickerAction extends ActionSupport {
 				holiday.setDate1(results.getDate("date1"));
 				holiday.setDate2(results.getDate("date2"));
 				holiday.setDate3(results.getDate("date3"));
+				holiday.setEmployee(employee);
 				holidays.add(holiday);
 
 			}
