@@ -4,7 +4,7 @@
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Manage Employee Appraisals</h4>
 <s:form action="SelectedEmployee" >
-<i>Employee Name</i><s:select headerKey="-1" headerValue="Select Employee Name" name="firstName" list="employees" listKey="first_name" listValue="firstName"  theme = "css_xhtml" ></s:select>
+<i>Employee Name</i><s:select headerKey="-1" headerValue="Select Employee Name" name="firstName" list="employees" listKey="firstName" listValue="firstName"  theme = "css_xhtml" ></s:select>
 
 <s:submit name="Submit" value="Submit" theme= "simple" />
 

@@ -39,6 +39,7 @@ public class DatePickerAction extends ActionSupport implements Preparable, Sessi
 	private ResultSet results;
 	private List<Holiday> holidays = new ArrayList<Holiday>();
 	private Employee employee;
+	private String employeeName;
 
 	SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
 	static Properties properties = new Properties();
@@ -104,7 +105,7 @@ public class DatePickerAction extends ActionSupport implements Preparable, Sessi
 			System.out.println(date3);
 		
 			connection = ConnectionCreation.getConnection();
-			addHolidays = connection.prepareStatement("INSERT INTO holiday(date1, date2, date3,employee_name) VALUES(?, ?, ?,?)");
+			addHolidays = connection.prepareStatement("INSERT INTO holiday(date1, date2, date3,employeeName) VALUES(?, ?, ?,?)");
 			addHolidays.setDate(1, (java.sql.Date) date1);
 			addHolidays.setDate(2, (java.sql.Date) date2);
 			addHolidays.setDate(3, (java.sql.Date) date3);
@@ -170,6 +171,7 @@ public class DatePickerAction extends ActionSupport implements Preparable, Sessi
 				holiday.setDate1(results.getDate("date1"));
 				holiday.setDate2(results.getDate("date2"));
 				holiday.setDate3(results.getDate("date3"));
+				holiday.setEmployeeName(results.getString("employeeName"));
 				holiday.setEmployee(employee);
 				holidays.add(holiday);
 
@@ -195,6 +197,12 @@ public class DatePickerAction extends ActionSupport implements Preparable, Sessi
 		}
 	
 	
+	}
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 
 

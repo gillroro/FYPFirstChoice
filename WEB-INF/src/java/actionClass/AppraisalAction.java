@@ -34,7 +34,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	private List<String> respect= new ArrayList<String>();
 	private List<Appraisal> appraisals = new ArrayList<Appraisal>();
 	private List<Project> projects = new ArrayList<Project>();
-	private String attendanceRecord,respectRecord,manager;
+	private String attendanceRecord,respectRecord,manager,managerEmail, firstName;
 	private List<Employee> managers= new ArrayList<Employee>();
 	private List<Employee> employees= new ArrayList<Employee>();
 	private Employee employee;
@@ -47,7 +47,6 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	private Connection connection;
 	private PreparedStatement addAppraisal,getManagers,getEmployees,getAppraisals, getEmployeeProjects;
 	private ResultSet results;
-	private String managerEmail;
 	private Project project;
 	//session
 	private Map<String, Object> session;
@@ -102,7 +101,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 				}});
 
 			connection = ConnectionCreation.getConnection();
-			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(employeeName,accomplishments, barriers, improvements, performance, attendance, respect) VALUES(?,?,?,?,?,?,?)");
+			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(firstName,accomplishments, barriers, improvements, performance, attendance, respect) VALUES(?,?,?,?,?,?,?)");
 			addAppraisal.setString(1, employee.getFirstName());
 			addAppraisal.setString(2, getAccomplishments());
 			addAppraisal.setString(3, getBarriers());
@@ -187,10 +186,12 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	public List<Appraisal> getAllAppraisals(){
 		try{
 			connection = ConnectionCreation.getConnection();
-			getAppraisals = connection.prepareStatement("SELECT * FROM APPRAISAL");
+			getAppraisals = connection.prepareStatement("SELECT * FROM APPRAISAL WHERE firstName=?");
+			getAppraisals.setString(1, firstName);
 			results = getAppraisals.executeQuery();
 			while(results.next()){
 				Appraisal appraisal = new Appraisal();
+				appraisal.setEmployeeName(results.getString("firstName"));
 				appraisal.setAccomplishments(results.getString("accomplishments"));
 				appraisal.setBarriers(results.getString("barriers"));
 				appraisal.setImprovements(results.getString("improvements"));
@@ -370,6 +371,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 
 	public String display()
 	{
+		getAllAppraisals();
 		displayEmployeeProjects();
 		return NONE;
 	}
@@ -389,4 +391,14 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	public void setProject(Project project) {
 		this.project = project;
 	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	
 }

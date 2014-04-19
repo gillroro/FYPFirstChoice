@@ -4,7 +4,10 @@
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> All Skills</h4>
 
-<table>
+<table class="striped sortable">
+<thead><tr>
+<th> Skill Name </th>
+</tr></thead>
 <s:iterator value="skills" status ="skillsStatus" >
  <tr>
   	<s:if test="#skillsStatus.even == true">

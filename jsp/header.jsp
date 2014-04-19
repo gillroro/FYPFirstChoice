@@ -17,6 +17,8 @@
 	<!-- Javascript -->
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/kickstart.js"></script>
+	<script type="text/javascript" src="js/checkbox.js"></script>
+	
 	
 	<s:head theme="ajax" />
 

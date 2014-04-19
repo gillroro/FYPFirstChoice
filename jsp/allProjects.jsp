@@ -5,15 +5,17 @@
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> All Projects</h4>
 
-<table>
+<table class="striped sortable">
+<thead><tr>
 <th>Project Name</th><th>Start Date</th><th>End Date</th><th>Department</th>
+</tr></thead>
 <s:iterator value="projects" status ="projectsStatus" >
  <tr>
   	<s:if test="#projectsStatus.even == true">
-      <td style="background: #CCCCCC"><s:property value ="projectName" /></td>
-	  <td style="background: #CCCCCC"><s:property value ="startDate" /></td>
-	  <td style="background: #CCCCCC"><s:property value ="endDate" /></td>
-	  <td style="background: #CCCCCC"><s:property value ="department" /></td>
+      <td><s:property value ="projectName" /></td>
+	  <td><s:property value ="startDate" /></td>
+	  <td><s:property value ="endDate" /></td>
+	  <td><s:property value ="department" /></td>
     </s:if>
     <s:elseif test="#projectsStatus.first == true">
       <td><s:property value ="projectName"  /></td>

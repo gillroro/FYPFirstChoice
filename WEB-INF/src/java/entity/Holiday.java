@@ -8,6 +8,7 @@ public class Holiday {
 	private Date date2;
 	private Date date3;	
 	private Employee employee;
+	private String employeeName;
 	
 	public Holiday(){}
 
@@ -41,6 +42,14 @@ public class Holiday {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 	
 	

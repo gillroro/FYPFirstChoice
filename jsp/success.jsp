@@ -8,7 +8,7 @@
         <div style="height:450px;width:550px;margin:0 auto;">
 			<img class="full-width" src="images/fc.png" />
 			<h4 style="color:#999;margin-bottom:40px;" class="center"> Welcome to Your Dashboard! </h4>
-			<h4 style="color:#999;margin-bottom:40px;" class="center"> User: <s:property value="Username"/> </h4>
+			<h4 style="color:#999;margin-bottom:40px;" class="center"> User: <s:property value="#session.employee.firstName"/> <s:property value="#session.employee.surname"/></h4>
 
         </div>
 		
