@@ -5,7 +5,7 @@
 	
 	<h5>Edit Employee:</h5>
 <s:form action="updateEmployee">
-	<s:textfield value="%{firstName}" label="Name" theme="css_xhtml" />
+	<s:textfield value="%{firstName}" label="First Name" theme="css_xhtml" />
 	<s:textfield value="%{surname}" label="Surname" theme="css_xhtml" />
 	<s:textfield value="%{username}" label="Username" theme="css_xhtml" />
 	<s:textfield value="%{password}" label="Password" theme="css_xhtml" />

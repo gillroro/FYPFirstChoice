@@ -8,7 +8,8 @@
 		<div align="center" style="height:1000px;width:800px;margin:0 auto;">
 		
 			<table>
-			
+			Project Name: <s:property value="%{projectName}" />
+			First Name: <s:property value="firstName" />
 				
 			</table>
 		</div>
