@@ -19,6 +19,5 @@
 	<script type="text/javascript" src="js/kickstart.js"></script>
 	
 	<s:head theme="ajax" />
-	<sx:head />
 
 </head>

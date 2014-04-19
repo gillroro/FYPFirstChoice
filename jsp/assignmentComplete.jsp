@@ -5,16 +5,19 @@
 			<h4 style="color:#999;margin-bottom:30px;" class="center"> Project Assignment Complete</h4>
         </div>
 		
-		<div align="center" style="height:1000px;width:800px;margin:0 auto;">
+		<div align="center" style="height:300px;width:800px;margin:0 auto;">
 		
 			<table>
-			Project Name: <s:property value="%{projectName}" />
-			First Name: <s:property value="firstName" />
-				
+			<th>Project Name</th><th>Employee</th>
+			<tr>
+			<td><s:property value="%{projectName}" /> <br /></td>
+			<td><s:property value="firstName" /><br /></td>
+				</tr>
 			</table>
+			
+			<input type="button" value="Project Dashboard" onclick="window.history.go(-2);"/>
 		</div>
-
-		
+				
 		  <div id="footer">
 			
 			<h6 style="color:#999;margin-bottom:40px;" class="center"> ©Gillian Rowan, 2013.      </h6>

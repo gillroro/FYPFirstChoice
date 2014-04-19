@@ -5,7 +5,7 @@
 			<h4 style="color:#999;margin-bottom:30px;" class="center"> Project Assignment </h4>
         </div>
 		
-		<div align="center" style="height:1000px;width:800px;margin:0 auto;">
+		<div align="center" style="height:400px;width:800px;margin:0 auto;">
 		
 			<table>
 
@@ -18,8 +18,8 @@
 				<s:submit name ="Assign" value="Submit" theme= "simple" />
 			</s:form>	
 			</table>
+			<input type="button" value="Project Dashboard" onclick="window.history.go(-1);"/>
 		</div>
-
 		
 		  <div id="footer">
 			

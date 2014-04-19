@@ -22,26 +22,26 @@ import entity.Project;
 
 public class ProjectAction extends ActionSupport implements Preparable,SessionAware{
 
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	private String projectName,employeeName,department;
+
+	private String projectName,employeeName,department, firstName;
 	private Date startDate,endDate;
 	private Connection connection;
-	private PreparedStatement addProject,getProjects,deleteProject,getEmployees;
+	private PreparedStatement addProject,getProjects,deleteProject,getEmployees, addMemberToProject;
 	private ResultSet results;
 	private List<Project> projects = new ArrayList<Project>();
 	private List<Employee> members = new ArrayList<Employee>();
 	private Map<String, Object> session;
 	private Project project;
 	private Employee employee;
-	
-	
+
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void setSession(Map arg0) {
 		session = arg0;
-		
+
 	}
 
 	@Override
@@ -53,9 +53,9 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 		if(session.containsKey("employee")){
 			setEmployee((Employee) session.get("employee"));
 		}
-		
+
 	}
-	
+
 	public String createProject(){
 		try {
 			project = new Project();
@@ -76,10 +76,10 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return SUCCESS;
 	}
-	
+
 	public String deleteProject() throws SQLException{
 		getAllProjects();
 		for(int i=0; i< projects.size(); i++){
@@ -95,19 +95,32 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 		}
 		connection.close();
 		deleteProject.close();
-		
+
 		return SUCCESS;
-		
-		
+
+
 	}
-	
+
 	public String assignEmployeeToProject(){
 		getAllEmployees();
 		getAllProjects();
-		
 		return SUCCESS;
 	}
-	
+
+	public String assignmentComplete(){
+		try {
+			connection = ConnectionCreation.getConnection();
+			addMemberToProject = connection.prepareStatement("INSERT INTO project_member(projectName, firstName) VALUES (?,?)" );
+			addMemberToProject.setString(1, projectName);
+			addMemberToProject.setString(2, firstName);
+			addMemberToProject.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return SUCCESS;
+	}
 	public List<Project> getAllProjects(){
 		try {
 			connection = ConnectionCreation.getConnection();
@@ -126,15 +139,15 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 			getProjects.close();
 			results.close();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 		return projects;
 	}
-	
+
 	public List<Employee> getAllEmployees(){
 		try {
-			
+
 			connection =ConnectionCreation.getConnection();
 			getEmployees = connection.prepareStatement("SELECT * FROM EMPLOYEE");
 			results = getEmployees.executeQuery();
@@ -149,19 +162,19 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 
 				if(employee.getUserType().equalsIgnoreCase("employee")){
 					members.add(employee);
-					
-					
+
+
 				}
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return members;
-		
+
 	}
-	
+
 	public String displayAllProjects(){
 		getAllProjects();
 		if(projects != null){
@@ -171,7 +184,7 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 			return "failure";
 		}
 	}
-	
+
 	public String forward(){
 		return NONE;
 	}
@@ -238,5 +251,13 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 }

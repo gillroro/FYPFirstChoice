@@ -26,12 +26,14 @@ import com.opensymphony.xwork2.Preparable;
 import database.ConnectionCreation;
 import entity.Appraisal;
 import entity.Employee;
+import entity.Project;
 
 public class AppraisalAction extends ActionSupport implements Preparable, SessionAware{
 	private static final long serialVersionUID = 1L;
 	private List<String> attendance= new ArrayList<String>();
 	private List<String> respect= new ArrayList<String>();
 	private List<Appraisal> appraisals = new ArrayList<Appraisal>();
+	private List<Project> projects = new ArrayList<Project>();
 	private String attendanceRecord,respectRecord,manager;
 	private List<Employee> managers= new ArrayList<Employee>();
 	private List<Employee> employees= new ArrayList<Employee>();
@@ -43,12 +45,13 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	private Appraisal appraisal;
 	//database
 	private Connection connection;
-	private PreparedStatement addAppraisal,getManagers,getEmployees,getAppraisals;
+	private PreparedStatement addAppraisal,getManagers,getEmployees,getAppraisals, getEmployeeProjects;
 	private ResultSet results;
 	private String managerEmail;
+	private Project project;
 	//session
 	private Map<String, Object> session;
-	
+
 	static Properties properties = new Properties();
 	static
 	{
@@ -68,15 +71,15 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		respect.add("Very Respectful");
 		respect.add("Average Respect for others");
 		respect.add("Poor Respect for Others");
-	
+
 		getAllManagers();
-		
+
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void setSession(Map arg0) {
-		
+
 	}
 
 	@Override
@@ -87,6 +90,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 
 	public String execute() 
 	{
+		getEmployeeProjects();
 		appraisal = new Appraisal();
 		String ret = SUCCESS;
 		try
@@ -116,7 +120,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			appraisal.setRespectRecord(respectRecord);
 			session.put("appraisal", appraisal);
 			if(manager.equalsIgnoreCase("Gillian")){
-				 managerEmail = "gillroro@gmail.com";
+				managerEmail = "gillroro@gmail.com";
 			}
 
 			Message message = new MimeMessage(mailSession);
@@ -156,7 +160,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		}
 		return managers;	
 	}
-	
+
 	public List<Employee> getAllEmployees(){
 		try {		
 			connection =ConnectionCreation.getConnection();
@@ -195,18 +199,48 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 				appraisal.setRespectRecord(results.getString("respect"));
 				appraisals.add(appraisal);	
 			}
-			
+
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 		return appraisals;
 	}
+
+	public List<Project> getEmployeeProjects(){
+		try {
+			connection = ConnectionCreation.getConnection();
+			getEmployeeProjects = connection.prepareStatement("SELECT * FROM project_member WHERE firstName=?");
+			getEmployeeProjects.setString(1, employee.getFirstName());
+			results = getEmployeeProjects.executeQuery();
+			while(results.next()){
+				Project project = new Project();
+				project.setProjectName(results.getString("projectName"));
+				project.setEmployee(employee);
+				projects.add(project);
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
+		return projects;
+	}
 	
+	public void displayEmployeeProjects(){
+		getEmployeeProjects();
+		if(projects != null){
+			System.out.println(projects.size());
+		}
+		else {
+			System.out.println("empty");
+		}
+	}
+
 	public String manageAppraisals(){
 		getAllEmployees();
 		for(int i=0; i< employees.size();i++){
-			
+
 		}
 		getAllAppraisals();
 		return NONE;
@@ -333,9 +367,26 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	public void setPerformance(String performance) {
 		this.performance = performance;
 	}
-	
+
 	public String display()
 	{
+		displayEmployeeProjects();
 		return NONE;
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 }

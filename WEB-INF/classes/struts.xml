@@ -206,8 +206,8 @@
 			<result name="success">/jsp/assignment.jsp</result>
 		</action>
 		
-		<action name="CompleteAssignment" class="actionClass.ProjectAction" method="forward" >
-			<result name="none">/jsp/assignmentComplete.jsp</result>
+		<action name="CompleteAssignment" class="actionClass.ProjectAction" method="assignmentComplete" >
+			<result name="success">/jsp/assignmentComplete.jsp</result>
 		</action>
 
 		<action name="ManageAppraisals" class="actionClass.AppraisalAction" method="manageAppraisals" >
