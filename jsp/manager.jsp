@@ -5,9 +5,10 @@
 		
 			
 			</div>
-        <div style="height:350px;width:550px;margin:0 auto;">
+        <div style="height:450px;width:550px;margin:0 auto;">
 			<img class="full-width" src="images/fc.png" />
-			<h4 style="color:#999;margin-bottom:40px;" class="center"> Welcome to Your Dashboard! </h4>
+			<h4 style="color:#999;margin-bottom:40px;" class="center"> Welcome to Your Manager Dashboard! </h4>
+			<h4 style="color:#999;margin-bottom:40px;" class="center"> Manager: <s:property value="Username" /></h4>
 			
         </div>
 		

@@ -22,7 +22,7 @@ public class FileUploadAction extends ActionSupport implements Preparable, Sessi
 
 	private static final long serialVersionUID = 1L;
 	private File fileUpload;
-	private String fileUploadContentType;
+	private String fileUploadContentType, jobName;
 	private String fileUploadFileName;
 	private Connection connection;
 	private PreparedStatement uploadCv;	
@@ -110,6 +110,12 @@ public class FileUploadAction extends ActionSupport implements Preparable, Sessi
 
 	public void setDocument(File document) {
 		this.document = document;
+	}
+	public String getJobName() {
+		return jobName;
+	}
+	public void setJobName(String jobName) {
+		this.jobName = jobName;
 	}
 
 	

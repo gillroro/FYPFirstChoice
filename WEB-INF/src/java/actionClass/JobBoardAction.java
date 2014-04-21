@@ -117,7 +117,7 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 		return jobName;
 	}
 
-	public void setJob_name(String jobName) {
+	public void setJobName(String jobName) {
 		this.jobName = jobName;
 	}
 

@@ -18,16 +18,10 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/kickstart.js"></script>
 	<script type="text/javascript" src="js/checkbox.js"></script>
-	<script type="text/javascript">
-  $(function () {
-    $(".checkb").click(function () {
-      if(this.checked) {
-        $("label[for="+this.id+"]").html("Checked");
-      }else {
-        $("label[for="+this.id+"]").html("Un-Checked");
-      }
-    });
-  });
+<script type="text/javascript">
+$("#showHide").click(function () {
+        $("#divHideID").toggle();
+        });
 </script>
 	
 	<s:head theme="ajax" />
@@ -70,17 +64,15 @@ listValue="firstName"  ></s:select>-->
 					<tr>
 						<s:if test="#projectsStatus.even == true">
 							<td><s:property value ="projectName" /></td>
-							<td><input type="checkbox" id="check1" /></td
-</td>
-							
+							<td><s:checkbox name="showHide" /></td>						
 						</s:if>
 						<s:elseif test="#projectsStatus.first == true">
 							<td><s:property value ="projectName"  /></td>
-							<td><input type="checkbox" id="check1" /></td>
+							<td><s:checkbox name="showHide" /></td>			
 						</s:elseif>
 						<s:else>
 							<td><s:property value ="projectName"  /></td>
-							<td><input type="checkbox" id="check1" /></td>
+							<td><s:checkbox name="showHide" /></td>			
 						</s:else>
 					</tr>
 						</s:iterator>

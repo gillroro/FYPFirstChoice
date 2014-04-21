@@ -22,7 +22,7 @@ import entity.Skill;
 public class SkillsAction extends ActionSupport implements Preparable, SessionAware{
 
 	private static final long serialVersionUID = 1L;
-	private String skillName,proof,description;
+	private String skillName,proof,description, name;
 	private List<Skill> skills = new ArrayList<Skill>();
 	private Connection connection;
 	private PreparedStatement addSkills,getSkills,addProof,addSkillToEmployee;
@@ -146,5 +146,13 @@ public class SkillsAction extends ActionSupport implements Preparable, SessionAw
 
 	public String forward(){
 		return NONE;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
