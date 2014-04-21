@@ -64,15 +64,18 @@ listValue="firstName"  ></s:select>-->
 					<tr>
 						<s:if test="#projectsStatus.even == true">
 							<td><s:property value ="projectName" /></td>
-							<td><s:checkbox name="showHide" /></td>						
+							<td><s:checkbox name="showHide" label="Yes"  theme="simple" />Yes			
+							<s:checkbox name="showHide" label="No" theme="simple" />No</td>						
 						</s:if>
 						<s:elseif test="#projectsStatus.first == true">
 							<td><s:property value ="projectName"  /></td>
-							<td><s:checkbox name="showHide" /></td>			
+							<td><s:checkbox name="showHide" label="Yes" theme="simple" />Yes			
+							<s:checkbox name="showHide" label="No"  theme="simple" />No</td>		
 						</s:elseif>
 						<s:else>
 							<td><s:property value ="projectName"  /></td>
-							<td><s:checkbox name="showHide" /></td>			
+							<td><s:checkbox name="showHide" label="Yes" theme="simple" />Yes			
+							<s:checkbox name="showHide" label="No" theme="simple" />No</td>			
 						</s:else>
 					</tr>
 						</s:iterator>
