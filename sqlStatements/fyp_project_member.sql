@@ -26,14 +26,12 @@ DROP TABLE IF EXISTS `project_member`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `project_member` (
   `idproject_member` int(11) NOT NULL AUTO_INCREMENT,
-  `project_id` int(11) DEFAULT NULL,
-  `employee_id` int(11) DEFAULT NULL,
+  `projectName` varchar(45) DEFAULT NULL,
+  `firstName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idproject_member`),
-  KEY `employee_id_idx` (`employee_id`),
-  KEY `project_id_idx` (`project_id`),
-  CONSTRAINT `employee_id` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `project_id` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `employee_id_idx` (`firstName`),
+  KEY `project_id_idx` (`projectName`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +40,7 @@ CREATE TABLE `project_member` (
 
 LOCK TABLES `project_member` WRITE;
 /*!40000 ALTER TABLE `project_member` DISABLE KEYS */;
+INSERT INTO `project_member` VALUES (2,'Test','Sarah'),(3,'Metrics','Jack'),(4,'Testing','Megan'),(5,'Recruitment Drive','Poppy'),(6,'iOS App Development','Jack');
 /*!40000 ALTER TABLE `project_member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-17 15:27:37
+-- Dump completed on 2014-04-21 20:11:48

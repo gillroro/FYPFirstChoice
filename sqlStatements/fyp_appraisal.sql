@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `appraisal`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `appraisal` (
   `AppraisalId` int(11) NOT NULL AUTO_INCREMENT,
-  `employeeName` varchar(45) DEFAULT NULL,
+  `firstName` varchar(45) DEFAULT NULL,
   `accomplishments` varchar(100) DEFAULT NULL,
   `barriers` varchar(100) DEFAULT NULL,
   `improvements` varchar(100) DEFAULT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `appraisal` (
 
 LOCK TABLES `appraisal` WRITE;
 /*!40000 ALTER TABLE `appraisal` DISABLE KEYS */;
-INSERT INTO `appraisal` VALUES (3,NULL,'Hello','You','Welcome','Test','Very Good','Average Respect for others'),(4,NULL,'test','testt','test','test','Excellent','Very Respectful'),(5,NULL,'test','test','test','test','Excellent','Very Respectful'),(6,NULL,'test','test','test','test','Excellent','Very Respectful'),(7,NULL,'1','1','1','1','Excellent','Very Respectful'),(8,NULL,'accomplishments','barriers','improvements','performance','Very Good','Average Respect for others');
+INSERT INTO `appraisal` VALUES (3,'Poppy','Hello','You','Welcome','Test','Very Good','Average Respect for others'),(4,'Jack','test','testt','test','test','Excellent','Very Respectful'),(5,'Mary','test','test','test','test','Excellent','Very Respectful'),(6,'Sarah','test','test','test','test','Excellent','Very Respectful'),(7,'Aaron','1','1','1','1','Excellent','Very Respectful'),(8,'Sarah','accomplishments','barriers','improvements','performance','Very Good','Average Respect for others');
 /*!40000 ALTER TABLE `appraisal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-17 15:27:38
+-- Dump completed on 2014-04-21 20:11:55
