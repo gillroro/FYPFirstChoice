@@ -1,6 +1,7 @@
 <%@ include file="header.jsp" %>
 <body>
- <div style="height:500px;width:550px;margin:0 auto;">
+ <div style="height:1000px;width:550px;margin:0 auto;">
+ <img class="full-width" src="images/fc.png" />
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Job Application </h4>
 Upload CV Document for <s:property value="jobName" />
@@ -8,7 +9,7 @@ Upload CV Document for <s:property value="jobName" />
 
 <s:form action="resultAction" namespace="/" method="POST" enctype="multipart/form-data">
 
-	<s:textfield name="firstName" value="%{#session.employee.firstName}" label="Employee Name" />
+	<s:hidden name="firstName" value="%{#session.employee.firstName}" />
 	<s:textfield name="jobName" value="%{jobName}" label="Job Name" />
 	<s:textfield name="jobDesc" value="%{jobDesc}" label="Job Description" />
 	<s:textfield name="department" value="%{department}" label="Department" />
