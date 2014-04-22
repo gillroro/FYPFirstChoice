@@ -41,8 +41,9 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	//Email
 	private String from,password,to,subject,body;
 	//appraisal
-	private String accomplishments,barriers,improvements,performance;
+	private String accomplishments,barriers,improvements,performance, completed, uncompleted, projectDetails;
 	private Appraisal appraisal;
+	private boolean yes,no;
 	//database
 	private Connection connection;
 	private PreparedStatement addAppraisal,getManagers,getEmployees,getAppraisals, getEmployeeProjects;
@@ -101,7 +102,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 				}});
 
 			connection = ConnectionCreation.getConnection();
-			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(firstName,accomplishments, barriers, improvements, performance, attendance, respect) VALUES(?,?,?,?,?,?,?)");
+			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(firstName,accomplishments, barriers, improvements, performance, attendance, respect, projectDetails) VALUES(?,?,?,?,?,?,?,?)");
 			addAppraisal.setString(1, employee.getFirstName());
 			addAppraisal.setString(2, getAccomplishments());
 			addAppraisal.setString(3, getBarriers());
@@ -109,6 +110,18 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			addAppraisal.setString(5, getPerformance());
 			addAppraisal.setString(6, getAttendanceRecord());
 			addAppraisal.setString(7, getRespectRecord());
+			if(isYes()){
+				addAppraisal.setString(8, getCompleted());
+				appraisal.setProjectDetails(completed);
+				
+			}
+			else if(isNo()){
+				addAppraisal.setString(8, getUncompleted());
+				appraisal.setProjectDetails(uncompleted);
+			}
+			else{
+				System.out.print("ERROR");
+			}
 			addAppraisal.executeUpdate();
 			appraisal.setAccomplishments(accomplishments);
 			appraisal.setAttendanceRecord(attendanceRecord);
@@ -118,7 +131,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			appraisal.setPerformance(performance);
 			appraisal.setRespectRecord(respectRecord);
 			session.put("appraisal", appraisal);
-			if(manager.equalsIgnoreCase("Gillian")){
+			if(firstName.equalsIgnoreCase("Gillian")){
 				managerEmail = "gillroro@gmail.com";
 			}
 
@@ -198,6 +211,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 				appraisal.setPerformance(results.getString("performance"));
 				appraisal.setAttendanceRecord(results.getString("attendance"));
 				appraisal.setRespectRecord(results.getString("respect"));
+				appraisal.setProjectDetails(results.getString("projectDetails"));
 				appraisals.add(appraisal);	
 			}
 
@@ -400,5 +414,43 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		this.firstName = firstName;
 	}
 
-	
+	public boolean isYes() {
+		return yes;
+	}
+
+	public void setYes(boolean yes) {
+		this.yes = yes;
+	}
+
+	public boolean isNo() {
+		return no;
+	}
+
+	public void setNo(boolean no) {
+		this.no = no;
+	}
+
+	public String getCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(String completed) {
+		this.completed = completed;
+	}
+
+	public String getUncompleted() {
+		return uncompleted;
+	}
+
+	public void setUncompleted(String uncompleted) {
+		this.uncompleted = uncompleted;
+	}
+
+	public String getProjectDetails() {
+		return projectDetails;
+	}
+
+	public void setProjectDetails(String projectDetails) {
+		this.projectDetails = projectDetails;
+	}
 }

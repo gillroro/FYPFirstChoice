@@ -14,5 +14,6 @@ Upload CV Document for <s:property value="jobName" />
 
 </div> 
 </div>
+ <%@ include file="footer.jsp" %>
 </body>
 </html>

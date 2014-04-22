@@ -10,7 +10,7 @@ public class Appraisal {
 	private String respectRecord;
 	private Employee employee;
 	private String employeeName;
-	
+	private String projectDetails;
 	
 	public String getAccomplishments() {
 		return accomplishments;
@@ -59,6 +59,12 @@ public class Appraisal {
 	}
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
+	}
+	public String getProjectDetails() {
+		return projectDetails;
+	}
+	public void setProjectDetails(String projectDetails) {
+		this.projectDetails = projectDetails;
 	}
 	
 	
