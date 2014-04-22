@@ -214,7 +214,6 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 				appraisal.setProjectDetails(results.getString("projectDetails"));
 				appraisals.add(appraisal);	
 			}
-
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -238,7 +237,6 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		catch(Exception e){
 			e.printStackTrace();
 		}
-
 		return projects;
 	}
 	
@@ -251,12 +249,8 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			System.out.println("empty");
 		}
 	}
-
 	public String manageAppraisals(){
 		getAllEmployees();
-		for(int i=0; i< employees.size();i++){
-
-		}
 		getAllAppraisals();
 		return NONE;
 	}
@@ -330,126 +324,95 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	public List<Employee> getManagers() {
 		return managers;
 	}
-
 	public void setManagers(List<Employee> managers) {
 		this.managers = managers;
 	}
-
 	public String getManager() {
 		return manager;
 	}
-
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
-
 	public String getAccomplishments() {
 		return accomplishments;
 	}
-
 	public void setAccomplishments(String accomplishments) {
 		this.accomplishments = accomplishments;
 	}
-
 	public String getBarriers() {
 		return barriers;
 	}
-
 	public void setBarriers(String barriers) {
 		this.barriers = barriers;
 	}
-
 	public String getImprovements() {
 		return improvements;
 	}
-
 	public void setImprovements(String improvements) {
 		this.improvements = improvements;
 	}
-
 	public String getManagerEmail() {
 		return managerEmail;
 	}
-
 	public void setManagerEmail(String managerEmail) {
 		this.managerEmail = managerEmail;
 	}
-
 	public String getPerformance() {
 		return performance;
 	}
-
 	public void setPerformance(String performance) {
 		this.performance = performance;
 	}
-
-	public String display()
-	{
+	public String display(){
 		getAllAppraisals();
 		displayEmployeeProjects();
 		return NONE;
 	}
-
 	public List<Project> getProjects() {
 		return projects;
 	}
-
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
-
 	public Project getProject() {
 		return project;
 	}
-
 	public void setProject(Project project) {
 		this.project = project;
 	}
-
 	public String getFirstName() {
 		return firstName;
 	}
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
 	public boolean isYes() {
 		return yes;
 	}
-
 	public void setYes(boolean yes) {
 		this.yes = yes;
 	}
-
 	public boolean isNo() {
 		return no;
 	}
-
 	public void setNo(boolean no) {
 		this.no = no;
 	}
-
 	public String getCompleted() {
 		return completed;
 	}
-
 	public void setCompleted(String completed) {
 		this.completed = completed;
 	}
-
 	public String getUncompleted() {
 		return uncompleted;
 	}
-
 	public void setUncompleted(String uncompleted) {
 		this.uncompleted = uncompleted;
 	}
-
 	public String getProjectDetails() {
 		return projectDetails;
 	}
-
 	public void setProjectDetails(String projectDetails) {
 		this.projectDetails = projectDetails;
 	}

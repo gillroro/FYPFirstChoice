@@ -37,7 +37,6 @@ public class UpdateDetailsAction extends ActionSupport {
 		else {
 			return "failure";
 		}
-
 	}
 
 	public String getFirstName() {

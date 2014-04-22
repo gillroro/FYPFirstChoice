@@ -5,7 +5,16 @@
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Job Application </h4>
 Upload CV Document for <s:property value="jobName" />
 <div class="center" >
-<a href="<s:url action="fileUploadAction"/>">Upload CV</a>  
+<a href="<s:url action="fileUploadAction"/>">Upload CV</a> 
+
+<s:form action="resultAction" namespace="/" method="POST" enctype="multipart/form-data">
+ 
+	<input type="file" name="myFile" />
+	<!--<s:file name="myFile" label="Select a File to upload" size="40" />-->
+ 
+	<s:submit value="Upload" name="submit" />
+ 
+</s:form> 
 
 <div class="center" >
 <input type="button" value="Dashboard" onclick="window.history.go(-1);"/>

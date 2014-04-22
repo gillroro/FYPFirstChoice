@@ -108,7 +108,8 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 		updateEmployee.setString(4, getUserType());
 		updateEmployee.setInt(5, getSalary());
 	//	updateEmployee.setInt(6, getManager());
-		updateEmployee.setString(7, getUsername());
+		updateEmployee.setString(6, getUsername());
+		System.out.print("username" + getUsername());
 		int test =updateEmployee.executeUpdate();
 		updateEmployee.close();
 		connection.close();
