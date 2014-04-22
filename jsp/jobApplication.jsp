@@ -5,12 +5,15 @@
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Job Application </h4>
 Upload CV Document for <s:property value="jobName" />
 <div class="center" >
-<a href="<s:url action="fileUploadAction"/>">Upload CV</a> 
 
 <s:form action="resultAction" namespace="/" method="POST" enctype="multipart/form-data">
- 
-	<input type="file" name="myFile" />
-	<!--<s:file name="myFile" label="Select a File to upload" size="40" />-->
+
+	<s:textfield name="firstName" value="%{#session.employee.firstName}" label="Employee Name" />
+	<s:textfield name="jobName" value="%{jobName}" label="Job Name" />
+	<s:textfield name="jobDesc" value="%{jobDesc}" label="Job Description" />
+	<s:textfield name="department" value="%{department}" label="Department" />
+	<!--<input type="file" name="myFile" />-->
+	<s:file name="myFile" label="Select a File to upload" size="40" />
  
 	<s:submit value="Upload" name="submit" />
  

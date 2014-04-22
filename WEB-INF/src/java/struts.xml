@@ -52,7 +52,7 @@ method="display">
 			<result name="none">/jsp/fileUpload.jsp</result>
 		</action>
 		
-		<action name="resultAction" class="actionClass.FileUploadAction">
+		<action name="resultAction" class="actionClass.JobBoardAction" method="jobApplication">
 			<interceptor-ref name="exception"/>
 				<interceptor-ref name="i18n"/>
 				<interceptor-ref name="fileUpload">
@@ -111,7 +111,7 @@ method="display">
 			<result name="none">/jsp/jobBoards.jsp</result>
 		</action>
 		
-		<action name="JobApplication" class="actionClass.JobBoardAction" method="jobApplication">
+		<action name="JobApplication" class="actionClass.JobBoardAction" method="forward">
 			<result name="none">/jsp/jobApplication.jsp</result>
 			<result name="input">/jsp/jobApplication.jsp</result>
 		</action>	

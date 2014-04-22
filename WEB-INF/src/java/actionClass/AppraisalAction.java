@@ -3,30 +3,15 @@ package actionClass;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
 import org.apache.struts2.interceptor.SessionAware;
-
 import util.WebSession;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
-
 import database.ConnectionCreation;
-import entity.Appraisal;
-import entity.Employee;
-import entity.Project;
+import entity.*;
 
 public class AppraisalAction extends ActionSupport implements Preparable, SessionAware{
 	private static final long serialVersionUID = 1L;

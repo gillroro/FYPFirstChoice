@@ -2,19 +2,14 @@
 <body>
  <div style="height:500px;width:550px;margin:0 auto;">
 <div class="center" >
-<h4 style="color:#999;margin-bottom:40px;" class="center"> CV Upload</h4>
+<h4 style="color:#999;margin-bottom:40px;" class="center"> CV Upload Complete</h4>
  
-<h4>
-   File Name : <s:property value="fileUploadFileName"/> 
-</h4> 
- 
-<h4>
-   Content Type : <s:property value="fileUploadContentType"/> 
-</h4> 
- 
-<h4>
-   File : <s:property value="fileUpload"/> 
-</h4> 
+<h5>
+   File Name : <s:property value="myFile"/> 
+</h5> 
+<h5>
+   File : <s:property value="myFile"/> 
+</h5> 
 <input type="button" value="Dashboard" onclick="window.history.go(-2);"/>
  </div> 
 </div>

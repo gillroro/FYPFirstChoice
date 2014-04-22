@@ -69,6 +69,7 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 		checkDuplicate.setString(2, getPassword());
 		results = checkDuplicate.executeQuery();
 		if (results.next()) {
+			//set employee
 			employee.setFirstName(results.getString("first_name"));
 			employee.setSurname(results.getString("surname"));
 			employee.setAddress(results.getString("address"));
@@ -78,7 +79,8 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 			employee.setUserType(results.getString("user_type"));
 			if(employee.getUserType().equalsIgnoreCase("manager")){
 				session.put("login", "true");
-				session.put("manager", manager );
+				session.put("manager",employee );
+				System.out.println("Manager" + employee.getFirstName());
 				connection.close();
 				checkDuplicate.close();
 				return "manager";

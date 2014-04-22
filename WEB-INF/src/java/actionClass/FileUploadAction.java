@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 
 import util.WebSession;
@@ -44,10 +43,10 @@ public class FileUploadAction extends ActionSupport implements Preparable, Sessi
 		employee = (Employee) session.get("employee");
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "rawtypes" })
 	@Override
 	public void setSession(Map map) {
-		session = (SessionMap) map;
+	//	session = (SessionMap) map;
 	}
 
 	public String getFileUploadContentType() {
@@ -84,9 +83,9 @@ public class FileUploadAction extends ActionSupport implements Preparable, Sessi
 		Blob blob = connection.createBlob();
 		blob.setBytes(1, data);
 		System.out.print(employee.getUsername());
-		uploadCv.setString(1, "Poppy");
+		uploadCv.setString(1, employee.getFirstName());
 		uploadCv.setString(2, myFileFileName);
-		uploadCv.setString(3, getJobName());
+		uploadCv.setString(3, jobName);
 		uploadCv.executeUpdate();
 		session.put("cv", employee);
 		uploadCv.close();

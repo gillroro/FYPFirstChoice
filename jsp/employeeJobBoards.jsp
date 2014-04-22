@@ -5,10 +5,15 @@
 			<img class="full-width" src="images/fc.png" />
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Employee Job Boards</h4>
+			<h4 style="color:#999;margin-bottom:40px;" class="center"> User: <s:property value="#session.employee.firstName"/> <s:property value="#session.employee.surname"/></h4>
 
 <div class="center" >
-<a href="<s:url action="ViewAll"/>">View All Jobs</a>
-<a href="<s:url action="ViewSpecific"/>">View Jobs By Department</a>
+
+<s:url id="viewAllURL" action="ViewAll" escapeAmp="false" />
+<s:a href="%{viewAllURL}">View All Jobs</s:a>
+
+<s:url id="viewdepartmentsURL" action="ViewSpecific" escapeAmp="false" />
+<s:a href="%{viewdepartmentsURL}">View Jobs By Department</s:a>
 <div class="center" >
 <input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
 </div>
