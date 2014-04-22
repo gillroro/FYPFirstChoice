@@ -36,7 +36,7 @@ CREATE TABLE `employee` (
   `manager` int(11) DEFAULT NULL,
   PRIMARY KEY (`employee_id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Gillian','Rowan','gillian','test','wicklow',45000,'manager',NULL),(7,'Sarah','Thornton','sarah','test','Dublin',28000,'employee',1),(13,'Mary','Regan','mary','test','Dublin',45000,'employee',1),(14,'Matthew','Ryan','matthew','test','Dublin',34000,'employee',1),(15,'Jack','Rowan','jrowan','test','Wicklow',123456,'employee',1),(16,'Sarah','Thornton','sarah123','test','Dublin',1234,'employee',1),(17,'Poppy','Doyle','poppy','test','Waterford',12345,'employee',1),(18,'Aaron','Turner','aaron','test','Dublin',1234,'employee',1),(19,'Mary','Matthews','mm','test','Dublin',2345,'employee',1),(20,'Andrew','R','andrew','Password','Dublin',2345,'employee',1),(22,'Megan','Murphy','megan','test','Dublin',1234,'employee',1),(23,'Mary','Regan','mary345','test','Dublin',12345,'employee',1);
+INSERT INTO `employee` VALUES (1,'Gillian','Rowan','gillian','test','wicklow',45000,'manager',NULL),(7,'Sarah','Thornton','sarah','test','Dublin',28000,'employee',1),(13,'Mary','Regan','mary','test','Dublin',45000,'employee',1),(14,'Matthew','Ryan','matthew','test','Dublin',34000,'employee',1),(15,'Jack','Rowan','jrowan','test','Wicklow',123456,'employee',1),(16,'Sarah','Thornton','sarah123','test','Dublin',1234,'employee',1),(17,'Poppy','Doyle','poppy','test','Waterford',12345,'employee',1),(18,'Aaron','Turner','aaron','test','Dublin',1234,'employee',1),(19,'Mary','Matthews','mm','test','Dublin',34000,'manager',1),(20,'Andrew','R','andrew','Password','Dublin',2345,'employee',1),(22,'Megan M','Murphy','megan','test','Dublin',1234,'employee',1),(23,'Mary','Regan','mary345','test','Dublin 8',123456,'employee',1),(24,'Ronan','Sharkey','sharkey','test','Dublin',30000,'employee',1);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-21 20:11:51
+-- Dump completed on 2014-04-22 15:51:13

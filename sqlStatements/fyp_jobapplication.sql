@@ -18,29 +18,28 @@ USE `fyp`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cv`
+-- Table structure for table `jobapplication`
 --
 
-DROP TABLE IF EXISTS `cv`;
+DROP TABLE IF EXISTS `jobapplication`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cv` (
-  `cv_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
-  `file` longblob NOT NULL,
-  PRIMARY KEY (`cv_id`),
-  KEY `username_idx` (`username`),
-  CONSTRAINT `username` FOREIGN KEY (`username`) REFERENCES `employee` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+CREATE TABLE `jobapplication` (
+  `idjobapplication` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) DEFAULT NULL,
+  `file` varchar(150) DEFAULT NULL,
+  `jobName` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idjobapplication`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cv`
+-- Dumping data for table `jobapplication`
 --
 
-LOCK TABLES `cv` WRITE;
-/*!40000 ALTER TABLE `cv` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cv` ENABLE KEYS */;
+LOCK TABLES `jobapplication` WRITE;
+/*!40000 ALTER TABLE `jobapplication` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jobapplication` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-21 20:11:56
+-- Dump completed on 2014-04-22 15:51:12

@@ -33,8 +33,9 @@ CREATE TABLE `appraisal` (
   `performance` varchar(100) DEFAULT NULL,
   `attendance` varchar(45) DEFAULT NULL,
   `respect` varchar(45) DEFAULT NULL,
+  `projectDetails` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`AppraisalId`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +44,7 @@ CREATE TABLE `appraisal` (
 
 LOCK TABLES `appraisal` WRITE;
 /*!40000 ALTER TABLE `appraisal` DISABLE KEYS */;
-INSERT INTO `appraisal` VALUES (3,'Poppy','Hello','You','Welcome','Test','Very Good','Average Respect for others'),(4,'Jack','test','testt','test','test','Excellent','Very Respectful'),(5,'Mary','test','test','test','test','Excellent','Very Respectful'),(6,'Sarah','test','test','test','test','Excellent','Very Respectful'),(7,'Aaron','1','1','1','1','Excellent','Very Respectful'),(8,'Sarah','accomplishments','barriers','improvements','performance','Very Good','Average Respect for others');
+INSERT INTO `appraisal` VALUES (3,'Poppy','Hello','You','Welcome','Test','Very Good','Average Respect for others',NULL),(4,'Jack','test','testt','test','test','Excellent','Very Respectful',NULL),(5,'Mary','test','test','test','test','Excellent','Very Respectful',NULL),(6,'Sarah','test','test','test','test','Excellent','Very Respectful',NULL),(7,'Aaron','1','1','1','1','Excellent','Very Respectful',NULL),(8,'Sarah','accomplishments','barriers','improvements','performance','Very Good','Average Respect for others',NULL),(9,'Poppy','test','test','test','test','Excellent','Average Respect for others',NULL),(10,'Poppy','test','test','test','test','Excellent','Very Respectful',NULL),(11,'Poppy','test','tre','testt','test','Excellent','Poor Respect for Others','Details of Completion test');
 /*!40000 ALTER TABLE `appraisal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-21 20:11:55
+-- Dump completed on 2014-04-22 15:51:13
