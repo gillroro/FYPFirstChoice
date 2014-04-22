@@ -98,7 +98,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			Session mailSession = Session.getDefaultInstance(properties,  new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new 
-							PasswordAuthentication("firstchoicefinalyearproject@gmail.com", "55UK6gt1");
+							PasswordAuthentication("firstchoicefinalyearproject@gmail.com", "finalyearproject");
 				}});
 
 			connection = ConnectionCreation.getConnection();
@@ -132,7 +132,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			appraisal.setRespectRecord(respectRecord);
 			session.put("appraisal", appraisal);
 			if(firstName.equalsIgnoreCase("Gillian")){
-				managerEmail = "gillroro@gmail.com";
+				managerEmail = "finalyearprojectfirstchoice14@gmail.com"; //password = finalyearproject to check that emails are being sent correctly
 			}
 
 			Message message = new MimeMessage(mailSession);

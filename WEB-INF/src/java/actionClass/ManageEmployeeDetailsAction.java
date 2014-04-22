@@ -24,7 +24,7 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 	private static final long serialVersionUID = 1L;
 	private List<Employee> employees = new ArrayList<Employee>();
 	private Connection connection;
-	private PreparedStatement getEmployee;	
+	private PreparedStatement getEmployee, updateEmployee;	
 	private ResultSet results;
 	private Employee manager;
 	private Employee employee;
@@ -98,6 +98,29 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 		}
 		return employees;
 	}
+	
+	public String updateDetails() throws SQLException{
+		connection = ConnectionCreation.getConnection();
+		updateEmployee = connection.prepareStatement("UPDATE employee SET first_name=?, surname=?, address=?, user_type=?, salary=? WHERE username=?");
+		updateEmployee.setString(1, getFirstName());
+		updateEmployee.setString(2, getSurname());
+		updateEmployee.setString(3, getAddress());
+		updateEmployee.setString(4, getUserType());
+		updateEmployee.setInt(5, getSalary());
+	//	updateEmployee.setInt(6, getManager());
+		updateEmployee.setString(7, getUsername());
+		int test =updateEmployee.executeUpdate();
+		updateEmployee.close();
+		connection.close();
+		if(test == 1){
+			return SUCCESS;
+		}
+		else {
+			return "failure";
+		}
+
+	}
+	
 	public Employee getEmployee() {
 		return employee;
 	}
