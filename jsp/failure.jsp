@@ -18,5 +18,7 @@
 				<input type="button" value="Dashboard" onclick="window.history.go(-2);"/>
 			</div>
 		</div>
+		
+ <%@ include file="footer.jsp" %>
 </body>
 </html>

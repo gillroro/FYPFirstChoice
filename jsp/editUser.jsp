@@ -15,5 +15,7 @@
 	<s:submit value="Update" theme="simple" />
 </s:form>
 </div>
+
+ <%@ include file="footer.jsp" %>
 </body>
 </html>

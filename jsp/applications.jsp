@@ -5,7 +5,7 @@
 			<h4 style="color:#999;margin-bottom:30px;" class="center"> Job Applications</h4>
         </div>
 		
-		<div align="center" style="height:1000px;width:800px;margin:0 auto;">
+		<div align="center" style="height:500px;width:800px;margin:0 auto;">
 		
 			<table class="striped sortable">
 				<thead>
@@ -35,14 +35,12 @@
   </tr>
 </s:iterator>
 </table>
+<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
 		</div>
 
 		
-		  <div id="footer">
-			
-			<h6 style="color:#999;margin-bottom:40px;" class="center"> ©Gillian Rowan, 2013.      </h6>
-	            
-        </div>
+		  
+ <%@ include file="footer.jsp" %>
 </body>
 
 </html>
