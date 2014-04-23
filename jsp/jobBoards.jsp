@@ -1,6 +1,8 @@
 <%@ include file="header.jsp" %>
 <body>
  <div style="height:500px;width:550px;margin:0 auto;">
+ 
+ <img class="full-width" src="images/fc.png" />
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Job Boards</h4>
 
@@ -10,6 +12,7 @@
 <a href="<s:url action="ViewSpecific"/>">View Jobs By Department</a>
 <a href="<s:url action="ViewApplications"/>">View Applications</a>
 <div class="center" >
+<br />
 <input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
 </div>
 </div>
