@@ -1,5 +1,6 @@
 package actionClass;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.interceptor.SessionAware;
 
 import util.WebSession;
@@ -22,7 +24,7 @@ import entity.Skill;
 public class SkillsAction extends ActionSupport implements Preparable, SessionAware{
 
 	private static final long serialVersionUID = 1L;
-	private String skillName,proof,description, name;
+	private String skillName,proof,description, name, myFileFileName, myFileContentType, username, file, firstName;
 	private List<Skill> skills = new ArrayList<Skill>();
 	private Connection connection;
 	private PreparedStatement addSkills,getSkills,addProof,addSkillToEmployee;
@@ -30,6 +32,8 @@ public class SkillsAction extends ActionSupport implements Preparable, SessionAw
 	private Map<String, Object> session;
 	private Skill skill;
 	private Employee employee;
+	private String destPath = "C:/apache-tomcat-7.0.42/work/";
+	private File myFile;
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void setSession(Map arg0) {
@@ -143,6 +147,31 @@ public class SkillsAction extends ActionSupport implements Preparable, SessionAw
 			return "failure";
 		}
 	}
+	
+	public String uploadProof(){
+		try{
+			File destFile = new File(destPath, myFileFileName);
+			FileUtils.copyFile(myFile, destFile);
+			connection = ConnectionCreation.getConnection();
+			addProof = connection.prepareStatement("INSERT INTO skill_proof(employee_name, proof) VALUES(?,?)");
+			addProof.setString(1, firstName);
+			addProof.setString(2, myFileFileName);
+			addProof.executeUpdate();
+			addSkillToEmployee = connection.prepareStatement("INSERT INTO employee_skill(SkillName,EmployeeName) VALUES(?,?)");
+			addSkillToEmployee.setString(1,skillName);
+			addSkillToEmployee.setString(2,firstName);
+			addSkillToEmployee.executeUpdate();
+			connection.close();
+			addProof.close();
+			addSkillToEmployee.close();
+			return SUCCESS;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return "failure";
+		}
+		
+	}
 
 	public String forward(){
 		return NONE;
@@ -154,5 +183,61 @@ public class SkillsAction extends ActionSupport implements Preparable, SessionAw
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getMyFileFileName() {
+		return myFileFileName;
+	}
+
+	public void setMyFileFileName(String myFileFileName) {
+		this.myFileFileName = myFileFileName;
+	}
+
+	public String getMyFileContentType() {
+		return myFileContentType;
+	}
+
+	public void setMyFileContentType(String myFileContentType) {
+		this.myFileContentType = myFileContentType;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
+	public String getDestPath() {
+		return destPath;
+	}
+
+	public void setDestPath(String destPath) {
+		this.destPath = destPath;
+	}
+
+	public File getMyFile() {
+		return myFile;
+	}
+
+	public void setMyFile(File myFile) {
+		this.myFile = myFile;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 }

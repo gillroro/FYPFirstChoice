@@ -7,9 +7,11 @@
 <h5 style="color:#999;margin-bottom:40px;" class="center"> Skill Selected: <s:property value="name" /> </h5>
 <h5 style="color:#999;margin-bottom:40px;" class="center"> Eg. Certificate, Details of Course </h5>
 
-<s:form action="resultAction" namespace="/" method="POST" enctype="multipart/form-data">
+<s:form action="uploadProof" namespace="/" method="POST" enctype="multipart/form-data">
  
-	<s:file name="fileUpload" label="Select a File to upload" size="40" />
+	<s:hidden name="skillName" value="%{name}" />
+	<s:hidden name="firstName" value="%{#session.employee.firstName}" />
+	<s:file name="myFile" label="Select a File to upload" size="60" />
  
 	<s:submit value="Upload" name="submit" />
  

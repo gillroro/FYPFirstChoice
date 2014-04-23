@@ -11,13 +11,6 @@
 			<result name="input">/index.jsp</result>
         </action>
 		
-	<!--	<action name="ManagerLogin" class="actionClass.ManagerLoginAction">
-            <result name="success">/jsp/manager.jsp</result>
-			<result name="failure">/jsp/failure.jsp</result>
-			<result name="manager">/jsp/manager.jsp</result>
-			<result name="input">/index.jsp</result>
-        </action>-->
-		
 		<action name="Register" class="actionClass.RegisterAction">
             <result name="success">/jsp/registerSuccess.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
@@ -34,8 +27,7 @@
 
 		<action name = "loginAgain" class = "actionClass.UserLoginAction">
 			<result name = "success">/index.jsp</result>
-			<result name = "failure">/jsp/failure.jsp</result>
-			
+			<result name = "failure">/jsp/failure.jsp</result>	
 			<result name="input">/index.jsp</result>
 		</action>
 
@@ -67,6 +59,27 @@
  
 			<result name="success">/jsp/uploadResult.jsp</result>
 			<result name="input">/jsp/fileUpload.jsp</result>
+		</action>
+		
+		<action name="uploadProof" class="actionClass.SkillsAction" method="uploadProof">
+			<interceptor-ref name="exception"/>
+				<interceptor-ref name="i18n"/>
+				<interceptor-ref name="fileUpload">
+				
+			</interceptor-ref> 
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+ 
+			<result name="success">/jsp/skillUploadResult.jsp</result>
+			<result name="input">/jsp/fileUpload.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
 		<action name="Appraisal" class="actionClass.AppraisalAction">
@@ -138,14 +151,7 @@
 			<result name="success">/jsp/allJobs.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>
-		
-		
-		
-		<!--<action name="datePickerAction" class="actionClass.DatePickerAction" method="display">
-			<result name="none">/jsp/holidayRequest.jsp</result>
 
-		</action>-->
-		
 		<action name="DateTimePicker" class="actionClass.DatePickerAction" method="display">
 			<result name="none">/jsp/holidayRequest.jsp</result>
 		</action>
@@ -238,7 +244,7 @@
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 
-			<action name="download" class="actionClass.JobBoardAction" method="download">
+		<action name="download" class="actionClass.JobBoardAction" method="download">
 			<result name="success" type="stream">
 				<param name="contentType">${contentType}</param>
 				<param name="inputName">fileInputStream</param>

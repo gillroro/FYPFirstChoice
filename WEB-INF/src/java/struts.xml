@@ -11,13 +11,6 @@
 			<result name="input">/index.jsp</result>
         </action>
 		
-	<!--	<action name="ManagerLogin" class="actionClass.ManagerLoginAction">
-            <result name="success">/jsp/manager.jsp</result>
-			<result name="failure">/jsp/failure.jsp</result>
-			<result name="manager">/jsp/manager.jsp</result>
-			<result name="input">/index.jsp</result>
-        </action>-->
-		
 		<action name="Register" class="actionClass.RegisterAction">
             <result name="success">/jsp/registerSuccess.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
@@ -34,21 +27,18 @@
 
 		<action name = "loginAgain" class = "actionClass.UserLoginAction">
 			<result name = "success">/index.jsp</result>
-			<result name = "failure">/jsp/failure.jsp</result>
-			
+			<result name = "failure">/jsp/failure.jsp</result>	
 			<result name="input">/index.jsp</result>
 		</action>
 
 		<action name = "Logout" class ="actionClass.UserLoginAction" method = "logout">
 			<result name = "success">/jsp/index.jsp</result>
-			<result name = "failure">/jsp/failure.jsp</result>
-			
+			<result name = "failure">/jsp/failure.jsp</result>	
 			<result name="input">/index.jsp</result>
 			
 		</action>
 
-		<action name="fileUploadAction" class="actionClass.FileUploadAction" 
-method="display">
+		<action name="fileUploadAction" class="actionClass.FileUploadAction" method="display">
 			<result name="none">/jsp/fileUpload.jsp</result>
 		</action>
 		
@@ -71,6 +61,27 @@ method="display">
  
 			<result name="success">/jsp/uploadResult.jsp</result>
 			<result name="input">/jsp/fileUpload.jsp</result>
+		</action>
+		
+		<action name="uploadProof" class="actionClass.SkillsAction" method="uploadProof">
+			<interceptor-ref name="exception"/>
+				<interceptor-ref name="i18n"/>
+				<interceptor-ref name="fileUpload">
+				
+			</interceptor-ref> 
+            <interceptor-ref name="params">
+                <param name="excludeParams">dojo\..*,^struts\..*</param>
+            </interceptor-ref>
+            <interceptor-ref name="validation">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+            <interceptor-ref name="workflow">
+                <param name="excludeMethods">input,back,cancel,browse</param>
+            </interceptor-ref>
+ 
+			<result name="success">/jsp/skillUploadResult.jsp</result>
+			<result name="input">/jsp/fileUpload.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
 		<action name="Appraisal" class="actionClass.AppraisalAction">
@@ -142,13 +153,7 @@ method="display">
 			<result name="success">/jsp/allJobs.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>	
-		
-		<!--<action name="datePickerAction" 
-class="actionClass.DatePickerAction" method="display">
-			<result name="none">/jsp/holidayRequest.jsp</result>
 
-		</action>-->
-		
 		<action name="DateTimePicker" class="actionClass.DatePickerAction" method="display">
 			<result name="none">/jsp/holidayRequest.jsp</result>
 		</action>
