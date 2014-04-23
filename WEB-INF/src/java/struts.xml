@@ -159,10 +159,12 @@
 
 		<action name="DateTimePicker" class="actionClass.DatePickerAction" method="display">
 			<result name="none">/jsp/holidayRequest.jsp</result>
+			<result name="input">/jsp/holidayRequest.jsp</result>
 		</action>
  
 		<action name="holidayResultAction" class="actionClass.DatePickerAction" >
 			<result name="success">/jsp/holidayResult.jsp</result>
+			 <result name="failure">/jsp/holidayRequest.jsp</result>
 			 <result name="input">/jsp/holidayRequest.jsp</result>
 		</action>
 		

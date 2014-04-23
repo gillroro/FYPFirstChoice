@@ -40,6 +40,8 @@ public class DatePickerAction extends ActionSupport implements Preparable, Sessi
 	private List<Holiday> holidays = new ArrayList<Holiday>();
 	private Employee employee;
 	private String employeeName;
+	java.util.Date today = new java.util.Date();
+	Date sqlToday = new Date(today.getTime());
 
 	SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
 	static Properties properties = new Properties();
@@ -203,6 +205,21 @@ public class DatePickerAction extends ActionSupport implements Preparable, Sessi
 	}
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
+	}
+	
+	public void validate(){
+		if(date1 == null && date2 ==null && date3 == null){
+			setFieldErrors(null);
+		}
+		if(date1 == null || date1.equals("") || date1.before(sqlToday)){
+			addFieldError("date1", "A valid date is required");
+		}
+		if(date2 == null || date2.equals("") || date2.before(sqlToday) || date2.before(date1)){
+			addFieldError("date2", "A valid date is required");
+		}
+		if(date3 == null || date3.equals("") || date3.before(sqlToday) || date3.before(date1) ||  date3.before(date2)){
+			addFieldError("date3", "A valid date is required");
+		}
 	}
 
 

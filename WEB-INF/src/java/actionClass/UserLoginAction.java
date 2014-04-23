@@ -141,4 +141,13 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 		this.salary = salary;
 	}
 
+	public void validate(){
+		if(username == null || username == "" || username.trim().length() == 0|| username.equalsIgnoreCase("Username")){
+			addFieldError("Username", "Invalid username");
+		}
+		if(password == null || password == "" || password.trim().length()==0 || password.equalsIgnoreCase("Password")){
+			addFieldError("Password", "Invalid Password");
+		}
+	}
+	
 }
