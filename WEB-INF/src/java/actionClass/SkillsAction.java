@@ -131,8 +131,8 @@ public class SkillsAction extends ActionSupport implements Preparable, SessionAw
 			addProof.setString(2,getProof());
 			addProof.executeUpdate();
 			addSkillToEmployee = connection.prepareStatement("INSERT INTO employee_skill(SkillName,EmployeeName) VALUES(?,?)");
-			addSkillToEmployee.setString(1,employee.getFirstName());
-			addSkillToEmployee.setString(2,skill.getName());
+			addSkillToEmployee.setString(1,skillName);
+			addSkillToEmployee.setString(2,employee.getFirstName());
 			addSkillToEmployee.executeUpdate();
 			connection.close();
 			addProof.close();

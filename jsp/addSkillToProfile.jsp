@@ -18,6 +18,7 @@
 or:<br />
 <br />
 <s:form action="AddProof" namespace="/" method="POST" theme= "css_xhtml" >
+<s:hidden name="skillName" value="%{name}" />
 <s:textarea label="Skills Proof" name="proof" cols="60" rows="4"></s:textarea>
 <s:submit value="Submit" name="submit" />
 </s:form>
