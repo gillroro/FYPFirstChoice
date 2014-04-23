@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import org.apache.struts2.interceptor.SessionAware;
 import util.WebSession;
 import com.opensymphony.xwork2.ActionSupport;
@@ -117,6 +121,9 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			appraisal.setRespectRecord(respectRecord);
 			session.put("appraisal", appraisal);
 			if(firstName.equalsIgnoreCase("Gillian")){
+				managerEmail = "finalyearprojectfirstchoice14@gmail.com"; //password = finalyearproject to check that emails are being sent correctly
+			}
+			else {
 				managerEmail = "finalyearprojectfirstchoice14@gmail.com"; //password = finalyearproject to check that emails are being sent correctly
 			}
 

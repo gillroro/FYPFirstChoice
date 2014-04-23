@@ -13,6 +13,7 @@
 		
 		<action name="Register" class="actionClass.RegisterAction">
             <result name="success">/jsp/registerSuccess.jsp</result>
+			<result name="input">/jsp/registerSuccess.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
         </action>
 		
@@ -22,7 +23,9 @@
         </action>
 	
 		<action name="AddEmployee" class="actionClass.RegisterAction" method="forward">
-            <result name="none">/jsp/register.jsp</result>			
+            <result name="none">/jsp/register.jsp</result>		
+	
+			<result name="input">/jsp/register.jsp</result>				
         </action>
 
 		<action name = "loginAgain" class = "actionClass.UserLoginAction">

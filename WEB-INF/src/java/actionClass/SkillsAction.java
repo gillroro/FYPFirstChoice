@@ -45,7 +45,7 @@ public class SkillsAction extends ActionSupport implements Preparable, SessionAw
 	public void prepare() throws Exception {
 		session = WebSession.getWebSessionInstance();
 		if(session.containsKey("skill")){
-			skill = (Skill) session.get("skill");
+			setSkill((Skill) session.get("skill"));
 		}
 		if(session.containsKey("employee")){
 			employee = (Employee) session.get("employee");
@@ -239,5 +239,13 @@ public class SkillsAction extends ActionSupport implements Preparable, SessionAw
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public Skill getSkill() {
+		return skill;
+	}
+
+	public void setSkill(Skill skill) {
+		this.skill = skill;
 	}
 }

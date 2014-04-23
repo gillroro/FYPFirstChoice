@@ -119,12 +119,12 @@ public class DatePickerAction extends ActionSupport implements Preparable, Sessi
 			Session mailSession = Session.getDefaultInstance(properties,  new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new 
-							PasswordAuthentication("firstchoicefinalyearproject@gmail.com", "55UK6gt1");
+							PasswordAuthentication("firstchoicefinalyearproject@gmail.com", "finalyearproject");
 				}});
 
 			Message message = new MimeMessage(mailSession);
 			message.setFrom(new InternetAddress("firstchoicefinalyearproject@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("gillroro@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("finalyearprojectfirstchoice14@gmail.com"));
 			message.setSubject("Holiday Request Details");
 			message.setText("The employee "+ employee.getFirstName() +" has completed her holiday requests.\nPlease review these.\n" 
 					+ date1+ "\n" + date2 + "\n"  + date3);
