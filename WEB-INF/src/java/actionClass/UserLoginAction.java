@@ -28,6 +28,7 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 	private ResultSet results;
 	private String username, userType,password,first_name, surname, address;
 	private int salary;
+	@SuppressWarnings("unused")
 	private Employee employee,manager;
 	private Map<String, Object> session;
 	

@@ -3,7 +3,7 @@ package actionClass;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Blob;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -14,40 +14,40 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.interceptor.SessionAware;
+
 import util.WebSession;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+
 import database.ConnectionCreation;
 import entity.Employee;
 import entity.Job;
+import entity.JobApplication;
 
 public class JobBoardAction extends ActionSupport implements Preparable, SessionAware {
 
-
 	private static final long serialVersionUID = 1L;
-	private List<Job> jobs = new ArrayList<Job>();;
+	private List<Job> jobs = new ArrayList<Job>();
+	private List<JobApplication> applications = new ArrayList<JobApplication>();
 	private String jobName,description,department, jobDesc,firstName;
+	private String linkedin, myFileFileName, myFileContentType, username, file;
+	private String destPath = "C:/apache-tomcat-7.0.42/work/";
 	private Employee employee;
 	private Job job;
 	private Date closing_date;
 	private Connection connection;
-	private PreparedStatement addJob,getJobs,getJobByDepartment;
+	private PreparedStatement addJob,getJobs,getJobByDepartment,uploadCv, getApplications;
 	private ResultSet results;
 	SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
-	private File fileUpload;
-	private String fileUploadContentType;
-	private String fileUploadFileName;
-	private PreparedStatement uploadCv;	
-	private String username;
-	private File document;
 	private Map<String, Object> session;
 	private File myFile;
-	private String myFileContentType;
-	private String myFileFileName;
-	private String destPath;
-	
+	private File fileDownload;
+	private InputStream fileInputStream;
+
 	@Override
 	public void prepare() throws Exception {
 		session = WebSession.getWebSessionInstance();
@@ -63,7 +63,7 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 	}
 
 	public String execute() throws ClassNotFoundException, SQLException{
-		
+
 		connection = ConnectionCreation.getConnection();
 		addJob = connection.prepareStatement("INSERT INTO Job(job_name, description, department, closing_date) VALUES(?,?,?,?)");
 		addJob.setString(1, getJobName());
@@ -78,64 +78,9 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 		return SUCCESS;
 	}
 
-	public Date getClosing_date() throws ParseException {
-		return (Date) format2.parse(format2.format(closing_date));
-	}
-
-	public void setClosing_date(Date closing_date) {
-		this.closing_date = closing_date;
-	}
-
-	public List<Job> getJobs() {
-		return jobs;
-	}
-	public void setJobs(List<Job> jobs) {
-		this.jobs = jobs;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public String getDepartment() {
-		return department;
-	}
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-	public Job getJob() {
-		return job;
-	}
-	public void setJob(Job job) {
-		this.job = job;
-	}
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	public String getJobName() {
-		return jobName;
-	}
-
-	public void setJobName(String jobName) {
-		this.jobName = jobName;
-	}
-
 	public List<Job> getAllJobs(){
 		try {
-			
+
 			connection = ConnectionCreation.getConnection();
 			getJobs = connection.prepareStatement("SELECT * FROM JOB");
 			results = getJobs.executeQuery();
@@ -195,11 +140,10 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
 		return  jobs;
 	}
-	
+
 	public String displayDepartmentList(){
 		getJobByDepartment();
 		if(jobs != null){
@@ -212,34 +156,90 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 			return "failure";
 		}
 	}
-	
+
+	public List<JobApplication> getAllJobApplications(){
+		try{
+			connection = ConnectionCreation.getConnection();
+			getApplications = connection.prepareStatement("SELECT * FROM jobapplication");
+			results = getApplications.executeQuery();
+			while(results.next()){
+				JobApplication application = new JobApplication();
+				application.setUsername(results.getString("username"));
+				application.setJobName(results.getString("jobName"));
+				application.setFile(results.getString("file"));
+				application.setLinkedin(results.getString("linkedin"));
+				applications.add(application);
+			}
+			connection.close();results.close();getApplications.close();
+		}
+		catch(Exception e){
+
+		}
+		return applications;
+	}
+
+	public String download(){
+		try{
+			connection = ConnectionCreation.getConnection();
+			getApplications = connection.prepareStatement("SELECT * FROM jobapplication");
+			results = getApplications.executeQuery();
+			while(results.next()){
+				String fileName= results.getString("file");
+				fileDownload = new File(destPath, fileName);
+				fileInputStream = new FileInputStream(fileDownload);
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+
 	public String displayApplications(){
+		getAllJobApplications();
 		return NONE;
 	}
-	
-	public File getFileUpload() {
-		return fileUpload;
+
+	public String jobApplication() throws IOException, SQLException{
+		destPath = "C:/apache-tomcat-7.0.42/work/";
+		File destFile = new File(destPath, myFileFileName);
+		FileUtils.copyFile(myFile, destFile);
+		connection = ConnectionCreation.getConnection();
+		uploadCv = connection.prepareStatement("INSERT INTO jobapplication(username, file, jobName, linkedin) VALUES(?, ?, ?, ?)");	
+		uploadCv.setString(1, firstName);
+		uploadCv.setString(2, myFileFileName);
+		uploadCv.setString(3, jobName);
+		uploadCv.setString(4, getLinkedin());
+		uploadCv.executeUpdate();
+		uploadCv.close();
+		connection.close();
+		return SUCCESS;
 	}
-	public void setFileUpload(File fileUpload) {
-		this.fileUpload = fileUpload;
+	//Getters and Setters needed for Struts
+
+	public String getContentDisposition() {
+		return "attachment;filename=\"" + fileDownload + "\"";
 	}
-	public String getFileUploadContentType() {
-		return fileUploadContentType;
+	public String getContentType() {
+		return "text/plain";
 	}
-	public void setFileUploadContentType(String fileUploadContentType) {
-		this.fileUploadContentType = fileUploadContentType;
+	public String getUsername() {
+		return username;
 	}
-	public String getFileUploadFileName() {
-		return fileUploadFileName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public void setFileUploadFileName(String fileUploadFileName) {
-		this.fileUploadFileName = fileUploadFileName;
+	public String getJobDesc() {
+		return jobDesc;
 	}
-	public File getDocument() {
-		return document;
+	public void setJobDesc(String jobDesc) {
+		this.jobDesc = jobDesc;
 	}
-	public void setDocument(File document) {
-		this.document = document;
+	public String getLinkedin() {
+		return linkedin;
+	}
+	public void setLinkedin(String linkedin) {
+		this.linkedin = linkedin;
 	}
 	public File getMyFile() {
 		return myFile;
@@ -265,39 +265,78 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 	public void setDestPath(String destPath) {
 		this.destPath = destPath;
 	}
-	public String jobApplication() throws IOException, SQLException{
-		destPath = "C:/apache-tomcat-7.0.32/work/";
-		File destFile = new File(destPath, myFileFileName);
-		FileUtils.copyFile(myFile, destFile);
-		connection = ConnectionCreation.getConnection();
+	public Date getClosing_date() throws ParseException {
+		return (Date) format2.parse(format2.format(closing_date));
+	}
 
-		uploadCv = connection.prepareStatement("INSERT INTO jobapplication(username, file, jobName) VALUES(?, ?, ?)");	
+	public void setClosing_date(Date closing_date) {
+		this.closing_date = closing_date;
+	}
 
-		FileInputStream is = new FileInputStream(destFile);
-		byte[] data = new byte[is.available()];
-		is.read(data);
-		is.close();
-		Blob blob = connection.createBlob();
-		blob.setBytes(1, data);
-		uploadCv.setString(1, firstName);
-		uploadCv.setString(2, myFileFileName);
-		uploadCv.setString(3, jobName);
-		uploadCv.executeUpdate();
-		//session.put("cv", firstName);
-		uploadCv.close();
-		connection.close();
-		return SUCCESS;
+	public List<Job> getJobs() {
+		return jobs;
 	}
-	public String getUsername() {
-		return username;
+	public void setJobs(List<Job> jobs) {
+		this.jobs = jobs;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public String getDescription() {
+		return description;
 	}
-	public String getJobDesc() {
-		return jobDesc;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setJobDesc(String jobDesc) {
-		this.jobDesc = jobDesc;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	public Job getJob() {
+		return job;
+	}
+	public void setJob(Job job) {
+		this.job = job;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	public File getFileDownload() {
+		return fileDownload;
+	}
+	public void setFileDownload(File fileDownload) {
+		this.fileDownload = fileDownload;
+	}
+	public String getJobName() {
+		return jobName;
+	}
+	public void setJobName(String jobName) {
+		this.jobName = jobName;
+	}
+	public List<JobApplication> getApplications() {
+		return applications;
+	}
+	public void setApplications(List<JobApplication> applications) {
+		this.applications = applications;
+	}
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
+	public InputStream getFileInputStream() {
+		return fileInputStream;
+	}
+	public void setFileInputStream(InputStream fileInputStream) {
+		this.fileInputStream = fileInputStream;
 	}
 }

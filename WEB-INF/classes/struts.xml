@@ -236,6 +236,15 @@
 		<action name="UpdateEmployeeDetails" class="actionClass.UpdateDetailsAction" >
 			<result name="success">/jsp/detailsUpdated.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
-		</action>	
+		</action>
+
+			<action name="download" class="actionClass.JobBoardAction" method="download">
+			<result name="success" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">${contentDisposition}</param>		
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
     </package>
 </struts>

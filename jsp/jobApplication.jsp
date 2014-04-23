@@ -10,11 +10,12 @@ Upload CV Document for <s:property value="jobName" />
 <s:form action="resultAction" namespace="/" method="POST" enctype="multipart/form-data">
 
 	<s:hidden name="firstName" value="%{#session.employee.firstName}" />
-	<s:textfield name="jobName" value="%{jobName}" label="Job Name" />
-	<s:textfield name="jobDesc" value="%{jobDesc}" label="Job Description" />
-	<s:textfield name="department" value="%{department}" label="Department" />
+	<s:hidden name="jobName" value="%{jobName}"  />
+	<s:hidden name="jobDesc" value="%{jobDesc}"  />
+	<s:hidden name="department" value="%{department}"  /> <br />
 	<!--<input type="file" name="myFile" />-->
-	<s:file name="myFile" label="Select a File to upload" size="40" />
+	<s:file name="myFile" label="Select a File to upload" size="60" />
+	<s:textfield label="LinkedIn Profile" name="linkedin" value="LinkedIn" size="60" />
  
 	<s:submit value="Upload" name="submit" />
  
