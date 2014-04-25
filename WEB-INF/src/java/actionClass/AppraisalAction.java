@@ -100,13 +100,13 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			addAppraisal.setString(6, getAttendanceRecord());
 			addAppraisal.setString(7, getRespectRecord());
 			if(isYes()){
-				addAppraisal.setString(8, getCompleted());
-				appraisal.setProjectDetails(completed);
+				addAppraisal.setString(8, "Completion" +getCompleted());
+				appraisal.setProjectDetails("Completion" +completed);
 				
 			}
 			else if(isNo()){
-				addAppraisal.setString(8, getUncompleted());
-				appraisal.setProjectDetails(uncompleted);
+				addAppraisal.setString(8, "Incompletion" +getUncompleted());
+				appraisal.setProjectDetails("Incompletion" +uncompleted);
 			}
 			else{
 				System.out.print("ERROR");
@@ -245,6 +245,11 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		getAllEmployees();
 		getAllAppraisals();
 		return NONE;
+	}
+	
+	public String bonus(){
+		
+		return SUCCESS;
 	}
 
 	public List<Appraisal> getAppraisals() {
