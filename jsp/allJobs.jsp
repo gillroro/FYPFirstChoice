@@ -29,7 +29,7 @@
 
 		</s:url>
 
-		<s:a href="%{applyURL}"><i class="icon-pencil"></i></s:a></a></td>
+		<s:a href="%{applyURL}"><i class="icon-pencil"></i></s:a></td>
     </s:if>
     <s:elseif test="#jobsStatus.first == true">
       <td><s:property value ="jobName"  /></td>
