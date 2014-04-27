@@ -175,6 +175,12 @@
 			 <result name="input">/jsp/holidayRequest.jsp</result>
 		</action>
 		
+		<action name="approveHolidays" class="actionClass.DatePickerAction" method="holidayApproval">
+			<result name="success">/jsp/holidaysApproved.jsp</result>
+			<result name="input">/jsp/failure.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
+		</action>
+		
 		<action name="ManageEmployeeDetails" class="actionClass.ManageEmployeeDetailsAction" >
 			<result name="success">/jsp/manageEmployeeDetails.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>

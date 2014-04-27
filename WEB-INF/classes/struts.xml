@@ -184,6 +184,11 @@
 			<result name="success">/jsp/manageEmployeeHolidays.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>
+		<action name="approveHolidays" class="actionClass.DatePickerAction" method="holidayApproval">
+			<result name="success">/jsp/holidaysApproved.jsp</result>
+			<result name="input">/jsp/failure.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
+		</action>
 		
 		<action name="AddSkillToProfile" class="actionClass.SkillsAction" method="forward" >
 			<result name="none">/jsp/addSkillToProfile.jsp</result>
