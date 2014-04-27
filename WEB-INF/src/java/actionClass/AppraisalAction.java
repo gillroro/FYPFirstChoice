@@ -23,7 +23,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	private List<String> respect= new ArrayList<String>();
 	private List<Appraisal> appraisals = new ArrayList<Appraisal>();
 	private List<Project> projects = new ArrayList<Project>();
-	private String attendanceRecord,respectRecord,manager,managerEmail, firstName;
+	private String attendanceRecord,respectRecord,manager,managerEmail, firstName, projectName;
 	private List<Employee> managers= new ArrayList<Employee>();
 	private List<Employee> employees= new ArrayList<Employee>();
 	private Employee employee;
@@ -35,7 +35,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	private boolean yes,no;
 	//database
 	private Connection connection;
-	private PreparedStatement addAppraisal,getManagers,getEmployees,getAppraisals, getEmployeeProjects;
+	private PreparedStatement addAppraisal,getManagers,getEmployees,getAppraisals, getEmployeeProjects, addBonus,changeStatus;
 	private ResultSet results;
 	private Project project;
 	//session
@@ -102,7 +102,10 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			if(isYes()){
 				addAppraisal.setString(8, "Completion" +getCompleted());
 				appraisal.setProjectDetails("Completion" +completed);
-				
+				changeStatus = connection.prepareStatement("UPDATE project_member SET status=? WHERE projectName=?");
+				changeStatus.setString(1, "Complete");
+				changeStatus.setString(2, projectName );
+				changeStatus.executeUpdate();
 			}
 			else if(isNo()){
 				addAppraisal.setString(8, "Incompletion" +getUncompleted());
@@ -223,7 +226,16 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 				Project project = new Project();
 				project.setProjectName(results.getString("projectName"));
 				project.setEmployee(employee);
-				projects.add(project);
+				if(results.getString("status").equalsIgnoreCase("complete")){
+					project.setStatus("Complete");
+				}
+				else{
+					project.setStatus("Incomplete");
+				}
+				if(project.getStatus().equalsIgnoreCase("Incomplete")){
+					projects.add(project);
+				}
+
 			}
 		}
 		catch(Exception e){
@@ -231,7 +243,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		}
 		return projects;
 	}
-	
+
 	public void displayEmployeeProjects(){
 		getEmployeeProjects();
 		if(projects != null){
@@ -246,9 +258,25 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		getAllAppraisals();
 		return NONE;
 	}
-	
-	public String bonus(){
-		
+
+	public String giveBonus(){
+		try{
+			connection = ConnectionCreation.getConnection();
+			addBonus = connection.prepareStatement("UPDATE employee SET bonus=? WHERE first_name=?");
+			addBonus.setInt(1,(25000/100)*15);
+			addBonus.setString(2, firstName);
+			System.out.print(firstName);
+			addBonus.executeUpdate();
+			connection.close();
+			addBonus.close();
+			return SUCCESS;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return "failure";
+		}
+	}
+	public String rejectBonus(){
 		return SUCCESS;
 	}
 
@@ -412,5 +440,13 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	}
 	public void setProjectDetails(String projectDetails) {
 		this.projectDetails = projectDetails;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 }

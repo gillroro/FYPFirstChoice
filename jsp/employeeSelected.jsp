@@ -1,7 +1,9 @@
 <%@ include file="header.jsp" %>
-<div style="height:500px;width:900px;margin:0 auto;">
+<div style="height:1000px;width:900px;margin:0 auto;">
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Manage Employee Appraisal for <s:property value="firstName" /></h4>
+
+<s:hidden value="%{firstName}"  name="firstName" />
 <table class="striped sortable">
 <thead><tr>
 <th>Accomplishments</th><th>Barriers</th><th>Improvements</th><th>Performance</th><th>Attendance</th><th>Respect</th><th>Project Details</th><th>Bonus</th>
@@ -16,16 +18,18 @@
 	  <td><s:property value ="attendance" /> </td>
 	  <td><s:property value ="respect" /> </td>	 
 	  <td><s:property value ="projectDetails" /> </td>
-	  <td><s:url id="approveURL"  escapeAmp="false">
+	  <td><s:url id="approveURL" action="approveBonus"  escapeAmp="false">
 			<s:bean name="entity.Appraisal"></s:bean>
+			<s:param name="firstName" value="firstName" />
 			<s:param name="accomplishments" value="#appraisalBean.accomplishments"></s:param>
 			<s:param name="improvements" value="#appraisalBean.improvements"></s:param>
 			<s:param name="projectDetails" value="#appraisalBean.projectDetails"></s:param>
 		</s:url>
 
 		<s:a href="%{approveURL}"><i class="icon-ok-circle"></i></s:a>
-		<s:url id="removeURL"  escapeAmp="false">
-			<s:bean name="entity.Appraisal"></s:bean>
+		<s:url id="removeURL" action="rejectBonus" escapeAmp="false">
+			<s:bean name="entity.Appraisal"></s:bean>	
+			<s:param name="firstName" value="firstName" />
 			<s:param name="accomplishments" value="#appraisalBean.accomplishments"></s:param>
 			<s:param name="improvements" value="#appraisalBean.improvements"></s:param>
 			<s:param name="projectDetails" value="#appraisalBean.projectDetails"></s:param>
@@ -41,16 +45,18 @@
 	  <td><s:property value ="attendance" /> </td>
 	  <td><s:property value ="respect" /> </td>
 	  <td><s:property value ="projectDetails" /> </td>
-	    <td><s:url id="approveURL"  escapeAmp="false">
+	    <td><s:url id="approveURL"  action="approveBonus"  escapeAmp="false">
 			<s:bean name="entity.Appraisal"></s:bean>
+			<s:param name="firstName" value="firstName" />
 			<s:param name="accomplishments" value="#appraisalBean.accomplishments"></s:param>
 			<s:param name="improvements" value="#appraisalBean.improvements"></s:param>
 			<s:param name="projectDetails" value="#appraisalBean.projectDetails"></s:param>
 		</s:url>
 
 		<s:a href="%{approveURL}"><i class="icon-ok-circle"></i></s:a>
-		<s:url id="removeURL"  escapeAmp="false">
+		<s:url id="removeURL" action="rejectBonus" escapeAmp="false">
 			<s:bean name="entity.Appraisal"></s:bean>
+			<s:param name="firstName" value="firstName" />
 			<s:param name="accomplishments" value="#appraisalBean.accomplishments"></s:param>
 			<s:param name="improvements" value="#appraisalBean.improvements"></s:param>
 			<s:param name="projectDetails" value="#appraisalBean.projectDetails"></s:param>
@@ -66,16 +72,18 @@
 	  <td><s:property value ="attendance" /> </td>
 	  <td><s:property value ="respect" /> </td>
 	  <td><s:property value ="projectDetails" /> </td>
-	    <td><s:url id="approveURL"  escapeAmp="false">
+	    <td><s:url id="approveURL" action="approveBonus" escapeAmp="false">
 			<s:bean name="entity.Appraisal"></s:bean>
+			<s:param name="firstName" value="firstName" />
 			<s:param name="accomplishments" value="#appraisalBean.accomplishments"></s:param>
 			<s:param name="improvements" value="#appraisalBean.improvements"></s:param>
 			<s:param name="projectDetails" value="#appraisalBean.projectDetails"></s:param>
 		</s:url>
 
 		<s:a href="%{approveURL}"><i class="icon-ok-circle"></i></s:a>
-		<s:url id="removeURL"  escapeAmp="false">
+		<s:url id="removeURL" action="rejectBonus" escapeAmp="false">
 			<s:bean name="entity.Appraisal"></s:bean>
+			<s:param name="firstName" value="firstName" />
 			<s:param name="accomplishments" value="#appraisalBean.accomplishments"></s:param>
 			<s:param name="improvements" value="#appraisalBean.improvements"></s:param>
 			<s:param name="projectDetails" value="#appraisalBean.projectDetails"></s:param>
@@ -86,6 +94,8 @@
   </tr>
 </s:iterator>
 </table>
+
+<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
 </div>
 </div>
 

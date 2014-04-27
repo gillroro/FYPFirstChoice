@@ -23,7 +23,6 @@ rows="4"></s:textarea>
 				<i>Attendance</i><s:radio name="attendanceRecord"  list="attendance" value="attendanceRecord" />
 				<i>Respect for Others</i><s:radio name="respectRecord" list="respect" value="respectRecord" />	
 				<br /><i>Projects</i>
-				
 				<table class="striped tight sortable">
 				<thead>
 				<tr>
@@ -33,21 +32,21 @@ rows="4"></s:textarea>
 						<s:iterator value="projects" status ="projectsStatus" >
 					<tr>
 						<s:if test="#projectsStatus.even == true">
-							<td><s:property value ="projectName" /></td>
+							<td><s:property value ="projectName" /><s:hidden name="projectName" value="%{projectName}" /></td>
 							<td><s:checkbox name="yes" theme="simple" id="yeschecked" label="Yes" />Yes
 							<s:textarea name="completed" value="Details of Completion" id="completed" cols="60" rows="4" />						
 							<s:checkbox name="no" theme="simple" id="nochecked" label="No" />No
 							<s:textarea name="uncompleted" value="Details of Uncompletion" id="uncompleted" cols="60" rows="4" /></td>						
 						</s:if>
 						<s:elseif test="#projectsStatus.first == true">
-							<td><s:property value ="projectName"  /></td>
+							<td><s:property value ="projectName"  /><s:hidden name="projectName" value="%{projectName}" /></td>
 							<td><s:checkbox name="yes" theme="simple" id="yeschecked" label="Yes" />Yes
 							<s:textarea name="completed" value="Details of Completion" id="completed" cols="60" rows="4" />						
 							<s:checkbox name="no" theme="simple" id="nochecked" label="No" />No
 							<s:textarea name="uncompleted" value="Details of Uncompletion" id="uncompleted" cols="60" rows="4" /></td>		
 						</s:elseif>
 						<s:else>
-							<td><s:property value ="projectName"  /></td>
+							<td><s:property value ="projectName"  /><s:hidden name="projectName" value="%{projectName}" /></td>
 							<td><s:checkbox name="yes" theme="simple" id="yeschecked" label="Yes" />Yes
 							<s:textarea name="completed" value="Details of Completion" id="completed" cols="60" rows="4" />	
 							<s:checkbox name="no" theme="simple" id="nochecked" label="No" />No

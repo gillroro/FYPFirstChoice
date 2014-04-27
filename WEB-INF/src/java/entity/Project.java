@@ -13,6 +13,7 @@ public class Project {
 	private String department;
 	private List<Employee> members = new ArrayList<Employee>();
 	private int project_id;
+	private String status;
 	
 	public Date getStartDate() {
 		return startDate;
@@ -55,5 +56,11 @@ public class Project {
 	}
 	public void setProject_id(int project_id) {
 		this.project_id = project_id;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

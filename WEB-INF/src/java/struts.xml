@@ -38,9 +38,18 @@
 			<result name = "success">/jsp/index.jsp</result>
 			<result name = "failure">/jsp/failure.jsp</result>	
 			<result name="input">/index.jsp</result>
-			
+		</action>
+		
+		<action name="approveBonus" class="actionClass.AppraisalAction" method="giveBonus">
+			<result name="success">/jsp/bonusApproved.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 
+		<action name="rejectBonus" class="actionClass.AppraisalAction" method="rejectBonus">
+			<result name="success">/jsp/bonusRejected.jsp</result>
+			<result name="failure">/jsp/failure.jsp</result>
+		</action>
+		
 		<action name="fileUploadAction" class="actionClass.FileUploadAction" method="display">
 			<result name="none">/jsp/fileUpload.jsp</result>
 		</action>
@@ -48,9 +57,7 @@
 		<action name="resultAction" class="actionClass.JobBoardAction" method="jobApplication">
 			<interceptor-ref name="exception"/>
 				<interceptor-ref name="i18n"/>
-				<interceptor-ref name="fileUpload">
-			
-				
+				<interceptor-ref name="fileUpload">	
 			</interceptor-ref> 
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
