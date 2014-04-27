@@ -110,9 +110,10 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 	public String assignmentComplete(){
 		try {
 			connection = ConnectionCreation.getConnection();
-			addMemberToProject = connection.prepareStatement("INSERT INTO project_member(projectName, firstName) VALUES (?,?)" );
+			addMemberToProject = connection.prepareStatement("INSERT INTO project_member(projectName, firstName, status) VALUES (?,?,?)" );
 			addMemberToProject.setString(1, projectName);
 			addMemberToProject.setString(2, firstName);
+			addMemberToProject.setString(3, "Incomplete");
 			addMemberToProject.executeUpdate();
 			
 		} catch (SQLException e) {

@@ -26,8 +26,8 @@ DROP TABLE IF EXISTS `employee_skill`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employee_skill` (
   `SkillName` varchar(45) NOT NULL,
-  `EmployeeId` varchar(45) NOT NULL,
-  PRIMARY KEY (`SkillName`,`EmployeeId`)
+  `EmployeeName` varchar(45) NOT NULL,
+  PRIMARY KEY (`SkillName`,`EmployeeName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-22 15:51:11
+-- Dump completed on 2014-04-27 17:40:41

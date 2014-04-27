@@ -28,6 +28,7 @@ CREATE TABLE `project_member` (
   `idproject_member` int(11) NOT NULL AUTO_INCREMENT,
   `projectName` varchar(45) DEFAULT NULL,
   `firstName` varchar(45) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idproject_member`),
   KEY `employee_id_idx` (`firstName`),
   KEY `project_id_idx` (`projectName`)
@@ -40,7 +41,7 @@ CREATE TABLE `project_member` (
 
 LOCK TABLES `project_member` WRITE;
 /*!40000 ALTER TABLE `project_member` DISABLE KEYS */;
-INSERT INTO `project_member` VALUES (2,'Test','Sarah'),(3,'Metrics','Jack'),(4,'Testing','Megan'),(5,'Recruitment Drive','Poppy'),(6,'iOS App Development','Jack');
+INSERT INTO `project_member` VALUES (2,'Test','Sarah','Incomplete'),(3,'Metrics','Jack','Incomplete'),(4,'Testing','Megan','Incomplete'),(5,'Recruitment Drive','Poppy','Complete'),(6,'iOS App Development','Jack','Incomplete');
 /*!40000 ALTER TABLE `project_member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-22 15:51:12
+-- Dump completed on 2014-04-27 17:40:46

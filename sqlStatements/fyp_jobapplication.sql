@@ -29,8 +29,9 @@ CREATE TABLE `jobapplication` (
   `username` varchar(45) DEFAULT NULL,
   `file` varchar(150) DEFAULT NULL,
   `jobName` varchar(45) DEFAULT NULL,
+  `linkedin` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idjobapplication`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +40,7 @@ CREATE TABLE `jobapplication` (
 
 LOCK TABLES `jobapplication` WRITE;
 /*!40000 ALTER TABLE `jobapplication` DISABLE KEYS */;
+INSERT INTO `jobapplication` VALUES (1,'Mary','fed.txt','Recruitment Consultant',NULL),(2,'Mary','fed.txt','Accounting Supervisor',NULL),(3,'Mary','StrategyFormation.docx','IT Consultant',NULL),(4,'Sarah','fed.txt','IT Consultant','http://ie.linkedin.com/pub/sarah-thornton/5b/923/a51');
 /*!40000 ALTER TABLE `jobapplication` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-22 15:51:12
+-- Dump completed on 2014-04-27 17:40:42
