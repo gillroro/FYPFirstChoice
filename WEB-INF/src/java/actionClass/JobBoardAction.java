@@ -63,18 +63,17 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 	}
 
 	public String execute() throws ClassNotFoundException, SQLException{
-
 		connection = ConnectionCreation.getConnection();
-		addJob = connection.prepareStatement("INSERT INTO Job(job_name, description, department, closing_date) VALUES(?,?,?,?)");
+		addJob = connection.prepareStatement("INSERT INTO Job(jobName, description, department, closing_date) VALUES(?,?,?,?)");
 		addJob.setString(1, getJobName());
 		addJob.setString(2, getDescription());
 		addJob.setString(3, getDepartment());
 		addJob.setDate(4, (java.sql.Date)closing_date);
 		addJob.executeUpdate();
-		job.setDepartment(department);
-		job.setJobDesc(description);
-		job.setJobName(jobName);
-		session.put("Job", job);
+//		job.setDepartment(department);
+//		job.setJobDesc(description);
+//		job.setJobName(jobName);
+//		session.put("Job", job);
 		return SUCCESS;
 	}
 
@@ -88,7 +87,7 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 			Date sqlToday = new Date(today.getTime());
 			while(results.next()){
 				Job job = new Job();
-				job.setJobName(results.getString("job_name"));
+				job.setJobName(results.getString("jobName"));
 				job.setJobDesc(results.getString("description"));
 				job.setDepartment(results.getString("department"));
 				job.setClosing_date(results.getDate("closing_date"));
@@ -128,7 +127,7 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 			results = getJobByDepartment.executeQuery();
 			while(results.next()){
 				Job job = new Job();
-				job.setJobName(results.getString("job_name"));
+				job.setJobName(results.getString("jobName"));
 				job.setJobDesc(results.getString("description"));
 				job.setDepartment(results.getString("department"));
 				job.setClosing_date(results.getDate("closing_date"));
