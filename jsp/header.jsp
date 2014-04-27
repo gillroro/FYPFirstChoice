@@ -21,8 +21,7 @@
 	
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script src="http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.js" type="text/javascript"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
-	<script> $.validate(); </script>
+
 	<style type="text/css">
 			@import url("http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.css");
 
