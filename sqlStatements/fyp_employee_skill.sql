@@ -37,7 +37,7 @@ CREATE TABLE `employee_skill` (
 
 LOCK TABLES `employee_skill` WRITE;
 /*!40000 ALTER TABLE `employee_skill` DISABLE KEYS */;
-INSERT INTO `employee_skill` VALUES ('1','1');
+INSERT INTO `employee_skill` VALUES ('1','1'),('Recruitment','vikki');
 /*!40000 ALTER TABLE `employee_skill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-27 17:40:41
+-- Dump completed on 2014-04-27 22:40:43

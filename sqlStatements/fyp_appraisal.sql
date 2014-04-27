@@ -35,7 +35,7 @@ CREATE TABLE `appraisal` (
   `respect` varchar(45) DEFAULT NULL,
   `projectDetails` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`AppraisalId`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `appraisal` (
 
 LOCK TABLES `appraisal` WRITE;
 /*!40000 ALTER TABLE `appraisal` DISABLE KEYS */;
-INSERT INTO `appraisal` VALUES (3,'Poppy','Hello','You','Welcome','Test','Very Good','Average Respect for others',NULL),(4,'Jack','test','testt','test','test','Excellent','Very Respectful',NULL),(5,'Mary','test','test','test','test','Excellent','Very Respectful',NULL),(6,'Sarah','test','test','test','test','Excellent','Very Respectful',NULL),(7,'Aaron','1','1','1','1','Excellent','Very Respectful',NULL),(8,'Sarah','accomplishments','barriers','improvements','performance','Very Good','Average Respect for others',NULL),(9,'Poppy','test','test','test','test','Excellent','Average Respect for others',NULL),(10,'Poppy','test','test','test','test','Excellent','Very Respectful',NULL),(11,'Poppy','test','tre','testt','test','Excellent','Poor Respect for Others','Details of Completion test'),(12,'Poppy','TEST','TEST','TEST','TEST','Very Good','Average Respect for others','CompletionDetails of Completion\r\nTEST'),(13,'Poppy','TEST','TEST','TEST','TEST','Poor','Poor Respect for Others','CompletionDetails of Completion\r\nTEST');
+INSERT INTO `appraisal` VALUES (3,'Poppy','Hello','You','Welcome','Test','Very Good','Average Respect for others',NULL),(4,'Jack','test','testt','test','test','Excellent','Very Respectful',NULL),(5,'Mary','test','test','test','test','Excellent','Very Respectful',NULL),(6,'Sarah','test','test','test','test','Excellent','Very Respectful',NULL),(7,'Aaron','1','1','1','1','Excellent','Very Respectful',NULL),(8,'Sarah','accomplishments','barriers','improvements','performance','Very Good','Average Respect for others',NULL),(9,'Poppy','test','test','test','test','Excellent','Average Respect for others',NULL),(10,'Poppy','test','test','test','test','Excellent','Very Respectful',NULL),(11,'Poppy','test','tre','testt','test','Excellent','Poor Respect for Others','Details of Completion test'),(12,'Poppy','TEST','TEST','TEST','TEST','Very Good','Average Respect for others','CompletionDetails of Completion\r\nTEST'),(13,'Poppy','TEST','TEST','TEST','TEST','Poor','Poor Respect for Others','CompletionDetails of Completion\r\nTEST'),(14,'vikki','being me ','being too hungover','being me','being better at being me','Excellent','Very Respectful','Completioncompleted today');
 /*!40000 ALTER TABLE `appraisal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-27 17:40:53
+-- Dump completed on 2014-04-27 22:40:56

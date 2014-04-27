@@ -29,7 +29,7 @@ CREATE TABLE `skill` (
   `Name` varchar(45) DEFAULT NULL,
   `Description` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`SkillId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `skill` (
 
 LOCK TABLES `skill` WRITE;
 /*!40000 ALTER TABLE `skill` DISABLE KEYS */;
-INSERT INTO `skill` VALUES (1,'Recruitment','Recruitment'),(2,'Database','Database development'),(3,'Project Management','Project Management'),(4,'Databases','Databases'),(5,'Testing','Testing');
+INSERT INTO `skill` VALUES (1,'Recruitment','Recruitment'),(2,'Database','Database development'),(3,'Project Management','Project Management'),(4,'Databases','Databases'),(5,'Testing','Testing'),(6,'driver','drive');
 /*!40000 ALTER TABLE `skill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-27 17:40:50
+-- Dump completed on 2014-04-27 22:40:53

@@ -29,7 +29,7 @@ CREATE TABLE `skill_proof` (
   `employee_name` varchar(45) DEFAULT NULL,
   `proof` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`idskill_proof`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `skill_proof` (
 
 LOCK TABLES `skill_proof` WRITE;
 /*!40000 ALTER TABLE `skill_proof` DISABLE KEYS */;
-INSERT INTO `skill_proof` VALUES (1,'1','test'),(2,'1','Course undertook on the 19th of March. Certificate to Follow'),(3,'1','Course compaleted 20/3. certifacte to follow'),(4,'1','Course compaleted 20/3. certifacte to follow');
+INSERT INTO `skill_proof` VALUES (1,'1','test'),(2,'1','Course undertook on the 19th of March. Certificate to Follow'),(3,'1','Course compaleted 20/3. certifacte to follow'),(4,'1','Course compaleted 20/3. certifacte to follow'),(5,'vikki','CVGillianRowan.docx');
 /*!40000 ALTER TABLE `skill_proof` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-27 17:40:52
+-- Dump completed on 2014-04-27 22:40:54
