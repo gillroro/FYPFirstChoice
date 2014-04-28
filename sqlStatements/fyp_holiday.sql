@@ -32,7 +32,7 @@ CREATE TABLE `holiday` (
   `employeeName` varchar(45) DEFAULT NULL,
   `approved` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`holiday_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `holiday` (
 
 LOCK TABLES `holiday` WRITE;
 /*!40000 ALTER TABLE `holiday` DISABLE KEYS */;
-INSERT INTO `holiday` VALUES (2,'2014-02-09','2014-03-02','2014-04-27','Jack',NULL),(3,'2014-02-09','2014-05-20','2014-07-27','Mary',NULL),(4,'2014-02-23','2014-06-22','2014-10-19','Aaron',NULL),(5,'2014-02-16','2014-06-15','2014-07-20','Poppy',NULL),(6,'2014-03-11','2014-03-25','2014-03-24','Megan',NULL),(7,'2014-04-27','2014-06-01','2014-08-03','Sarah',NULL),(8,'2014-04-14','2014-06-01','2014-07-27','Poppy',NULL),(9,'2014-05-01','2014-06-05','2014-07-28','vikki',NULL);
+INSERT INTO `holiday` VALUES (2,'2014-02-09','2014-03-02','2014-04-27','Jack','Awaiting'),(3,'2014-02-09','2014-05-20','2014-07-27','Mary','Awaiting'),(4,'2014-02-23','2014-06-22','2014-10-19','Aaron','Awaiting'),(5,'2014-02-16','2014-06-15','2014-07-20','Poppy','Awaiting'),(6,'2014-03-11','2014-03-25','2014-03-24','Megan','Approved'),(7,'2014-04-27','2014-06-01','2014-08-03','Sarah','Awaiting'),(8,'2014-04-14','2014-06-01','2014-07-27','Poppy','Awaiting'),(9,'2014-05-01','2014-06-05','2014-07-28','vikki','Approved'),(10,'2014-05-03','2014-07-12','2014-10-11','Sarah','Awaiting');
 /*!40000 ALTER TABLE `holiday` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-27 22:40:41
+-- Dump completed on 2014-04-28 15:45:26

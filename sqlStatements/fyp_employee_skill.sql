@@ -27,6 +27,7 @@ DROP TABLE IF EXISTS `employee_skill`;
 CREATE TABLE `employee_skill` (
   `SkillName` varchar(45) NOT NULL,
   `EmployeeName` varchar(45) NOT NULL,
+  `proof` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`SkillName`,`EmployeeName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +38,7 @@ CREATE TABLE `employee_skill` (
 
 LOCK TABLES `employee_skill` WRITE;
 /*!40000 ALTER TABLE `employee_skill` DISABLE KEYS */;
-INSERT INTO `employee_skill` VALUES ('1','1'),('Recruitment','vikki');
+INSERT INTO `employee_skill` VALUES ('1','1',NULL),('Database','Sarah','test'),('Project Management','Ronan','test'),('Recruitment','vikki',NULL),('Testing','Ronan','Skills Proof');
 /*!40000 ALTER TABLE `employee_skill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-27 22:40:43
+-- Dump completed on 2014-04-28 15:45:26

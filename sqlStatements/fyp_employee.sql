@@ -33,11 +33,11 @@ CREATE TABLE `employee` (
   `address` varchar(45) DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `user_type` varchar(45) NOT NULL DEFAULT 'employee',
-  `manager` int(11) DEFAULT NULL,
+  `manager` varchar(50) DEFAULT NULL,
   `bonus` int(11) DEFAULT NULL,
   PRIMARY KEY (`employee_id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Gillian','Rowan','gillian','test','wicklow',45000,'manager',NULL,NULL),(7,'Sarah','Thornton','sarah','test','Dublin',28000,'employee',1,NULL),(13,'Mary','Regan','mary','test','Dublin 8',45000,'employee',1,NULL),(14,'Matthew','Ryan','matthew','test','Dublin',34000,'employee',1,NULL),(15,'Jack','Rowan','jrowan','test','Wicklow',123456,'employee',1,NULL),(16,'Sarah','Thornton','sarah123','test','Dublin',55000,'employee',1,NULL),(17,'Poppy','Doyle','poppy','test','Waterford',12345,'employee',1,3750),(18,'Aaron','Turner','aaron','test','Dublin',1234,'employee',1,NULL),(19,'Mary','Matthews','mm','test','Dublin',34000,'manager',1,NULL),(20,'Andrew','R','andrew','Password','Dublin',2345,'employee',1,NULL),(22,'Megan M','Murphy','megan','test','Dublin',1234,'employee',1,NULL),(23,'Mary','Regan','mary345','test','Dublin 8',123456,'employee',1,NULL),(24,'Ronan','Sharkey','sharkey','test','Dublin',30000,'employee',1,NULL),(25,'Vikki','Rowan','vikki','test','Wicklow',25000,'employee',19,3750),(27,'vikki','rowan','sexyvikki','dillonrowan1989','24 crinion park wicklow town',25000,'employee',557767,3750);
+INSERT INTO `employee` VALUES (1,'Gillian','Rowan','gillian','test','wicklow',45000,'manager',NULL,NULL),(7,'Sarah','Thornton','sarah','test','Dublin',28000,'employee','Gillian',NULL),(13,'Mary','Regan','mary','test','Dublin 8',45000,'employee','Gillian',NULL),(14,'Matthew','Ryan','matthew','test','Dublin',34000,'employee','Gillian',NULL),(15,'Jack','Rowan','jrowan','test','Wicklow',123456,'employee','Gillian',NULL),(16,'Sarah','Thornton','sarah123','test','Dublin',55000,'employee','Gillian',NULL),(17,'Poppy','Doyle','poppy','test','Waterford',12345,'employee','Gillian',3750),(18,'Aaron','Turner','aaron','test','Dublin',1234,'employee','Gillian',NULL),(19,'Mary','Matthews','mm','test','Dublin',34000,'manager','Gillian',NULL),(20,'Andrew','R','andrew','Password','Dublin',2345,'employee','Mary',NULL),(22,'Megan M','Murphy','megan','test','Dublin',1234,'employee','Mary',NULL),(23,'Mary','Regan','mary345','test','Dublin 8',123456,'employee','Mary',NULL),(24,'Ronan','Sharkey','sharkey','test','Dublin',30000,'employee','Mary',NULL),(25,'Vikki','Rowan','vikki','test','Wicklow',25000,'employee','Mary',3750),(27,'vikki','rowan','sexyvikki','dillonrowan1989','24 crinion park wicklow town',25000,'employee','Gillian',3750),(28,'Alex, Gillian','Lyons','alexlyons','test','Dublin',30000,'employee','Gillian',NULL),(29,'Ian','Wisely','ianwisely','test','Dublin',30000,'employee','Gillian',NULL),(30,'Myles','Rowan','mylesrowan','test','Wicklow',23000,'employee','Gillian',NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-27 22:40:51
+-- Dump completed on 2014-04-28 15:45:27
