@@ -75,11 +75,12 @@ public class DatePickerAction extends ActionSupport implements Preparable, Sessi
 			System.out.println(date2);
 			System.out.println(date3);
 			connection = ConnectionCreation.getConnection();
-			addHolidays = connection.prepareStatement("INSERT INTO holiday(date1, date2, date3,employeeName) VALUES(?, ?, ?,?)");
+			addHolidays = connection.prepareStatement("INSERT INTO holiday(date1, date2, date3,employeeName, approved) VALUES(?, ?, ?,?,?)");
 			addHolidays.setDate(1, (java.sql.Date) date1);
 			addHolidays.setDate(2, (java.sql.Date) date2);
 			addHolidays.setDate(3, (java.sql.Date) date3);
 			addHolidays.setString(4, employee.getFirstName());
+			addHolidays.setString(5, "Awaiting");
 			addHolidays.executeUpdate();
 			holiday.setDate1(date1);
 			holiday.setDate1(date2);

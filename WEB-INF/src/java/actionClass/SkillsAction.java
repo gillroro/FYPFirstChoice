@@ -130,16 +130,17 @@ public class SkillsAction extends ActionSupport implements Preparable, SessionAw
 	public String addProof(){
 		try {
 			connection = ConnectionCreation.getConnection();
-			addProof = connection.prepareStatement("INSERT INTO skill_proof(employee_name, proof) VALUES(?,?)");
-			addProof.setString(1, employee.getFirstName());
-			addProof.setString(2,getProof());
-			addProof.executeUpdate();
-			addSkillToEmployee = connection.prepareStatement("INSERT INTO employee_skill(SkillName,EmployeeName) VALUES(?,?)");
+//			addProof = connection.prepareStatement("INSERT INTO skill_proof(employee_name, proof) VALUES(?,?)");
+//			addProof.setString(1, employee.getFirstName());
+//			addProof.setString(2,getProof());
+//			addProof.executeUpdate();
+			addSkillToEmployee = connection.prepareStatement("INSERT INTO employee_skill(SkillName,EmployeeName,proof) VALUES(?,?,?)");
 			addSkillToEmployee.setString(1,skillName);
 			addSkillToEmployee.setString(2,employee.getFirstName());
+			addSkillToEmployee.setString(3, getProof());
 			addSkillToEmployee.executeUpdate();
 			connection.close();
-			addProof.close();
+//			addProof.close();
 			addSkillToEmployee.close();
 			return SUCCESS;
 		} catch (SQLException e) {	
