@@ -35,7 +35,7 @@ public class DatePickerAction extends ActionSupport implements Preparable, Sessi
 	private static final long serialVersionUID = 1L;
 	private Date date1,date2,date3;
 	private Connection connection;
-	private PreparedStatement addHolidays,getHolidays,approveHolidays;
+	private PreparedStatement addHolidays,getHolidays;
 	private ResultSet results;
 	private List<Holiday> holidays = new ArrayList<Holiday>();
 	private Employee employee;
@@ -66,6 +66,103 @@ public class DatePickerAction extends ActionSupport implements Preparable, Sessi
 		session = (SessionMap) map;
 	}
 
+	public String execute() throws Exception{
+		Holiday holiday = new Holiday();
+		String ret = SUCCESS;
+		try
+		{
+			System.out.println(date1);
+			System.out.println(date2);
+			System.out.println(date3);
+			connection = ConnectionCreation.getConnection();
+			addHolidays = connection.prepareStatement("INSERT INTO holiday(date1, date2, date3,employeeName) VALUES(?, ?, ?,?)");
+			addHolidays.setDate(1, (java.sql.Date) date1);
+			addHolidays.setDate(2, (java.sql.Date) date2);
+			addHolidays.setDate(3, (java.sql.Date) date3);
+			addHolidays.setString(4, employee.getFirstName());
+			addHolidays.executeUpdate();
+			holiday.setDate1(date1);
+			holiday.setDate1(date2);
+			holiday.setDate3(date3);
+			holiday.setEmployee(employee);
+			session.put("holiday", holiday);
+			Session mailSession = Session.getDefaultInstance(properties,  new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new 
+							PasswordAuthentication("firstchoicefinalyearproject@gmail.com", "finalyearproject");
+				}});
+			Message message = new MimeMessage(mailSession);
+			message.setFrom(new InternetAddress("firstchoicefinalyearproject@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("finalyearprojectfirstchoice14@gmail.com"));
+			message.setSubject("Holiday Request Details");
+			message.setText("The employee "+ employee.getFirstName() +" has completed her holiday requests.\nPlease review these.\n" 
+					+ date1+ "\n" + date2 + "\n"  + date3);
+			Transport.send(message);
+		}
+		catch(Exception e){
+			ret = "failure";
+			e.printStackTrace();
+		}
+		connection.close();
+		addHolidays.close();
+		return ret;
+	}
+
+	public String display() {
+		return NONE;
+	}
+
+	public List<Holiday> getHolidays() {
+		return holidays;
+	}
+
+	public void setHolidays(List<Holiday> holidays) {
+		this.holidays = holidays;
+	}
+
+	public List<Holiday> getAllHolidays(){
+		try {
+			connection = ConnectionCreation.getConnection();
+			getHolidays = connection.prepareStatement("SELECT * FROM HOLIDAY");
+			results = getHolidays.executeQuery();
+			while(results.next()){
+				Holiday holiday = new Holiday();
+				holiday.setDate1(results.getDate("date1"));
+				holiday.setDate2(results.getDate("date2"));
+				holiday.setDate3(results.getDate("date3"));
+				holiday.setEmployeeName(results.getString("employeeName"));
+				holiday.setEmployee(employee);
+				holiday.setApproved(results.getString("approved"));
+				if(holiday.getApproved().equalsIgnoreCase("Awaiting")){
+					holidays.add(holiday);
+				}
+				
+			}
+			connection.close();
+			getHolidays.close();
+			results.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return  holidays;
+	}
+
+	public String displayHolidays(){
+		getAllHolidays();
+		if(holidays!=null){
+			return SUCCESS;
+		}
+		else{
+			return "failure";
+		}
+	}
+	
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
 	public Date getDate1() throws ParseException {
 
 		return (Date) format2.parse(format2.format(date1));
@@ -96,152 +193,20 @@ public class DatePickerAction extends ActionSupport implements Preparable, Sessi
 		this.date3 = date3;
 	}
 
-
-	public String execute() throws Exception{
-		Holiday holiday = new Holiday();
-		String ret = SUCCESS;
-		try
-		{
-			System.out.println(date1);
-			System.out.println(date2);
-			System.out.println(date3);
-		
-			connection = ConnectionCreation.getConnection();
-			addHolidays = connection.prepareStatement("INSERT INTO holiday(date1, date2, date3,employeeName) VALUES(?, ?, ?,?)");
-			addHolidays.setDate(1, (java.sql.Date) date1);
-			addHolidays.setDate(2, (java.sql.Date) date2);
-			addHolidays.setDate(3, (java.sql.Date) date3);
-			addHolidays.setString(4, employee.getFirstName());
-			addHolidays.executeUpdate();
-			holiday.setDate1(date1);
-			holiday.setDate1(date2);
-			holiday.setDate3(date3);
-			holiday.setEmployee(employee);
-			session.put("holiday", holiday);
-			Session mailSession = Session.getDefaultInstance(properties,  new javax.mail.Authenticator() {
-				protected PasswordAuthentication getPasswordAuthentication() {
-					return new 
-							PasswordAuthentication("firstchoicefinalyearproject@gmail.com", "finalyearproject");
-				}});
-
-			Message message = new MimeMessage(mailSession);
-			message.setFrom(new InternetAddress("firstchoicefinalyearproject@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("finalyearprojectfirstchoice14@gmail.com"));
-			message.setSubject("Holiday Request Details");
-			message.setText("The employee "+ employee.getFirstName() +" has completed her holiday requests.\nPlease review these.\n" 
-					+ date1+ "\n" + date2 + "\n"  + date3);
-
-			Transport.send(message);
-
-
-		}
-		catch(Exception e)
-		{
-			ret = "failure";
-			e.printStackTrace();
-		}
-
-		connection.close();
-		addHolidays.close();
-		return ret;
-
-
-	}
-
-	public String display() {
-		return NONE;
-	}
-
-	public List<Holiday> getHolidays() {
-		return holidays;
-	}
-
-	public void setHolidays(List<Holiday> holidays) {
-		this.holidays = holidays;
-	}
-
-	public List<Holiday> getAllHolidays(){
-		try {
-			
-
-			connection = ConnectionCreation.getConnection();
-			getHolidays = connection.prepareStatement("SELECT * FROM HOLIDAY");
-			results = getHolidays.executeQuery();
-
-			while(results.next()){
-				Holiday holiday = new Holiday();
-				holiday.setDate1(results.getDate("date1"));
-				holiday.setDate2(results.getDate("date2"));
-				holiday.setDate3(results.getDate("date3"));
-				holiday.setEmployeeName(results.getString("employeeName"));
-				holiday.setEmployee(employee);
-				holidays.add(holiday);
-
-			}
-			connection.close();
-			getHolidays.close();
-			results.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
-		return  holidays;
-	}
-	
-	public String displayHolidays(){
-		getAllHolidays();
-		if(holidays!=null){
-			return SUCCESS;
-		}
-		else{
-			return "failure";
-		}
-	}
-	
-	public String holidayApproval(){
-		try{
-			System.out.println("HERE");
-			connection = ConnectionCreation.getConnection();
-			System.out.println("HERE");
-			approveHolidays= connection.prepareStatement("UPDATE holiday SET approved=? WHERE date1=? AND date2=? and date3=?");
-			System.out.println("HERE");
-			System.out.println(date1 + ""+ date2 +""+ date3);
-			approveHolidays.setString(1, "Approved");
-			approveHolidays.setDate(2, date1);
-			approveHolidays.setDate(3, date2);
-			approveHolidays.setDate(4, date3);
-			approveHolidays.executeUpdate();
-			connection.close();
-			approveHolidays.close();
-			return SUCCESS;
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return "failure";
-		}
-	}
-	public String getEmployeeName() {
-		return employeeName;
-	}
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
-	}
-	
-//	public void validate(){
-//		if(date1 == null && date2 ==null && date3 == null){
-//			setFieldErrors(null);
-//		}
-//		if(date1 == null || date1.equals("") || date1.before(sqlToday)){
-//			addFieldError("date1", "A valid date is required");
-//		}
-//		if(date2 == null || date2.equals("") || date2.before(sqlToday) || date2.before(date1)){
-//			addFieldError("date2", "A valid date is required");
-//		}
-//		if(date3 == null || date3.equals("") || date3.before(sqlToday) || date3.before(date1) ||  date3.before(date2)){
-//			addFieldError("date3", "A valid date is required");
-//		}
-//	}
+	//	public void validate(){
+	//		if(date1 == null && date2 ==null && date3 == null){
+	//			setFieldErrors(null);
+	//		}
+	//		if(date1 == null || date1.equals("") || date1.before(sqlToday)){
+	//			addFieldError("date1", "A valid date is required");
+	//		}
+	//		if(date2 == null || date2.equals("") || date2.before(sqlToday) || date2.before(date1)){
+	//			addFieldError("date2", "A valid date is required");
+	//		}
+	//		if(date3 == null || date3.equals("") || date3.before(sqlToday) || date3.before(date1) ||  date3.before(date2)){
+	//			addFieldError("date3", "A valid date is required");
+	//		}
+	//	}
 
 
 }

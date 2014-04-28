@@ -8,7 +8,7 @@
 
  
 <h4>
-   New Employee <s:property value="firstName"/>  Registered
+   New Employee <s:property value="newFirstName"/>  Registered
 </h4> 
  
 <input type="button" value="Dashboard" onclick="window.history.go(-2);"/>

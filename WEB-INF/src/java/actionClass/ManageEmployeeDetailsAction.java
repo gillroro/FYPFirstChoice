@@ -82,7 +82,7 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 				employee.setAddress(results.getString("address"));
 				employee.setSalary(results.getInt("salary"));
 				employee.setUserType(results.getString("user_type"));
-				employee.setManager(results.getInt("manager"));
+				employee.setManager(results.getString("manager"));
 				employees.add(employee);
 
 			}

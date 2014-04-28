@@ -2,7 +2,10 @@ package actionClass;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import util.WebSession;
@@ -19,24 +22,25 @@ public class RegisterAction extends ActionSupport implements Preparable{
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
-	private String firstName;
+	private String firstName, newFirstName;
 	private String surname;
 	private String address;
 	private int salary;
 	private String userType;
-	private int manager;
+	private String manager;
 	private Connection connection;
-	private PreparedStatement addEmployee;	
+	private PreparedStatement addEmployee, getManagers;	
 	private Employee employee;
 	private Map<String, Object> session;
+	private List<Employee> managers = new ArrayList<Employee>();
+	private ResultSet results;
 	
 	@Override
 	public void prepare() throws Exception {
 		session = WebSession.getWebSessionInstance();
 		setEmployee((Employee) session.get("employee"));
 	}
-
-
+	
 	public String getPassword() {
 		return password;
 	}
@@ -54,10 +58,20 @@ public class RegisterAction extends ActionSupport implements Preparable{
 	}
 	
 	public String forward(){
+		getAllManagers();
+		for(Employee manager : managers){
+			System.out.println(manager.getFirstName());
+		}
 		return NONE;
 	}
-	
-	
+
+	public List<Employee> getManagers() {
+		return managers;
+	}
+
+	public void setManagers(List<Employee> managers) {
+		this.managers = managers;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -99,11 +113,11 @@ public class RegisterAction extends ActionSupport implements Preparable{
 		this.userType = userType;
 	}
 
-	public int getManager() {
+	public String getManager() {
 		return manager;
 	}
 
-	public void setManager(int manager) {
+	public void setManager(String manager) {
 		this.manager = manager;
 	}
 
@@ -112,17 +126,17 @@ public class RegisterAction extends ActionSupport implements Preparable{
 		Employee employee = new Employee();
 		connection = ConnectionCreation.getConnection();
 		addEmployee= connection.prepareStatement("INSERT INTO employee(first_name, surname, username, password, address, salary, user_type, manager) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");	
-		addEmployee.setString(1, getFirstName());
+		addEmployee.setString(1, getNewFirstName());
 		addEmployee.setString(2, getSurname());
 		addEmployee.setString(3, getUsername());
 		addEmployee.setString(4, getPassword());
 		addEmployee.setString(5, getAddress());
 		addEmployee.setInt(6, getSalary());
 		addEmployee.setString(7, userType);
-		addEmployee.setInt(8, manager);
+		addEmployee.setString(8, firstName);
 		addEmployee.executeUpdate();
 		employee.setAddress(address);
-		employee.setFirstName(firstName);
+		employee.setFirstName(newFirstName);
 		employee.setPassword(password);
 		employee.setSurname(surname);
 		employee.setUsername(username);
@@ -145,6 +159,38 @@ public class RegisterAction extends ActionSupport implements Preparable{
 		this.employee = employee;
 	}
 
+	public List<Employee> getAllManagers(){
+		try {
+			connection =ConnectionCreation.getConnection();
+			getManagers = connection.prepareStatement("SELECT * FROM EMPLOYEE");
+			results = getManagers.executeQuery();
+			while(results.next()){
+				Employee employee = new Employee();
+				employee.setFirstName(results.getString("first_name"));
+				employee.setSurname(results.getString("surname"));
+				employee.setAddress(results.getString("address"));
+				employee.setUsername(results.getString("username"));
+				employee.setPassword(results.getString("password"));
+				employee.setUserType(results.getString("user_type"));
+				if(employee.getUserType().equalsIgnoreCase("manager")){
+					managers.add(employee);	
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return managers;	
+	}
+
+	public String getNewFirstName() {
+		return newFirstName;
+	}
+
+	public void setNewFirstName(String newFirstName) {
+		this.newFirstName = newFirstName;
+	}
+	
+	
 
 	
 	

@@ -184,9 +184,14 @@
 			<result name="success">/jsp/manageEmployeeHolidays.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>
-		<action name="approveHolidays" class="actionClass.DatePickerAction" method="holidayApproval">
+		
+		<action name="HolidayApprovalForm" class="actionClass.HolidayApprovalAction" method="forward">
+			<result name="none">/jsp/ApprovalForm.jsp</result>
+			<result name="input">/jsp/ApprovalForm.jsp</result>
+		</action>
+		
+		<action name="EmployeeHolidayApproval" class="actionClass.HolidayApprovalAction">
 			<result name="success">/jsp/holidaysApproved.jsp</result>
-			<result name="input">/jsp/failure.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
@@ -199,7 +204,7 @@
 			<result name="none">/jsp/applications.jsp</result>
 		</action>	
 		
-				<action name="Projects" class="actionClass.ProjectAction" method = "forward" >
+		<action name="Projects" class="actionClass.ProjectAction" method = "forward" >
 			<result name="none">/jsp/projectHome.jsp</result>
 		</action>
 
@@ -219,7 +224,6 @@
 		
 		<action name="ProjectDeleteForm" class="actionClass.ProjectAction" method="forward" >
 			<result name="none">/jsp/deleteProject.jsp</result>
-			
 		</action>
 		
 		<action name="DeleteProject" class="actionClass.ProjectAction" method="deleteProject" >

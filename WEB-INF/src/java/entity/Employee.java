@@ -13,7 +13,7 @@ public class Employee {
 	private String address;
 	private int salary;
 	private String userType;
-	private int manager;
+	private String manager;
 	private List<Project> projects = new ArrayList<Project>();
 	
 	public Employee(){}
@@ -61,11 +61,11 @@ public class Employee {
 		this.userType = userType;
 	}
 
-	public int getManager() {
+	public String getManager() {
 		return manager;
 	}
 
-	public void setManager(int manager) {
+	public void setManager(String manager) {
 		this.manager = manager;
 	}
 

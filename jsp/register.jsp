@@ -9,14 +9,14 @@
 	
 	<h5>Register Employee:</h5>
 			<s:form action="Register" >
-				<s:textfield name="firstName" value= "First Name" theme= "css_xhtml"/>
+				<s:textfield name="newFirstName" value= "First Name" theme= "css_xhtml"/>
 				<s:textfield name="surname" value= "Surname" theme= "css_xhtml"/>
 				<s:textfield name="Username" value= "Username" theme= "css_xhtml"/>
 				<s:password name="Password" value= "Password" showPassword= "true" theme= "css_xhtml"/>
 				<s:textfield name="Address" value= "Address" theme= "css_xhtml"/>
 				<s:textfield name="Salary" value= "Salary" theme= "css_xhtml"/>
 				<s:textfield name="UserType" value= "User Type" theme= "css_xhtml"/>
-				<s:textfield name="Manager" value= "Manager ID" theme="css_xhtml"/>
+				<s:select headerKey="-1" headerValue="--Select Manager--" name="firstName" list="managers" listKey="firstName" listValue="firstName" theme= "css_xhtml" ></s:select>
 				<s:submit value="Register" theme= "simple"/>
 			</s:form>
 	</div>

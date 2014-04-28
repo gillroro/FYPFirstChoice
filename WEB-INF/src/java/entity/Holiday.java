@@ -9,7 +9,7 @@ public class Holiday {
 	private Date date3;	
 	private Employee employee;
 	private String employeeName;
-	
+	private String approved;
 	public Holiday(){}
 
 	public Date getDate1() {
@@ -50,6 +50,14 @@ public class Holiday {
 
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
+	}
+
+	public String getApproved() {
+		return approved;
+	}
+
+	public void setApproved(String approved) {
+		this.approved = approved;
 	}
 	
 	

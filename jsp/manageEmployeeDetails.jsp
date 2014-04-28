@@ -1,7 +1,7 @@
 <%@ include file="header.jsp" %>
  
 <body>
- <div style="height:700px;width:900px;margin:0 auto;">
+ <div style="height:1000px;width:900px;margin:0 auto;">
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Manage Employee Details</h4>
 
