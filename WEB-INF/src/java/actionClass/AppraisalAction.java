@@ -99,20 +99,26 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			addAppraisal.setString(5, getPerformance());
 			addAppraisal.setString(6, getAttendanceRecord());
 			addAppraisal.setString(7, getRespectRecord());
-			if(isYes()){
-				addAppraisal.setString(8, "Completion" +getCompleted());
-				appraisal.setProjectDetails("Completion" +completed);
-				changeStatus = connection.prepareStatement("UPDATE project_member SET status=? WHERE projectName=?");
-				changeStatus.setString(1, "Complete");
-				changeStatus.setString(2, projectName );
-				changeStatus.executeUpdate();
-			}
-			else if(isNo()){
-				addAppraisal.setString(8, "Incompletion" +getUncompleted());
-				appraisal.setProjectDetails("Incompletion" +uncompleted);
+			if(projects.size() > 0){
+				if(isYes()){
+					addAppraisal.setString(8, "Completion" +getCompleted());
+					appraisal.setProjectDetails("Completion" +completed);
+					changeStatus = connection.prepareStatement("UPDATE project_member SET status=? WHERE projectName=?");
+					changeStatus.setString(1, "Complete");
+					changeStatus.setString(2, projectName );
+					changeStatus.executeUpdate();
+				}
+				else if(isNo()){
+					
+					addAppraisal.setString(8, "Incompletion" +getUncompleted());
+					appraisal.setProjectDetails("Incompletion" +uncompleted);
+				}
+				else{
+					System.out.print("ERROR");
+				}
 			}
 			else{
-				System.out.print("ERROR");
+				addAppraisal.setString(8, "All Projects Completed");
 			}
 			addAppraisal.executeUpdate();
 			appraisal.setAccomplishments(accomplishments);

@@ -18,7 +18,7 @@ import entity.Employee;
 
 public class RegisterAction extends ActionSupport implements Preparable{
 
-	
+
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
@@ -29,18 +29,18 @@ public class RegisterAction extends ActionSupport implements Preparable{
 	private String userType;
 	private String manager;
 	private Connection connection;
-	private PreparedStatement addEmployee, getManagers;	
+	private PreparedStatement addEmployee, getManagers, getAllEmployees;	
 	private Employee employee;
 	private Map<String, Object> session;
 	private List<Employee> managers = new ArrayList<Employee>();
 	private ResultSet results;
-	
+
 	@Override
 	public void prepare() throws Exception {
 		session = WebSession.getWebSessionInstance();
 		setEmployee((Employee) session.get("employee"));
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -56,7 +56,7 @@ public class RegisterAction extends ActionSupport implements Preparable{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public String forward(){
 		getAllManagers();
 		for(Employee manager : managers){
@@ -125,10 +125,20 @@ public class RegisterAction extends ActionSupport implements Preparable{
 	public String execute() throws ClassNotFoundException, SQLException {
 		Employee employee = new Employee();
 		connection = ConnectionCreation.getConnection();
+		getAllEmployees = connection.prepareStatement("SELECT * FROM employee");
+		results = getAllEmployees.executeQuery();
+
 		addEmployee= connection.prepareStatement("INSERT INTO employee(first_name, surname, username, password, address, salary, user_type, manager) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");	
 		addEmployee.setString(1, getNewFirstName());
 		addEmployee.setString(2, getSurname());
-		addEmployee.setString(3, getUsername());
+		if (results.next()){
+			if(username.equalsIgnoreCase(results.getString("username"))){
+				addFieldError("username","Username must be unique");
+			}
+			else{
+				addEmployee.setString(3, getUsername());
+			}
+		}
 		addEmployee.setString(4, getPassword());
 		addEmployee.setString(5, getAddress());
 		addEmployee.setInt(6, getSalary());
@@ -145,7 +155,8 @@ public class RegisterAction extends ActionSupport implements Preparable{
 		session.put("employee", employee);
 		addEmployee.close();
 		connection.close();
-		return "success";
+
+		return SUCCESS;
 
 	}
 
@@ -189,11 +200,11 @@ public class RegisterAction extends ActionSupport implements Preparable{
 	public void setNewFirstName(String newFirstName) {
 		this.newFirstName = newFirstName;
 	}
-	
-	
 
-	
-	
+
+
+
+
 
 
 }
