@@ -4,6 +4,7 @@
 
 <struts>
     <package name="default" extends="struts-default">
+	
         <action name="Login" class="actionClass.UserLoginAction">
             <result name="success">/jsp/success.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
