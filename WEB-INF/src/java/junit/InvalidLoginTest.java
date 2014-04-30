@@ -26,7 +26,7 @@ public class InvalidLoginTest {
 
   @Test
   public void testInvalidLogin() throws Exception {
-    driver.get(baseUrl + "FYP/");
+    driver.get(baseUrl + "FYPFirstChoice/");
     driver.findElement(By.id("Login_0")).click();
     try {
       assertEquals("Invalid username", driver.findElement(By.cssSelector("div.errorMessage")).getText());

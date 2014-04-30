@@ -27,7 +27,7 @@ public class ProjectAssignmentTest {
 
   @Test
   public void testProjectAssignment() throws Exception {
-    driver.get(baseUrl + "FYP/");
+    driver.get(baseUrl + "FYPFirstChoice/");
     driver.findElement(By.id("Login_Username")).clear();
     driver.findElement(By.id("Login_Username")).sendKeys("gillian");
     driver.findElement(By.id("Login_Password")).clear();

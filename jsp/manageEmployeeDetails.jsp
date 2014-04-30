@@ -8,7 +8,7 @@
 	<table class="striped sortable">
 				<thead>
 				<tr>
-<th>First Name</th><th>Surname</th><th>Username</th><th>Password</th><th>Address</th><th>Salary</th><th>User Type</th><th>Manager</th><th>Edit</th>
+<th>First Name</th><th>Surname</th><th>Username</th><th>Address</th><th>Salary</th><th>User Type</th><th>Manager</th><th>Edit</th>
 </tr></thead>
 <s:iterator value="employees" status ="employeesStatus" id="employeesBean" >
  <tr>
@@ -16,7 +16,6 @@
       <td><s:property value ="firstName" /> </td>
 	  <td><s:property value ="surname" /> </td>
 	  <td><s:property value ="username" /> </td>
-	  <td ><s:property value ="password" /> </td>
 	  <td><s:property value ="address" /> </td>
 	  <td><s:property value ="salary" /> </td>
 	  <td><s:property value ="userType" /> </td>
@@ -27,7 +26,6 @@
 			<s:param name="firstName" value="#employeesBean.firstName"></s:param>
 			<s:param name="surname" value="#employeesBean.surname"></s:param>
 			<s:param name="username" value="#employeesBean.username"></s:param>
-			<s:param name="password" value="#employeesBean.password"></s:param>
 			<s:param name="address" value="#employeesBean.address"></s:param>
 			<s:param name="salary" value="#employeesBean.salary"></s:param>
 			<s:param name="manager" value="#employeesBean.manager"></s:param>
@@ -42,7 +40,6 @@
       <td><s:property value ="firstName" /></td>
 	  <td><s:property value ="surname" /> </td>
 	  <td><s:property value ="username" /> </td>
-	  <td><s:property value ="password" /> </td>
 	  <td><s:property value ="address" /> </td>
 	  <td><s:property value ="salary" /> </td>
 	  <td><s:property value ="userType" /> </td>
@@ -53,7 +50,6 @@
 			<s:param name="firstName" value="#employeesBean.firstName"></s:param>
 			<s:param name="surname" value="#employeesBean.surname"></s:param>
 			<s:param name="username" value="#employeesBean.username"></s:param>
-			<s:param name="password" value="#employeesBean.password"></s:param>
 			<s:param name="address" value="#employeesBean.address"></s:param>
 			<s:param name="salary" value="#employeesBean.salary"></s:param>
 			<s:param name="manager" value="#employeesBean.manager"></s:param>
@@ -68,7 +64,6 @@
       <td><s:property value ="firstName" /></td>
 	  <td><s:property value ="surname" /> </td>
 	  <td><s:property value ="username" /> </td>
-	  <td><s:property value ="password" /> </td>
 	  <td><s:property value ="address" /> </td>
 	  <td><s:property value ="salary" /> </td>
 	  <td><s:property value ="userType" /> </td>
@@ -79,7 +74,6 @@
 			<s:param name="firstName" value="#employeesBean.firstName"></s:param>
 			<s:param name="surname" value="#employeesBean.surname"></s:param>
 			<s:param name="username" value="#employeesBean.username"></s:param>
-			<s:param name="password" value="#employeesBean.password"></s:param>
 			<s:param name="address" value="#employeesBean.address"></s:param>
 			<s:param name="salary" value="#employeesBean.salary"></s:param>
 			<s:param name="manager" value="#employeesBean.manager"></s:param>

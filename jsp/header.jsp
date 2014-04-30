@@ -36,7 +36,7 @@
 	</style>
 	<script type="text/javascript">
 		function load() {
-		var feed =" http://feeds.bbci.co.uk/news/rss.xml";
+		var feed =" http://feeds.bbci.co.uk/news/business/rss.xml";
 		new GFdynamicFeedControl(feed, "feedControl");
 
 		}

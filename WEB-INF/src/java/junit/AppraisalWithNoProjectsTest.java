@@ -27,7 +27,7 @@ public class AppraisalWithNoProjectsTest {
 
   @Test
   public void testAppraisalWithNoProjects() throws Exception {
-    driver.get(baseUrl + "FYP/");
+    driver.get(baseUrl + "FYPFirstChoice/");
     driver.findElement(By.id("Login_Username")).clear();
     driver.findElement(By.id("Login_Username")).sendKeys("poppy");
     driver.findElement(By.id("Login_Password")).clear();
@@ -44,7 +44,7 @@ public class AppraisalWithNoProjectsTest {
     driver.findElement(By.id("Appraisal_performance")).sendKeys("knowledge");
     driver.findElement(By.id("Appraisal_attendanceRecordVery Good")).click();
     driver.findElement(By.id("Appraisal_respectRecordAverage Respect for others")).click();
-    new Select(driver.findElement(By.id("Appraisal_firstName"))).selectByVisibleText("Mary");
+    new Select(driver.findElement(By.id("Appraisal_firstName"))).selectByVisibleText("Gillian");
     driver.findElement(By.id("Appraisal_Appraisal")).click();
     try {
       assertEquals("Self Appraisal Complete", driver.findElement(By.cssSelector("h6.center")).getText());

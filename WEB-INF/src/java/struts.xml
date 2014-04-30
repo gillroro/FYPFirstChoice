@@ -145,6 +145,7 @@
 		</action>
 
 		<action name="AddJob" class="actionClass.JobBoardAction" method="execute">
+		  <interceptor-ref name="jsonValidationWorkflowStack"/>
 			<result name="success">/jsp/jobAdded.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>	

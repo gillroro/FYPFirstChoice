@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -25,9 +26,10 @@ public class RegisterEmployeeTest {
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
+  @Ignore
   @Test
   public void testRegisterEmployee() throws Exception {
-    driver.get(baseUrl + "FYP/");
+    driver.get(baseUrl + "FYPFirstChoice/");
     driver.findElement(By.id("Login_Username")).clear();
     driver.findElement(By.id("Login_Username")).sendKeys("gillian");
     driver.findElement(By.id("Login_Password")).clear();
@@ -35,11 +37,11 @@ public class RegisterEmployeeTest {
     driver.findElement(By.id("Login_0")).click();
     driver.findElement(By.linkText("Register Employee")).click();
     driver.findElement(By.id("Register_newFirstName")).clear();
-    driver.findElement(By.id("Register_newFirstName")).sendKeys("Sarah");
+    driver.findElement(By.id("Register_newFirstName")).sendKeys("Olive");
     driver.findElement(By.id("Register_surname")).clear();
-    driver.findElement(By.id("Register_surname")).sendKeys("Test");
+    driver.findElement(By.id("Register_surname")).sendKeys("Maguire");
     driver.findElement(By.id("Register_Username")).clear();
-    driver.findElement(By.id("Register_Username")).sendKeys("sarahtest12");
+    driver.findElement(By.id("Register_Username")).sendKeys("olive124");
     driver.findElement(By.id("Register_Password")).clear();
     driver.findElement(By.id("Register_Password")).sendKeys("test");
     driver.findElement(By.id("Register_Address")).clear();
