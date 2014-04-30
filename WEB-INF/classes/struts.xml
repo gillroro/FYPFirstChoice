@@ -4,6 +4,9 @@
 
 <struts>
     <package name="default" extends="struts-default">
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.NullPointerException" result="failure" />
+		</global-exception-mappings>
         <action name="Login" class="actionClass.UserLoginAction">
             <result name="success">/jsp/success.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
