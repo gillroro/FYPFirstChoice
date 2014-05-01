@@ -15,7 +15,7 @@
 	</div>
 		<div class ="center">
 			<div class="center" >
-				<input type="button" value="Dashboard" onclick="window.history.go(-2);"/>
+				<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
 			</div>
 		</div>
 		

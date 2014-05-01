@@ -18,12 +18,8 @@ public class HolidayApprovalAction extends ActionSupport {
 	private String employeeName;
 	
 	public String execute() throws SQLException{
-		System.out.println("HERE");
-		System.out.println("HERE");
 		connection = ConnectionCreation.getConnection();
-		System.out.println("HERE");
 		approveHolidays= connection.prepareStatement("UPDATE holiday SET approved=? WHERE employeeName=?");
-		System.out.println("HERE");
 		approveHolidays.setString(1, "Approved");
 		approveHolidays.setString(2, getEmployeeName());
 		int test = approveHolidays.executeUpdate();

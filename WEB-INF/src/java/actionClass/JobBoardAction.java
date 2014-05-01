@@ -28,6 +28,10 @@ import entity.Employee;
 import entity.Job;
 import entity.JobApplication;
 
+//This class is responsible for the internal recruitment section in the company. It is responsible for the uploading and
+//downloading of CV document files. The action class is also responsible for adding job to the company. A job must
+//have a closing date that is in the future and employees can only apply for jobs that the closing date is after 
+//today's date. To make an application an employee must upload a CV document or a LinkedIn page or both.
 public class JobBoardAction extends ActionSupport implements Preparable, SessionAware {
 
 	private static final long serialVersionUID = 1L;
@@ -35,7 +39,7 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 	private List<JobApplication> applications = new ArrayList<JobApplication>();
 	private String jobName,description,department, jobDesc,firstName;
 	private String linkedin, myFileFileName, myFileContentType, username, file;
-	private String destPath = "C:/apache-tomcat-7.0.42/work/";
+	private String destPath = "C:/Users/Gillian/Documents/apache-tomcat-7.0.32/work/";//Files are being stored in this location
 	private Employee employee;
 	private Job job;
 	private Date closing_date;
@@ -61,7 +65,7 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 	public String forward(){
 		return NONE;
 	}
-
+	//Adds jobs to the internal recruitment section of the company.
 	public String execute() throws ClassNotFoundException, SQLException{
 		connection = ConnectionCreation.getConnection();
 		addJob = connection.prepareStatement("INSERT INTO Job(jobName, description, department, closing_date) VALUES(?,?,?,?)");
@@ -70,13 +74,10 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 		addJob.setString(3, getDepartment());
 		addJob.setDate(4, (java.sql.Date)closing_date);
 		addJob.executeUpdate();
-//		job.setDepartment(department);
-//		job.setJobDesc(description);
-//		job.setJobName(jobName);
-//		session.put("Job", job);
 		return SUCCESS;
 	}
-
+	
+	//gets all the jobs that are listed in the company and adds them to a list if the closing date is after today's date.
 	public List<Job> getAllJobs(){
 		try {
 
@@ -118,7 +119,8 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 			return "failure";
 		}
 	}
-
+	
+	//Gets the jobs by department based on partial matching of the department name.
 	public List<Job> getJobByDepartment(){
 		try {
 			connection = ConnectionCreation.getConnection();
@@ -155,7 +157,7 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 			return "failure";
 		}
 	}
-
+	//Returns all the job application that have been made by employees in the company.
 	public List<JobApplication> getAllJobApplications(){
 		try{
 			connection = ConnectionCreation.getConnection();
@@ -176,7 +178,7 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 		}
 		return applications;
 	}
-
+	//Downloads the file for managers in order to check the job application.
 	public String download(){
 		try{
 			connection = ConnectionCreation.getConnection();
@@ -198,11 +200,12 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 		getAllJobApplications();
 		return NONE;
 	}
-
+	//Makes a job application for an employee.
 	public String jobApplication() throws IOException, SQLException{
-		destPath = "C:/apache-tomcat-7.0.42/work/";
+		destPath = "C:/Users/Gillian/Documents/apache-tomcat-7.0.32/work/";
 		File destFile = new File(destPath, myFileFileName);
 		FileUtils.copyFile(myFile, destFile);
+		System.out.println("FILE" +myFile.getName() + destFile.getName() + myFileFileName);
 		connection = ConnectionCreation.getConnection();
 		uploadCv = connection.prepareStatement("INSERT INTO jobapplication(username, file, jobName, linkedin) VALUES(?, ?, ?, ?)");	
 		uploadCv.setString(1, firstName);
@@ -215,7 +218,6 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 		return SUCCESS;
 	}
 	//Getters and Setters needed for Struts
-
 	public String getContentDisposition() {
 		return "attachment;filename=\"" + fileDownload + "\"";
 	}

@@ -17,6 +17,8 @@ import com.opensymphony.xwork2.Preparable;
 import database.ConnectionCreation;
 import entity.*;
 
+//This is the main class that looks after an employee self appraisal and it allows a manager in the company to manage
+//an appraisal for a selected employee.
 public class AppraisalAction extends ActionSupport implements Preparable, SessionAware{
 	private static final long serialVersionUID = 1L;
 	private List<String> attendance= new ArrayList<String>();
@@ -26,9 +28,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	private String attendanceRecord,respectRecord,manager,managerEmail, firstName, projectName;
 	private List<Employee> managers= new ArrayList<Employee>();
 	private List<Employee> employees= new ArrayList<Employee>();
-	private Employee employee;
-	//Email
-	private String from,password,to,subject,body;
+	private Employee employee;	
 	//appraisal
 	private String accomplishments,barriers,improvements,performance, completed, uncompleted, projectDetails;
 	private Appraisal appraisal;
@@ -76,22 +76,21 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		session = WebSession.getWebSessionInstance();
 		employee = (Employee) session.get("employee");
 	}
-
+//Main method that adds the employee's details to the appraisal table in the database once they have completed the self-appraisal form.
+	//sends an email to the manager when the form has been submitted.
 	public String execute() 
 	{
 		getEmployeeProjects();
 		appraisal = new Appraisal();
 		String ret = SUCCESS;
-		try
-		{
+		try{
 			Session mailSession = Session.getDefaultInstance(properties,  new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new 
 							PasswordAuthentication("firstchoicefinalyearproject@gmail.com", "finalyearproject");
 				}});
-
 			connection = ConnectionCreation.getConnection();
-			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(firstName,accomplishments, barriers, improvements, performance, attendance, respect, projectDetails) VALUES(?,?,?,?,?,?,?,?)");
+			addAppraisal = connection.prepareStatement("INSERT INTO Appraisal(employeeName,accomplishments, barriers, improvements, performance, attendance, respect, projectDetails) VALUES(?,?,?,?,?,?,?,?)");
 			addAppraisal.setString(1, employee.getFirstName());
 			addAppraisal.setString(2, getAccomplishments());
 			addAppraisal.setString(3, getBarriers());
@@ -109,11 +108,11 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 					changeStatus.executeUpdate();
 				}
 				else if(isNo()){
-					
 					addAppraisal.setString(8, "Incompletion" +getUncompleted());
 					appraisal.setProjectDetails("Incompletion" +uncompleted);
 				}
 				else{
+					ret= "failure";
 					System.out.print("ERROR");
 				}
 			}
@@ -135,7 +134,6 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			else {
 				managerEmail = "finalyearprojectfirstchoice14@gmail.com"; //password = finalyearproject to check that emails are being sent correctly
 			}
-
 			Message message = new MimeMessage(mailSession);
 			message.setFrom(new InternetAddress("firstchoicefinalyearproject@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(managerEmail));
@@ -143,8 +141,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			message.setText("The employee " +  employee.getFirstName()+" has completed her appraisal.\nPlease review this.\n" + new Date());
 			Transport.send(message);
 		}
-		catch(Exception e)
-		{
+		catch(Exception e){
 			ret = "failure";
 			e.printStackTrace();
 		}
@@ -200,12 +197,12 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	public List<Appraisal> getAllAppraisals(){
 		try{
 			connection = ConnectionCreation.getConnection();
-			getAppraisals = connection.prepareStatement("SELECT * FROM APPRAISAL WHERE firstName=?");
+			getAppraisals = connection.prepareStatement("SELECT * FROM APPRAISAL WHERE employeeName=?");
 			getAppraisals.setString(1, firstName);
 			results = getAppraisals.executeQuery();
 			while(results.next()){
 				Appraisal appraisal = new Appraisal();
-				appraisal.setEmployeeName(results.getString("firstName"));
+				appraisal.setEmployeeName(results.getString("employeeName"));
 				appraisal.setAccomplishments(results.getString("accomplishments"));
 				appraisal.setBarriers(results.getString("barriers"));
 				appraisal.setImprovements(results.getString("improvements"));
@@ -249,16 +246,12 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		}
 		return projects;
 	}
-
-	public void displayEmployeeProjects(){
-		getEmployeeProjects();
-		if(projects != null){
-			System.out.println(projects.size());
-		}
-		else {
-			System.out.println("empty");
-		}
+	
+	public String selectEmployee(){
+		getAllAppraisals();
+		return NONE;
 	}
+
 	public String manageAppraisals(){
 		getAllEmployees();
 		getAllAppraisals();
@@ -286,6 +279,12 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		return SUCCESS;
 	}
 
+	public String display(){
+		getAllAppraisals();
+		getEmployeeProjects();
+		return NONE;
+	}
+	//getter and setter methods needed for struts2 to work
 	public List<Appraisal> getAppraisals() {
 		return appraisals;
 	}
@@ -321,36 +320,6 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	}
 	public void setRespectRecord(String respectRecord) {
 		this.respectRecord = respectRecord;
-	}
-	public String getFrom() {
-		return from;
-	}
-	public void setFrom(String from) {
-		this.from = from;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getTo() {
-		return to;
-	}
-	public void setTo(String to) {
-		this.to = to;
-	}
-	public String getSubject() {
-		return subject;
-	}
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-	public String getBody() {
-		return body;
-	}
-	public void setBody(String body) {
-		this.body = body;
 	}
 	public List<Employee> getManagers() {
 		return managers;
@@ -393,11 +362,6 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	}
 	public void setPerformance(String performance) {
 		this.performance = performance;
-	}
-	public String display(){
-		getAllAppraisals();
-		displayEmployeeProjects();
-		return NONE;
 	}
 	public List<Project> getProjects() {
 		return projects;
@@ -447,11 +411,9 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	public void setProjectDetails(String projectDetails) {
 		this.projectDetails = projectDetails;
 	}
-
 	public String getProjectName() {
 		return projectName;
 	}
-
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}

@@ -3,6 +3,7 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+<constant name="struts.multipart.saveDir" value="C:/Users/Gillian/Documents/apache-tomcat-7.0.32/work/Catalina" />
     <package name="default" extends="struts-default">
 		<global-exception-mappings>
 			<exception-mapping exception="java.lang.NullPointerException" result="failure" />
@@ -41,16 +42,11 @@
 			<result name = "failure">/jsp/failure.jsp</result>
 			<result name="input">/index.jsp</result>
 		</action>	
-
-		<action name="fileUploadAction" class="actionClass.FileUploadAction" method="display">
-			<result name="none">/jsp/fileUpload.jsp</result>
-		</action>
 		
 		<action name="resultAction" class="actionClass.JobBoardAction" method="jobApplication">
 			<interceptor-ref name="exception"/>
 				<interceptor-ref name="i18n"/>
 				<interceptor-ref name="fileUpload">
-				
 			</interceptor-ref> 
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -61,7 +57,6 @@
             <interceptor-ref name="workflow">
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
- 
 			<result name="success">/jsp/uploadResult.jsp</result>
 			<result name="input">/jsp/fileUpload.jsp</result>
 		</action>
@@ -69,8 +64,7 @@
 		<action name="uploadProof" class="actionClass.SkillsAction" method="uploadProof">
 			<interceptor-ref name="exception"/>
 				<interceptor-ref name="i18n"/>
-				<interceptor-ref name="fileUpload">
-				
+				<interceptor-ref name="fileUpload">	
 			</interceptor-ref> 
             <interceptor-ref name="params">
                 <param name="excludeParams">dojo\..*,^struts\..*</param>
@@ -81,7 +75,6 @@
             <interceptor-ref name="workflow">
                 <param name="excludeMethods">input,back,cancel,browse</param>
             </interceptor-ref>
- 
 			<result name="success">/jsp/skillUploadResult.jsp</result>
 			<result name="input">/jsp/fileUpload.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
@@ -167,12 +160,12 @@
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 
-		<action name="DateTimePicker" class="actionClass.DatePickerAction" method="display">
+		<action name="DateTimePicker" class="actionClass.HolidayRequestAction" method="display">
 			<result name="none">/jsp/holidayRequest.jsp</result>
 			<result name="input">/jsp/holidayRequest.jsp</result>
 		</action>
  
-		<action name="holidayResultAction" class="actionClass.DatePickerAction" >
+		<action name="holidayResultAction" class="actionClass.HolidayRequestAction" >
 			<result name="success">/jsp/holidayResult.jsp</result>
 			 <result name="failure">/jsp/holidayRequest.jsp</result>
 			 <result name="input">/jsp/holidayRequest.jsp</result>
@@ -183,7 +176,7 @@
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>
 		
-		<action name="ManageEmployeeHolidays" class="actionClass.DatePickerAction" method="displayHolidays" >
+		<action name="ManageEmployeeHolidays" class="actionClass.HolidayRequestAction" method="displayHolidays" >
 			<result name="success">/jsp/manageEmployeeHolidays.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
 		</action>
@@ -246,7 +239,7 @@
 			<result name="none">/jsp/manageAppraisals.jsp</result>
 		</action>
 
-		<action name="SelectedEmployee" class="actionClass.AppraisalAction" method="display" >
+		<action name="SelectedEmployee" class="actionClass.AppraisalAction" method="selectEmployee" >
 			<result name="none">/jsp/employeeSelected.jsp</result>
 		</action>
 		

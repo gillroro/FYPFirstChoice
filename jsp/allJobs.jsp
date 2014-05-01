@@ -1,6 +1,6 @@
 <%@ include file="header.jsp" %>
 <body>
- <div style="height:500px;width:800px;margin:0 auto;">
+ <div style="height:900px;width:800px;margin:0 auto;">
 <div class="center" >
 <h4 style="color:#999;margin-bottom:40px;" class="center"> Job Boards</h4>
 

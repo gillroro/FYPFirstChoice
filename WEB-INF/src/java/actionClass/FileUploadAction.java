@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.Preparable;
 
 import database.ConnectionCreation;
 import entity.Employee;
-
+//Allows the employees to upload files when needed in the application for applying for a job.
 public class FileUploadAction extends ActionSupport implements Preparable, SessionAware {
 
 	private static final long serialVersionUID = 1L;
@@ -69,9 +69,10 @@ public class FileUploadAction extends ActionSupport implements Preparable, Sessi
 	}
 
 	public String execute() throws IOException, SQLException {	
-		destPath = "C:/apache-tomcat-7.0.42/work/";
+		destPath = "C:/Users/Gillian/Documents/apache-tomcat-7.0.32/work/";
 		File destFile = new File(destPath, myFileFileName);
 		FileUtils.copyFile(myFile, destFile);
+		System.out.println("FILE" +myFile.getName() + destFile.getName() + myFileFileName);
 		connection = ConnectionCreation.getConnection();
 
 		uploadCv = connection.prepareStatement("INSERT INTO jobapplication(username, file, jobName) VALUES(?, ?, ?)");	
