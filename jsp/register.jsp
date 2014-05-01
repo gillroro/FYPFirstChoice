@@ -11,8 +11,8 @@
 			<s:form action="Register" >
 				<s:textfield name="newFirstName" value= "First Name" theme= "css_xhtml"/>
 				<s:textfield name="surname" value= "Surname" theme= "css_xhtml"/>
-				<s:textfield name="Username" value= "Username" theme= "css_xhtml"/>
-				<s:password name="Password" value= "Password" showPassword= "true" theme= "css_xhtml"/>
+				<s:textfield name="Username" value= "Username" theme= "css_xhtml" required="true" />
+				<s:password name="Password" value= "Password" showPassword= "true" required="true" theme= "css_xhtml"/>
 				<s:textfield name="Address" value= "Address" theme= "css_xhtml"/>
 				<s:textfield name="Salary" value= "Salary" theme= "css_xhtml"/>
 				<s:textfield name="UserType" value= "User Type" theme= "css_xhtml"/>

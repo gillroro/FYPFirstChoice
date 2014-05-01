@@ -7,11 +7,11 @@
 	<div class="center" >
 	<s:form action="holidayResultAction" namespace="/" method="POST" theme= "css_xhtml" >
  
-		<s:datetimepicker name="date1" label="Holiday Date 1" displayFormat="dd/MM/yyyy"   />
+		<s:datetimepicker name="date1" label="Holiday Date 1" displayFormat="dd/MM/yyyy" required="true"  />
  
-		<s:datetimepicker name="date2" label="Holiday Date 2" displayFormat="dd/MM/yyyy"   />
+		<s:datetimepicker name="date2" label="Holiday Date 2" displayFormat="dd/MM/yyyy" required="true"   />
  
-		<s:datetimepicker name="date3" label="Holiday Date 3" displayFormat="dd/MM/yyyy"   />
+		<s:datetimepicker name="date3" label="Holiday Date 3" displayFormat="dd/MM/yyyy" required="true"   />
  
 		<s:submit value="Request" name="submit" theme="simple"/>
  

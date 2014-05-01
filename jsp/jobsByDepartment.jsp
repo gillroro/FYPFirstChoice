@@ -9,7 +9,7 @@
 	<s:textfield  name="department" label="Department" theme= "css_xhtml" />
 	<s:submit value= "Search" theme="simple" />
 </s:form>	
-<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
+<input type="button" value="Go Back" onclick="window.history.go(-1);"/>
 </div>
 </div>
 

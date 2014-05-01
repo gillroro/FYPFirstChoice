@@ -71,7 +71,7 @@
 </s:iterator>
 </table>
 
-<input type="button" value="Dashboard" onclick="window.history.go(-2);"/>
+<input type="button" value="Go Back" onclick="window.history.go(-1);"/>
 
 </div> 
 </div>

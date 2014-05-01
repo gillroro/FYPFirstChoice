@@ -168,7 +168,7 @@
  
 		<action name="holidayResultAction" class="actionClass.HolidayRequestAction" >
 			<result name="success">/jsp/holidayResult.jsp</result>
-			 <result name="failure">/jsp/holidayRequest.jsp</result>
+			 <result name="failure">/jsp/failure.jsp</result>
 			 <result name="input">/jsp/holidayRequest.jsp</result>
 		</action>
 		
