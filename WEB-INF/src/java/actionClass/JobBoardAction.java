@@ -119,7 +119,6 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 			return "failure";
 		}
 	}
-	
 	//Gets the jobs by department based on partial matching of the department name.
 	public List<Job> getJobByDepartment(){
 		try {
@@ -147,7 +146,7 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 
 	public String displayDepartmentList(){
 		getJobByDepartment();
-		if(jobs != null){
+		if(jobs.size() >= 0){
 			for(int i=0; i< jobs.size(); i++){
 				System.out.println(jobs.get(i).getJobName());
 			}

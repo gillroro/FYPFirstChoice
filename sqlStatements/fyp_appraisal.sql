@@ -26,16 +26,16 @@ DROP TABLE IF EXISTS `appraisal`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `appraisal` (
   `AppraisalId` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(45) DEFAULT NULL,
-  `accomplishments` varchar(100) DEFAULT NULL,
-  `barriers` varchar(100) DEFAULT NULL,
-  `improvements` varchar(100) DEFAULT NULL,
-  `performance` varchar(100) DEFAULT NULL,
+  `employeeName` varchar(45) DEFAULT NULL,
+  `accomplishments` varchar(200) DEFAULT NULL,
+  `barriers` varchar(200) DEFAULT NULL,
+  `improvements` varchar(200) DEFAULT NULL,
+  `performance` varchar(200) DEFAULT NULL,
   `attendance` varchar(45) DEFAULT NULL,
   `respect` varchar(45) DEFAULT NULL,
   `projectDetails` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`AppraisalId`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `appraisal` (
 
 LOCK TABLES `appraisal` WRITE;
 /*!40000 ALTER TABLE `appraisal` DISABLE KEYS */;
-INSERT INTO `appraisal` VALUES (3,'Poppy','Hello','You','Welcome','Test','Very Good','Average Respect for others',NULL),(4,'Jack','test','testt','test','test','Excellent','Very Respectful',NULL),(5,'Mary','test','test','test','test','Excellent','Very Respectful',NULL),(6,'Sarah','test','test','test','test','Excellent','Very Respectful',NULL),(7,'Aaron','1','1','1','1','Excellent','Very Respectful',NULL),(8,'Sarah','accomplishments','barriers','improvements','performance','Very Good','Average Respect for others',NULL),(9,'Poppy','test','test','test','test','Excellent','Average Respect for others',NULL),(10,'Poppy','test','test','test','test','Excellent','Very Respectful',NULL),(11,'Poppy','test','tre','testt','test','Excellent','Poor Respect for Others','Details of Completion test'),(12,'Poppy','TEST','TEST','TEST','TEST','Very Good','Average Respect for others','CompletionDetails of Completion\r\nTEST'),(13,'Poppy','TEST','TEST','TEST','TEST','Poor','Poor Respect for Others','CompletionDetails of Completion\r\nTEST'),(14,'vikki','being me ','being too hungover','being me','being better at being me','Excellent','Very Respectful','Completioncompleted today');
+INSERT INTO `appraisal` VALUES (3,'Poppy','Assumed leadership position in the video products division which had been experiencing slow sales and negative profitability from initial product launch.','Divergent goals',' I reduced my workload substantially and I was able to use this spare time to help my manager with his financial reporting','Financial Skills','Very Good','Average Respect for others','Completion Project was completed on the 14/4.'),(4,'Jack','Video products sales increased from $50,000 to 100,000 in just 4 months and continually grew unit sales by 20% each year from 2000 to 2005.','Lack of support','Being a reliable source for your department leader and seeing opportunities for your department to improve ','Leadership Skills','Excellent','Very Respectful','Completion Project was completed by the team as a whole'),(5,'Mary','Helped the company save money or reduce costs','None of the team seemed to appreciate why a plan was useful.','Share ideas with context and a clear path for implementation for the leader to evaluate','Development Skills','Excellent','Very Respectful','Incompletion of project due to poor requirements'),(6,'Sarah','Implemented processes that save time or increase work productivity','Divergent goals',' I reduced my workload substantially and I was able to use this spare time to help my manager with his financial reporting','Financial Skills','Very Good','Very Respectful','Completion Project was completed by the team as a whole'),(7,'Aaron','Improved company\'s competitive advantage in the marketplace','None of the team seemed to appreciate why a plan was useful.','Share ideas with context and a clear path for implementation for the leader to evaluate','Better Communication Skills','Very Good','Very Respectful','Incompletion of project due to poor staff morale'),(8,'Sarah','Enhanced corporate image or building company\'s reputation in its industry','Lack of support','Improved my communication skills ','Better Communication Skills','Average','Average Respect for others','Incompletion of project due to poor requirements'),(9,'Poppy','Made money for the company','All the team members were feeling pressure to make progress as time was short','Being a reliable source for your department leader and seeing opportunities for your department to improve ','Development Skills','Excellent','Average Respect for others','Completion Project was completed by the team as a whole'),(10,'Poppy','Introduced new marketing initiatives','Divergent goals','Improved my communication skills ','Software Development Skills','Excellent','Very Respectful','Incompletion of project due to poor requirements'),(11,'Poppy','helped the company form strategic alliances with regional distributors and vendors','Problems were not noticed by senior managers','Improved my communication skills ','Talent Acquistion Skills','Excellent','Poor Respect for Others','Completion Project was completed by the team as a whole'),(13,'Poppy','Helped the company save money or reduce costs','None of the team seemed to appreciate why a plan was useful.',' I reduced my workload substantially and I was able to use this spare time to help my manager with his financial reporting','Leadership Skills','Average','Poor Respect for Others','Completion Project was completed by the team on the 29/3/14'),(14,'Vikki','Enhanced corporate image or building company\'s reputation in its industry','Lack of support','Share ideas with context and a clear path for implementation for the leader to evaluate','Better Reporting  Skills','Excellent','Very Respectful','Completion my project assignment was completed to the best of my ability');
 /*!40000 ALTER TABLE `appraisal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-28 15:45:28
+-- Dump completed on 2014-05-02  0:25:03

@@ -31,7 +31,7 @@ CREATE TABLE `project` (
   `endDate` date DEFAULT NULL,
   `department` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (2,'Recruitment Drive','2014-04-01','2014-04-30','Human Resources'),(3,'Metrics','2014-03-23','2014-03-30','IT'),(4,'Test','2014-03-10','2014-03-24','Test'),(5,'Testing','2014-03-30','2014-05-11','IT'),(6,'iOS App Development','2014-04-27','2014-08-03','Mobile Apps');
+INSERT INTO `project` VALUES (2,'Recruitment Drive','2014-04-01','2014-04-30','Human Resources'),(3,'Metrics','2014-03-23','2014-03-30','IT'),(4,'Test','2014-03-10','2014-03-24','Test'),(5,'Testing','2014-03-30','2014-05-11','IT'),(6,'iOS App Development','2014-04-27','2014-08-03','Mobile Apps'),(7,'QA Project Planning','2014-05-05','2014-05-30','QA');
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-28 15:45:27
+-- Dump completed on 2014-05-02  0:24:55
