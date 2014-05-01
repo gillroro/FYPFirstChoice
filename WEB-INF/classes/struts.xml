@@ -258,11 +258,7 @@
 			<result name="none">/jsp/editUser.jsp</result>
 			<result name="input">/jsp/editUser.jsp</result>
 		</action>
-		
-		<action name="UpdateEmployeeDetails" class="actionClass.UpdateDetailsAction" >
-			<result name="success">/jsp/detailsUpdated.jsp</result>
-			<result name="failure">/jsp/failure.jsp</result>
-		</action>
+
 
 		<action name="download" class="actionClass.JobBoardAction" method="download">
 			<result name="success" type="stream">

@@ -205,7 +205,6 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 		destPath = "C:/Users/Gillian/Documents/apache-tomcat-7.0.32/work/";
 		File destFile = new File(destPath, myFileFileName);
 		FileUtils.copyFile(myFile, destFile);
-		System.out.println("FILE" +myFile.getName() + destFile.getName() + myFileFileName);
 		connection = ConnectionCreation.getConnection();
 		uploadCv = connection.prepareStatement("INSERT INTO jobapplication(username, file, jobName, linkedin) VALUES(?, ?, ?, ?)");	
 		uploadCv.setString(1, firstName);
