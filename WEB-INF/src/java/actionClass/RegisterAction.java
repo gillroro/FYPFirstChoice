@@ -15,7 +15,10 @@ import com.opensymphony.xwork2.Preparable;
 
 import database.ConnectionCreation;
 import entity.Employee;
-
+/*
+ * This action class allows a Manager to add new employees to the company. They must provide all the details about the new user 
+ * to the company.
+ */
 public class RegisterAction extends ActionSupport implements Preparable{
 
 
@@ -125,24 +128,29 @@ public class RegisterAction extends ActionSupport implements Preparable{
 	public String execute() throws ClassNotFoundException, SQLException {
 		Employee employee = new Employee();
 		connection = ConnectionCreation.getConnection();
-		getAllEmployees = connection.prepareStatement("SELECT * FROM employee");
-		results = getAllEmployees.executeQuery();
-
 		addEmployee= connection.prepareStatement("INSERT INTO employee(first_name, surname, username, password, address, salary, user_type, manager) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");	
 		addEmployee.setString(1, getNewFirstName());
 		addEmployee.setString(2, getSurname());
+		getAllEmployees = connection.prepareStatement("SELECT * FROM employee WHERE username =?");
+		getAllEmployees.setString(1, getUsername());
+		results = getAllEmployees.executeQuery();
 		if (results.next()){
-			if(username.equalsIgnoreCase(results.getString("username"))){
-				addFieldError("username","Username must be unique");
-			}
-			else{
-				addEmployee.setString(3, getUsername());
-			}
+			System.out.println("Username already there");
+			return "failureUsername";
+			//addFieldError("username","Username must be unique");
+		}
+		else{
+			addEmployee.setString(3, getUsername());
 		}
 		addEmployee.setString(4, getPassword());
 		addEmployee.setString(5, getAddress());
 		addEmployee.setInt(6, getSalary());
-		addEmployee.setString(7, userType);
+		if(userType.equalsIgnoreCase("employee") || userType.equalsIgnoreCase("manager")){
+			addEmployee.setString(7, userType);
+		}
+		else{
+			return "failure";
+		}
 		addEmployee.setString(8, firstName);
 		addEmployee.executeUpdate();
 		employee.setAddress(address);
@@ -155,21 +163,15 @@ public class RegisterAction extends ActionSupport implements Preparable{
 		session.put("employee", employee);
 		addEmployee.close();
 		connection.close();
-
 		return SUCCESS;
 
 	}
-
-
 	public Employee getEmployee() {
 		return employee;
 	}
-
-
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-
 	public List<Employee> getAllManagers(){
 		try {
 			connection =ConnectionCreation.getConnection();
@@ -196,15 +198,7 @@ public class RegisterAction extends ActionSupport implements Preparable{
 	public String getNewFirstName() {
 		return newFirstName;
 	}
-
 	public void setNewFirstName(String newFirstName) {
 		this.newFirstName = newFirstName;
 	}
-
-
-
-
-
-
-
 }

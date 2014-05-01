@@ -19,6 +19,8 @@
             <result name="success">/jsp/registerSuccess.jsp</result>
 			<result name="input">/jsp/registerSuccess.jsp</result>
 			<result name="failure">/jsp/failure.jsp</result>
+			<result name="failureUsername">/jsp/failureUsername.jsp</result>
+
         </action>
 		
 		<action name="ManageDetails" class="actionClass.ManageEmployeeDetailsAction">

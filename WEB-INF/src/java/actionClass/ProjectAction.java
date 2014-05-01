@@ -19,12 +19,14 @@ import com.opensymphony.xwork2.Preparable;
 import database.ConnectionCreation;
 import entity.Employee;
 import entity.Project;
-
+/*
+ * This class has been designed to deal with all aspects of the project side of the company. Managers can add, view and delete projects
+ * from the application. They can also assign employees to projects. Employees can just provide details of what projects they have completed
+ * or that are still incomplete on the appraisal form.
+ */
 public class ProjectAction extends ActionSupport implements Preparable,SessionAware{
 
-
 	private static final long serialVersionUID = 1L;
-
 	private String projectName,employeeName,department, firstName;
 	private Date startDate,endDate;
 	private Connection connection;
@@ -36,12 +38,10 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 	private Project project;
 	private Employee employee;
 
-
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void setSession(Map arg0) {
 		session = arg0;
-
 	}
 
 	@Override
@@ -76,7 +76,6 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return SUCCESS;
 	}
 
@@ -95,10 +94,7 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 		}
 		connection.close();
 		deleteProject.close();
-
 		return SUCCESS;
-
-
 	}
 
 	public String assignEmployeeToProject(){
@@ -115,11 +111,9 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 			addMemberToProject.setString(2, firstName);
 			addMemberToProject.setString(3, "Incomplete");
 			addMemberToProject.executeUpdate();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return SUCCESS;
 	}
 	public List<Project> getAllProjects(){
@@ -134,13 +128,11 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 				project.setEndDate(results.getDate("endDate"));
 				project.setDepartment(results.getString("department"));
 				projects.add(project);
-
 			}
 			connection.close();
 			getProjects.close();
 			results.close();
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
 		return projects;
@@ -148,7 +140,6 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 
 	public List<Employee> getAllEmployees(){
 		try {
-
 			connection =ConnectionCreation.getConnection();
 			getEmployees = connection.prepareStatement("SELECT * FROM EMPLOYEE");
 			results = getEmployees.executeQuery();
@@ -160,20 +151,14 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 				employee.setUsername(results.getString("username"));
 				employee.setPassword(results.getString("password"));
 				employee.setUserType(results.getString("user_type"));
-
 				if(employee.getUserType().equalsIgnoreCase("employee")){
 					members.add(employee);
-
-
 				}
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return members;
-
 	}
 
 	public String displayAllProjects(){
@@ -189,7 +174,7 @@ public class ProjectAction extends ActionSupport implements Preparable,SessionAw
 	public String forward(){
 		return NONE;
 	}
-
+	//Getters and Setters
 	public String getProjectName() {
 		return projectName;
 	}

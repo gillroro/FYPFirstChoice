@@ -18,7 +18,10 @@ import com.opensymphony.xwork2.Preparable;
 
 import database.ConnectionCreation;
 import entity.Employee;
-
+/*
+ * This action class is responsible for managing the details of the employee's in the Application. 
+ * Managers can edit the employee details that are stored about them in the company. 
+ */
 public class ManageEmployeeDetailsAction extends ActionSupport implements Preparable, SessionAware{
 
 	private static final long serialVersionUID = 1L;
@@ -28,7 +31,7 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 	private ResultSet results;
 	private Employee manager;
 	private Employee employee;
-	private String username, userType,password,firstName, surname, address;
+	private String username, userType,password,firstName, surname, address, managerName;
 	private int salary;
 	
 	private Map<String, Object> session;
@@ -37,7 +40,7 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 	public void prepare() throws Exception {
 		session = WebSession.getWebSessionInstance();
 		if(session.containsKey("manager")){
-			setManager((Employee) session.get("manager"));
+			manager =((Employee) session.get("manager"));
 		}
 		if(session.containsKey("employee")){
 			setEmployee((Employee)session.get("employee"));
@@ -67,7 +70,7 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
 	}
-	
+	//Gets all the details about all the employee's in the company
 	public List<Employee> getAllEmployees() {
 		try{
 			connection = ConnectionCreation.getConnection();
@@ -84,7 +87,6 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 				employee.setUserType(results.getString("user_type"));
 				employee.setManager(results.getString("manager"));
 				employees.add(employee);
-
 			}
 			for(int i=0; i<employees.size(); i++){
 				System.out.print(employees.get(i));
@@ -98,7 +100,7 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 		}
 		return employees;
 	}
-	
+	//Updates the details of the employees in the database.
 	public String updateDetails() throws SQLException{
 		connection = ConnectionCreation.getConnection();
 		updateEmployee = connection.prepareStatement("UPDATE employee SET first_name=?, surname=?, address=?, user_type=?, salary=? WHERE username=?");
@@ -107,7 +109,7 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 		updateEmployee.setString(3, getAddress());
 		updateEmployee.setString(4, getUserType());
 		updateEmployee.setInt(5, getSalary());
-	//	updateEmployee.setInt(6, getManager());
+		updateEmployee.setString(6, getManagerName());
 		updateEmployee.setString(6, getUsername());
 		System.out.print("username" + getUsername());
 		int test =updateEmployee.executeUpdate();
@@ -119,22 +121,14 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 		else {
 			return "failure";
 		}
-
 	}
-	
+	// Getter and Setter methods for the Struts2 framework
 	public Employee getEmployee() {
 		return employee;
 	}
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	public Employee getManager() {
-		return manager;
-	}
-	public void setManager(Employee manager) {
-		this.manager = manager;
-	}
-
 	public String forward(){
 		return NONE;
 	}
@@ -180,6 +174,10 @@ public class ManageEmployeeDetailsAction extends ActionSupport implements Prepar
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
+	public String getManagerName() {
+		return managerName;
+	}
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
+	}
 }
