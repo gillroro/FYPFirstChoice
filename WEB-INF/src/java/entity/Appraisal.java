@@ -1,7 +1,7 @@
 package entity;
 
 public class Appraisal {
-	
+	//Entity Class for an appraisal object
 	private String accomplishments;
 	private String performance;
 	private String barriers;

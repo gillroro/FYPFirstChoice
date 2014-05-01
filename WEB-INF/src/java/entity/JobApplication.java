@@ -3,7 +3,7 @@ package entity;
 import java.io.File;
 
 public class JobApplication {
-	
+	//Entity for the job application object
 	private String username;
 	private String linkedin;
 	private String jobName;

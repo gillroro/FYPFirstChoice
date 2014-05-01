@@ -3,7 +3,7 @@ package entity;
 import java.sql.Date;
 
 public class Job {
-	
+	//Entity for the job object
 	private String jobName;
 	private String jobDesc;
 	private String department;

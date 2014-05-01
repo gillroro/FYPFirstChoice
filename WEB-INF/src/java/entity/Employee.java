@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public class Employee {
-	
+	//Entity for the employee object
 	private String username;
 	private String password;
 	private String firstName;

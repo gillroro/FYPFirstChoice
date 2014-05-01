@@ -72,9 +72,19 @@ public class HolidayRequestAction extends ActionSupport implements Preparable, S
 			System.out.println(date3);
 			connection = ConnectionCreation.getConnection();
 			addHolidays = connection.prepareStatement("INSERT INTO holiday(date1, date2, date3,employeeName, approved) VALUES(?, ?, ?,?,?)");
-			addHolidays.setDate(1, (java.sql.Date) date1);
-			addHolidays.setDate(2, (java.sql.Date) date2);
-			addHolidays.setDate(3, (java.sql.Date) date3);
+			if(date1 != null || !date1.toString().equalsIgnoreCase("")){
+				addHolidays.setDate(1, (java.sql.Date) date1);
+			}
+			else if (date2 !=null || !date2.toString().equalsIgnoreCase("")){
+
+				addHolidays.setDate(2, (java.sql.Date) date2);
+			}
+			else if(date3 !=null || !date3.toString().equalsIgnoreCase("")){
+				addHolidays.setDate(3, (java.sql.Date) date3);
+			}
+			else{
+				return "failure";
+			}
 			addHolidays.setString(4, employee.getFirstName());
 			addHolidays.setString(5, "Awaiting");
 			addHolidays.executeUpdate();
@@ -144,7 +154,7 @@ public class HolidayRequestAction extends ActionSupport implements Preparable, S
 			return "failure";
 		}
 	}
-	
+
 	public String getEmployeeName() {
 		return employeeName;
 	}

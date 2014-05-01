@@ -3,7 +3,7 @@ package entity;
 import java.sql.Date;
 
 public class Holiday {
-	
+	//Entity for the holiday object
 	private Date date1;
 	private Date date2;
 	private Date date3;	

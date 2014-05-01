@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Project {
-	
+	//Entity for the project object
 	private String projectName;
 	private Date startDate;
 	private Date endDate;

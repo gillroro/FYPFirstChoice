@@ -1,7 +1,7 @@
 package entity;
 
 public class Skill {
-	
+	//Entity for the skill object
 	private String name;
 	private String description;
 	
