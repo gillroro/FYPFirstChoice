@@ -75,11 +75,10 @@ public class HolidayRequestAction extends ActionSupport implements Preparable, S
 			if(date1 != null || !date1.toString().equalsIgnoreCase("")){
 				addHolidays.setDate(1, (java.sql.Date) date1);
 			}
-			else if (date2 !=null || !date2.toString().equalsIgnoreCase("")){
-
+			if (date2 !=null || !date2.toString().equalsIgnoreCase("")){
 				addHolidays.setDate(2, (java.sql.Date) date2);
 			}
-			else if(date3 !=null || !date3.toString().equalsIgnoreCase("")){
+			if(date3 !=null || !date3.toString().equalsIgnoreCase("")){
 				addHolidays.setDate(3, (java.sql.Date) date3);
 			}
 			else{

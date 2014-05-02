@@ -146,7 +146,7 @@ public class JobBoardAction extends ActionSupport implements Preparable, Session
 
 	public String displayDepartmentList(){
 		getJobByDepartment();
-		if(jobs.size() >= 0){
+		if(jobs != null){
 			for(int i=0; i< jobs.size(); i++){
 				System.out.println(jobs.get(i).getJobName());
 			}
