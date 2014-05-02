@@ -19,9 +19,6 @@ import entity.Employee;
 
 public class UserLoginAction extends ActionSupport implements Preparable, SessionAware{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Connection connection;
 	private PreparedStatement checkDuplicate;
@@ -38,30 +35,7 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 		employee = (Employee) session.get("employee");
 		manager = (Employee) session.get("manager");
 	}
-	public Employee getEmployee() {
-		return employee;
-	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-	public String getUserType() {
-		return userType;
-	}
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
 	public String execute() throws ClassNotFoundException, SQLException  {
 		employee = new Employee();
 		connection = ConnectionCreation.getConnection();
@@ -79,6 +53,7 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 			employee.setSalary(results.getInt("salary"));
 			employee.setUserType(results.getString("user_type"));
 			if(employee.getUserType().equalsIgnoreCase("manager")){
+				//return manager if user type = manager to render the correct dashboard after log in
 				session.put("login", "true");
 				session.put("manager",employee );
 				System.out.println("Manager" + employee.getFirstName());
@@ -87,6 +62,7 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 				return "manager";
 			}
 			else{
+				//return success to render the employee dashboard page after log in
 				session.put("login", "true");
 				session.put("employee", employee);
 				System.out.print("Employee" + employee.getUsername());
@@ -101,8 +77,6 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 			return "failure";
 		}
 	}
-
-
 
 	public String logout() {
 		if(session != null){
@@ -139,6 +113,30 @@ public class UserLoginAction extends ActionSupport implements Preparable, Sessio
 	}
 	public void setSalary(int salary) {
 		this.salary = salary;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void validate(){

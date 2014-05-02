@@ -37,7 +37,7 @@ CREATE TABLE `employee` (
   `bonus` int(11) DEFAULT NULL,
   PRIMARY KEY (`employee_id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Gillian','Rowan','gillianrowan','test','123 Yellow Lane, Wicklow',45000,'manager',NULL,NULL),(7,'Sarah','Thornton','sarahthornton','test','Kevin Street, Dublin City',28000,'employee','Gillian',NULL),(13,'Mary','Regan','maryregan','test','Dundrum Town Centre, Dublin',45000,'manager','Gillian',NULL),(14,'Matthew','Ryan','matthewryan','test','South Circular Road, Dublin',34000,'employee','Gillian',4500),(15,'Jack','Rowan','jackrowan','test','1 Castle Field Wicklow',123456,'employee','Gillian',NULL),(17,'Poppy','Doyle','poppydoyle','test','Dublin Road, Carlow',12345,'employee','Gillian',3750),(18,'Aaron','Turner','aaronturner','test','Phoneix Park, Dublin City',1234,'employee','Gillian',1000),(20,'Andrew','Rice','andrewrice','test','108, Dublin',2345,'employee','Mary',NULL),(22,'Megan M','Murphy','meganmurphy','test','The Beacon, Sandyford',35000,'employee','Mary',NULL),(24,'Ronan','Sharkey','ronansharkey','test','Rathfarnam, Dublin',30000,'employee','Mary',NULL),(27,'Vikki','Rowan','vikkirowan','test','24 Crinion Park Wicklow Town',25000,'employee','Gillian',3750),(29,'Ian','Wisely','ianwisely','test','145 Dublin Heights, Dublin',30000,'employee','Gillian',NULL),(30,'Myles','Rowan','mylesrowan','test','Main Street, Wicklow',23000,'employee','Gillian',NULL),(31,'Megan','Maguire','meganmaguire','test','Aungier Street Dublin ',12345,'employee','Gillian',NULL),(32,'Olive','Maguire','olivemaguire','test','Maynooth, Kildare',12345,'employee','Gillian',NULL),(33,'Linda','Chen','lindachen','Password','123 Henry Street, Dublin City',34000,'employee','Gillian',NULL),(34,'Fiona ','Brosnan','fionabrosnan','test','Tallaght, Dublin',40000,'employee','Mary',NULL);
+INSERT INTO `employee` VALUES (1,'Gillian','Rowan','gillianrowan','test','123 Yellow Lane, Wicklow',45000,'manager',NULL,NULL),(7,'Sarah','Thornton','sarahthornton','test','Kevin Street, Dublin City',28000,'employee','Gillian',NULL),(13,'Mary','Regan','maryregan','test','Dundrum Town Centre, Dublin',45000,'manager','Gillian',NULL),(14,'Matthew','Ryan','matthewryan','test','South Circular Road, Dublin',34000,'employee','Gillian',4500),(15,'Jack','Rowan','jackrowan','test','1 Castle Field Wicklow',123456,'employee','Gillian',NULL),(17,'Poppy','Doyle','poppydoyle','test','Dublin Road, Carlow',12345,'employee','Gillian',3750),(18,'Aaron','Turner','aaronturner','test','Phoneix Park, Dublin City',1234,'employee','Gillian',1000),(20,'Andrew','Rice','andrewrice','test','108, Dublin',2345,'employee','Mary',NULL),(22,'Megan M','Murphy','meganmurphy','test','The Beacon, Sandyford',35000,'employee','Mary',NULL),(24,'Ronan','Sharkey','ronansharkey','test','Rathfarnam, Dublin',30000,'employee','Mary',NULL),(27,'Vikki','Rowan','vikkirowan','test','24 Crinion Park Wicklow Town',25000,'employee','Gillian',3750),(29,'Ian','Wisely','ianwisely','test','145 Dublin Heights, Dublin',30000,'employee','Gillian',NULL),(30,'Myles','Rowan','mylesrowan','test','Main Street, Wicklow',23000,'employee','Gillian',NULL),(31,'Megan','Maguire','meganmaguire','test','Aungier Street Dublin ',12345,'employee','Gillian',NULL),(32,'Olive','Maguire','olivemaguire','test','Maynooth, Kildare',12345,'employee','Gillian',NULL),(33,'Linda','Chen','lindachen','Password','123 Henry Street, Dublin City',34000,'employee','Gillian',NULL),(34,'Fiona ','Brosnan','fionabrosnan','test','Tallaght, Dublin',40000,'employee','Mary',NULL),(35,'Stephen','Brandon','stephenbrandon','test','Main Street, Bray, Wicklow',28000,'employee','Mary',NULL);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-05-02  6:44:41
+-- Dump completed on 2014-05-02  9:21:45

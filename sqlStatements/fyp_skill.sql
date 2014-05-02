@@ -29,7 +29,7 @@ CREATE TABLE `skill` (
   `Name` varchar(45) DEFAULT NULL,
   `Description` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`SkillId`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `skill` (
 
 LOCK TABLES `skill` WRITE;
 /*!40000 ALTER TABLE `skill` DISABLE KEYS */;
-INSERT INTO `skill` VALUES (1,'Recruitment','Recruitment'),(2,'Database','Database development'),(3,'Project Management','Project Management'),(4,'Databases','Databases'),(5,'Testing','Testing'),(6,'PCIP','Payment Card Industry Professional'),(7,'Customer Relations','Customer Relations'),(8,'French Language Skills','A basic understanding of the French language that can be applied to the business world');
+INSERT INTO `skill` VALUES (1,'Recruitment','Recruitment'),(2,'Database','Database development'),(3,'Project Management','Project Management'),(4,'Databases','Databases'),(5,'Testing','Testing'),(6,'PCIP','Payment Card Industry Professional'),(7,'Customer Relations','Customer Relations'),(8,'French Language Skills','A basic understanding of the French language that can be applied to the business world'),(9,'HTML','A basic understanding of HTML '),(10,'Java Development','Basic Java Development Skills'),(11,'Selenium','Selenium Automated Testing Tool');
 /*!40000 ALTER TABLE `skill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-05-02  6:44:42
+-- Dump completed on 2014-05-02  9:21:47

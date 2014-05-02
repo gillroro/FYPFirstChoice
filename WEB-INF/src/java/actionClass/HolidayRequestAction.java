@@ -67,9 +67,6 @@ public class HolidayRequestAction extends ActionSupport implements Preparable, S
 		Holiday holiday = new Holiday();
 		String ret = SUCCESS;
 		try{
-			System.out.println(date1);
-			System.out.println(date2);
-			System.out.println(date3);
 			connection = ConnectionCreation.getConnection();
 			addHolidays = connection.prepareStatement("INSERT INTO holiday(date1, date2, date3,employeeName, approved) VALUES(?, ?, ?,?,?)");
 			if(date1 != null || !date1.toString().equalsIgnoreCase("")){
