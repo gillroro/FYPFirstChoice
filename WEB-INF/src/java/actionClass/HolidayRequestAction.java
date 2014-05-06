@@ -72,11 +72,21 @@ public class HolidayRequestAction extends ActionSupport implements Preparable, S
 			if(date1 != null || !date1.toString().equalsIgnoreCase("")){
 				addHolidays.setDate(1, (java.sql.Date) date1);
 			}
-			if (date2 !=null || !date2.toString().equalsIgnoreCase("")){
-				addHolidays.setDate(2, (java.sql.Date) date2);
+			if (date2 !=null || !date2.toString().equalsIgnoreCase("") ){
+				if(date2.after(date1) && date2.before(date3) && !date2.equals(date1)){
+					addHolidays.setDate(2, (java.sql.Date) date2);
+				}
+				else{
+					return "failure";
+				}
 			}
 			if(date3 !=null || !date3.toString().equalsIgnoreCase("")){
-				addHolidays.setDate(3, (java.sql.Date) date3);
+				if(date3.after(date1) && date3.after(date2) && !date3.equals(date1) && !date3.equals(date2)){
+					addHolidays.setDate(3, (java.sql.Date) date3);
+				}
+				else{
+					return "failure";
+				}
 			}
 			else{
 				return "failure";
@@ -98,7 +108,7 @@ public class HolidayRequestAction extends ActionSupport implements Preparable, S
 			message.setFrom(new InternetAddress("firstchoicefinalyearproject@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("finalyearprojectfirstchoice14@gmail.com"));
 			message.setSubject("Holiday Request Details");
-			message.setText(employee.getManager() + "\nThe employee "+ employee.getFirstName() +" has completed her holiday requests.\nPlease review these.\n" 
+			message.setText("\nThe employee "+ employee.getFirstName() +" has completed her holiday requests.\nPlease review these.\n" 
 					+ date1+ "\n" + date2 + "\n"  + date3);
 			Transport.send(message);
 		}

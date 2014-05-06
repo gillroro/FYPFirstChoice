@@ -15,8 +15,8 @@
 	  <td><s:property value ="barriers" /> </td>
 	  <td><s:property value ="improvements" /> </td>
 	  <td><s:property value ="performance" /> </td>
-	  <td><s:property value ="attendance" /> </td>
-	  <td><s:property value ="respect" /> </td>	 
+	  <td><s:property value ="attendanceRecord" /> </td>
+	  <td><s:property value ="respectRecord" /> </td>	 
 	  <td><s:property value ="projectDetails" /> </td>
 	  <td><s:url id="approveURL" action="approveBonus"  escapeAmp="false">
 			<s:bean name="entity.Appraisal"></s:bean>
@@ -42,8 +42,8 @@
 	  <td><s:property value ="barriers" /> </td>
 	  <td><s:property value ="improvements" /> </td>
 	  <td><s:property value ="performance" /> </td>
-	  <td><s:property value ="attendance" /> </td>
-	  <td><s:property value ="respect" /> </td>
+	  <td><s:property value ="attendanceRecord" /> </td>
+	  <td><s:property value ="respectRecord" /> </td>
 	  <td><s:property value ="projectDetails" /> </td>
 	    <td><s:url id="approveURL"  action="approveBonus"  escapeAmp="false">
 			<s:bean name="entity.Appraisal"></s:bean>
@@ -69,8 +69,8 @@
 	  <td><s:property value ="barriers" /> </td>
 	  <td><s:property value ="improvements" /> </td>
 	  <td><s:property value ="performance" /> </td>
-	  <td><s:property value ="attendance" /> </td>
-	  <td><s:property value ="respect" /> </td>
+	  <td><s:property value ="attendanceRecord" /> </td>
+	  <td><s:property value ="respectRecord" /> </td>
 	  <td><s:property value ="projectDetails" /> </td>
 	    <td><s:url id="approveURL" action="approveBonus" escapeAmp="false">
 			<s:bean name="entity.Appraisal"></s:bean>
@@ -95,7 +95,7 @@
 </s:iterator>
 </table>
 
-<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
+<input type="button" value="Back" onclick="window.history.go(-1);"/>
 </div>
 </div>
 

@@ -76,7 +76,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		session = WebSession.getWebSessionInstance();
 		employee = (Employee) session.get("employee");
 	}
-//Main method that adds the employee's details to the appraisal table in the database once they have completed the self-appraisal form.
+	//Main method that adds the employee's details to the appraisal table in the database once they have completed the self-appraisal form.
 	//sends an email to the manager when the form has been submitted.
 	public String execute() 
 	{
@@ -96,6 +96,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 			addAppraisal.setString(3, getBarriers());
 			addAppraisal.setString(4, getImprovements());
 			addAppraisal.setString(5, getPerformance());
+			System.out.println(attendanceRecord);
 			addAppraisal.setString(6, getAttendanceRecord());
 			addAppraisal.setString(7, getRespectRecord());
 			if(projects.size() > 0){
@@ -208,6 +209,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 				appraisal.setImprovements(results.getString("improvements"));
 				appraisal.setPerformance(results.getString("performance"));
 				appraisal.setAttendanceRecord(results.getString("attendance"));
+				System.out.println(appraisal.getAttendanceRecord());
 				appraisal.setRespectRecord(results.getString("respect"));
 				appraisal.setProjectDetails(results.getString("projectDetails"));
 				appraisals.add(appraisal);	
@@ -246,7 +248,7 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 		}
 		return projects;
 	}
-	
+
 	public String selectEmployee(){
 		getAllAppraisals();
 		return NONE;
@@ -261,11 +263,16 @@ public class AppraisalAction extends ActionSupport implements Preparable, Sessio
 	public String giveBonus(){
 		try{
 			connection = ConnectionCreation.getConnection();
-			addBonus = connection.prepareStatement("UPDATE employee SET bonus=? WHERE first_name=?");
-			addBonus.setInt(1,(25000/100)*15);
-			addBonus.setString(2, firstName);
-			System.out.print(firstName);
-			addBonus.executeUpdate();
+			getEmployees = connection.prepareStatement("SELECT * FROM EMPLOYEE WHERE first_name=?");
+			getEmployees.setString(1, firstName);
+			results = getEmployees.executeQuery();
+			if(results.next()){
+				addBonus = connection.prepareStatement("UPDATE employee SET bonus=? WHERE first_name=?");
+				addBonus.setInt(1,(results.getInt("salary")/100)*15);
+				addBonus.setString(2, firstName);
+				System.out.print(firstName);
+				addBonus.executeUpdate();
+			}
 			connection.close();
 			addBonus.close();
 			return SUCCESS;

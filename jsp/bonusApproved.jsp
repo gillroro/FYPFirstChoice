@@ -7,7 +7,7 @@
 
 <h4 style="color:#999;margin-bottom:40px;" class="center">Bonus Approved</h4>
 
-<input type="button" value="Dashboard" onclick="window.history.go(-1);"/>
+<input type="button" value="Back" onclick="window.history.go(-1);"/>
 </div>
  <%@ include file="footer.jsp" %>
 </body>
